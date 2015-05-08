@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<% include admin-header %>  
+
+                <table class="table table-bordered responsive" id="dyntable">
+                    <colgroup>
+                        <col class="con0" style="align: center; width: 4%" />
+                        <col class="con1" />
+                        <col class="con0" />
+                        <col class="con1" />
+                        <col class="con0" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="head0 nosort"><input type="checkbox" class="checkall" /></th>
+                            <th class="head1">Nome da Categoria</th>
+                            <th class="head0">Descrição</th>
+                            <th class="head1">Jogos cadastrados</th>
+                            <th class="head1">Ver/Editar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    <% for(var i=0; i<categorias.length; i++) {%>
+                        <tr class="gradeX">
+                            <td class="aligncenter">
+                                <span class="center">
+                                    <input type="checkbox" />
+                                </span>
+                            </td>
+
+                            <td class="center"><%= categorias[i].nome_categoria %></td>
+                            <td class="center">
+                            <% if (typeof categorias[i].descricao_categoria !== 'undefined'){ %>
+                                <% if((categorias[i].descricao_categoria == 'undefined') || (categorias[i].descricao_categoria == '') ){ %>
+                                    <span class="label label-danger">Sem descrição cadastrada</span>
+                                    <%}else { %>
+                                      <%= categorias[i].descricao_categoria.toString().replace(/<.*?>/g, '').substr(0,60) %>...
+                                    <%}%>
+                                <%}%>
+                            </td>
+                            <td class="center"></td>
+                            <td class="center">
+                                <a href="/mg-admin/editarcategoria/<%= categorias[i].id %>" data-toggle="modal" class="btn btn-inverse">
+                                    <i class="iconfa-pencil"></i>
+                                </a>
+                            </td>
+
+                        </tr>
+                        <% } %>
+
+                    </tbody>
+                </table>
+                    
+                <div class="divider30" ></div> 
+                                        <ul class="list-nostyle list-inline" align="right">
+                                            <li><a href="/mg-admin/cadastrarcategoria" class="btn btn-inverse btn-rounded" > <i class=" iconfa-plus"></i> &nbsp; Cadastrar categoria</a></li>
+                                        </ul>
+
+
+                    </div><!--span4-->
+                </div><!--row-fluid--> 
+
+    <!-- Script para busca, paginações das notícias -->
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            // dynamic table
+            jQuery('#dyntable').dataTable({
+                "sPaginationType": "full_numbers",
+                "aaSortingFixed": [[0,'asc']],
+                "fnDrawCallback": function(oSettings) {
+                    jQuery.uniform.update();
+                }
+            });
+            
+            
+            
+        });
+    </script>
+
+<% include admin-footer %>    

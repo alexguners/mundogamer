@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mundo Gamer -Administrativo</title>
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="/admin/css/style.default.css" type="text/css" />
+<link rel="stylesheet" href="/admin/css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="/admin/css/responsive-tables.css" type="text/css">
+<link rel="stylesheet" href="/admin/css/bootstrap-fileupload.min.css" type="text/css" />  
+<link rel="stylesheet" href="/admin/css/chosen.css">
+
+</head>
+
+<body>
+<div class="mainwrapper">
+    
+    <div class="header">
+        <div class="logo">
+            <a href="/mg-admin"><img src="/images/logo_beta.png" alt="" /></a>
+        </div>
+        <div class="headerinner">
+            <ul class="headmenu">
+&nbsp; 
+                <li class="right">
+                    <div class="userloggedinfo">
+                        <img src="/images/perfis/perfil01.png" alt="" /> 
+                        <div class="userinfo">
+                            <h5><%=user.local.nome%><small>- <%=user.local.email%></small></h5>
+                            <ul>
+                                <li><a href="/mg-admin/minhaconta">Configurações de Conta</a></li> 
+                                <li><a href="/mg-admin/logout">Sair</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul><!--headmenu-->
+        </div>
+    </div>
+   
+    <div class="leftpanel">
+        
+        <div class="leftmenu">        
+            <ul class="nav nav-tabs nav-stacked">
+            	<li class="nav-header">Menu Mundo Gamer</li>  
+                <% if (typeof user.local.tipo !== 'undefined'){ %>
+                    <% if (user.local.tipo == 'Administrador'){ %> 
+
+                    <li class="dropdown"><a href=""><span class="iconsweets-settings2"></span>&nbsp;Administração</a>
+                    <ul>
+                        <li class="dropdown"><a href=""><span class="iconfa-cogs"></span> Configurações</a>
+                            <ul>
+                                <li><a href="/mg-admin/sitemap"><span class="iconfa-sitemap"></span> Sitemap</a></li>
+                            </ul>
+                        </li>  
+                        <li class="dropdown"><a href=""><span class="iconfa-user"></span> Usuários</a>
+                                <ul>
+                                    <li><a href="/mg-admin/users">Listar Usuários</a></li>
+                                    <li><a href="/mg-admin/users/add">Novo Usuário</a></li>  
+                               </ul>
+                        </li>                  
+ 
+                    </ul>
+                </li>
+
+                    <%}%>
+                <%}%>   
+     
+                <li class="dropdown"><a href=""><span class="iconfa-pencil"></span>Publicações</a>
+                    <ul>
+                       <li><a href="/mg-admin/novaanalise"><span class=" iconsweets-info"></span>Nova análise de jogo</a></li>                
+                       <li><a href="/mg-admin/novanoticia"><span class="iconsweets-create"></span>Criar Publicação</a></li>
+                       <!--<li><a href="/mg-admin/novanoticia"><span class="iconfa-external-link"></span>Notícia com link externo</a></li> -->      
+                       <li><a href="/mg-admin/novovideo"><span class="iconsweets-filmcamera"></span>Publicar um vídeo</a></li>
+                        <li><a href="/mg-admin"><span class="icon-list-alt"></span>Minhas Publicações</a></li>  
+                    </ul>
+                </li> 
+
+                <li class="dropdown"><a href=""><span class="iconfa-th-list"></span>WikiGamer</a>
+                    <ul>
+                        <li class="dropdown"><a href=""><span class="iconsweets-flag2"></span>Categorias</a>
+                            <ul>
+                                <li><a href="/mg-admin/cadastrarcategoria">Cadastrar categoria</a></li>
+                                <li><a href="/mg-admin/categoriascadastradas">Categorias cadastradas</a></li>
+                            </ul>
+                        </li>                    
+                        <li class="dropdown"><a href=""><span class="iconsweets-pacman"></span>Jogos</a>
+                            <ul>
+                                <li><a href="/mg-admin/cadastrarjogo">Cadastrar jogo</a></li>
+                                <li><a href="/mg-admin/jogoscadastrados">Jogos cadastrados</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href=""><span class="iconsweets-companies"></span>Parceiros</a>
+                            <ul>
+                               <li><a href="/mg-admin/cadastrarparceiro">Cadastrar Parceiro</a></li>
+                                <li><a href="/mg-admin/parceiroscadastrados">Parceiros Cadastrados</a></li>  
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href=""><span class="iconsweets-ghost"></span>Personagens</a>
+                            <ul>
+                                <li><a href="/mg-admin/cadastrarpersonagem">Cadastrar personagem</a></li>
+                                <li><a href="/mg-admin/personagenscadastrados">Personagens cadastrados</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href=""><span class="iconsweets-monitor"></span>Plataformas</a>
+                            <ul>
+                                <li><a href="/mg-admin/cadastrarplataforma">Cadastrar plataforma</a></li>
+                                <li><a href="/mg-admin/plataformascadastradas">Plataformas cadastradas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href=""><span class="iconsweets-monitor"></span>Produtoras</a>
+                            <ul>
+                                <li><a href="#">Cadastrar produtora</a></li>
+                                <li><a href="#">Produtoras cadastradas</a></li>
+                            </ul>
+                        </li>   
+                    </ul>
+                </li>
+
+ 
+
+            </ul>
+        </div><!--leftmenu-->
+        
+    </div><!-- leftpanel -->
+    <div class="rightpanel">
+        <div class="pageheader">
+            <div class="pagetitle">
+                <h1><%= title %> </h1>
+                <h5><%= subtitle %> </h5>
+            </div>
+        </div><!--pageheader-->
+        
+        <div class="maincontent">
+            <div class="maincontentinner">
+
+
+        

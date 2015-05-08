@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<% include admin-header %>  
+<!-- Script para busca, paginações das notícias -->
+
+                <table class="table table-bordered responsive" id="dyntable">
+                    <colgroup>
+                        <col class="con0" style="align: center; width: 4%" />
+                        <col class="con1" />
+                        <col class="con0" />
+                        <col class="con1" />
+                        <col class="con0" />
+                        <col class="con1" />
+                        <col class="con0" />
+                        <col class="con1" />
+                        <col class="con0" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="head0 nosort"><input type="checkbox" class="checkall" /></th>
+                            <th class="head1">Imagem</th>
+                            <th class="head0">Nome Plataforma</th>
+                            <th class="head0">Descrição</th>
+                            <!-- <th class="head1">Data Lançamento</th> -->
+                            <th class="head0">Empresa</th>
+                            <th class="head1">Tipo</th>
+                            <th class="head0">Jogos</th>
+                            <th class="head1">Notícias</th>
+                            <th class="head0"><i class="iconfa-eye-open"></i>Visualizações</th>
+                            <th class="head1">Ver/Editar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    <% for(var i=0; i<plataformas.length; i++) {%>
+                        <tr class="gradeX">
+                            <td class="aligncenter">
+                                <span class="center">
+                                    <input type="checkbox" />
+                                </span>
+                            </td>
+                            <td class="center">       
+                                    <a href="plataformas/<%= plataformas[i].url %> "target="_blank"><img src="/images/wikigamer/plataformas/consoles_capa/<%= plataformas[i].id %>"/></a>
+                            </td>
+
+                            <td class="center"><%= plataformas[i].nome_plataforma %></td>
+                            <td class="center"><% if (typeof plataformas[i].descricao_plataforma !== 'undefined'){ %>
+                                <% if((plataformas[i].descricao_plataforma == 'undefined') || (plataformas[i].descricao_plataforma == '') ){ %>
+                                    <span class="label label-danger">Sem descrição</span>
+                                    <%}else { %>
+                                        <span class="label label-success">Descrição cadastrada</span>
+                                    <%}%>
+                                <%}%></td>
+                            <!-- <td class="center"><% var d = new Date(plataformas[i].lancamento_plataforma); 
+                            %><%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/'
+                                + d.getFullYear() %></td> -->
+                            <td class="center"><%= plataformas[i].empresa_responsavel %></td>
+                            <td class="center"><%= plataformas[i].tipo_plataforma %></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"><% if (typeof plataformas[i].views == 'undefined') {%>Nenhuma<% }else{  %> <%= plataformas[i].views %> visualizações<%}%></td>
+                            <td class="center">
+                                <a href="/mg-admin/editarplataforma/<%= plataformas[i].id %>" data-toggle="modal" class="btn btn-inverse">
+                                    <i class="iconfa-pencil"></i>
+                                </a>
+                            </td>
+
+                        </tr>
+                        <% } %>
+
+                    </tbody>
+                </table>
+                    
+                <div class="divider30" ></div> 
+                                        <ul class="list-nostyle list-inline" align="right">
+                                            <li><a href="/mg-admin/cadastrarplataforma" class="btn btn-inverse btn-rounded" > <i class=" iconfa-plus"></i>  &nbsp; Cadastrar plataforma</a></li>
+                                        </ul>
+
+
+                    </div><!--span4-->
+                </div><!--row-fluid--> 
+
+    <% include admin-footer %>    
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            // dynamic table
+            jQuery('#dyntable').dataTable({
+                "sPaginationType": "full_numbers",
+                "aaSortingFixed": [[0,'asc']],
+                "fnDrawCallback": function(oSettings) {
+                    //jQuery.uniform.update();
+                }
+            });
+            
+            
+            
+        });
+    </script>

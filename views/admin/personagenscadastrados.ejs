@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<% include admin-header %>  
+<!-- Script para busca, paginações das notícias -->
+
+                <table class="table table-bordered responsive" id="dyntable">
+                    <colgroup>
+                        <col class="con0" style="align: center; width: 4%" />
+                        <col class="con1" />
+                        <col class="con0" />
+                        <col class="con1" />
+                        <col class="con0" />
+                        <col class="con1" />
+                        <col class="con0" />
+                        <col class="con1" />
+                        <col class="con0" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="head0 nosort"><input type="checkbox" class="checkall" /></th>
+                            <th class="head1">Imagem</th>
+                            <th class="head0">Nome Personagem</th>
+                            <th class="head1">Data Nascimento</th>
+                            <th class="head0">Gênero</th>
+                            <th class="head1">Origem</th>
+                            <th class="head0">Espécie</th>
+                            <th class="head1">Jogos</th>
+                            <th class="head0"><i class="iconfa-eye-open"></i>Visualizações</th>
+                            <th class="head1">Ver/Editar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    <% for(var i=0; i<personagens.length; i++) {%>
+                        <tr class="gradeX">
+                            <td class="aligncenter">
+                                <span class="center">
+                                    <input type="checkbox" />
+                                </span>
+                            </td>
+                            <td class="center">       
+                                    <a href="personagens/<%= personagens[i].url %> "target="_blank"><img src="/images/wikigamer/personagens/capas/<%= personagens[i].id %>"/></a>
+                            </td>
+
+                            <td class="center"><%= personagens[i].nome_personagem %></td>
+                            <td class="center"><% var d = new Date(personagens[i].data_nascimento); 
+                            %><%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/'
+                                + d.getFullYear() %></td>
+                            <td class="center"><%= personagens[i].genero_personagem %></td>
+                            <td class="center"><%= personagens[i].origem_personagem %></td>
+                            <td class="center"><%= personagens[i].especie_personagem %></td>
+                            <td class="center"></td>
+                            <td class="center"><% if (typeof personagens[i].views == 'undefined') {%>Nenhuma<% }else{  %> <%= personagens[i].views %> visualizações<%}%></td>
+                            <td class="center">
+                                <a href="/mg-admin/editarpersonagem/<%= personagens[i].id %>" data-toggle="modal" class="btn btn-inverse">
+                                    <i class="iconfa-pencil"></i>
+                                </a>
+                            </td>
+
+                        </tr>
+                        <% } %>
+
+                    </tbody>
+                </table>
+                    
+                <div class="divider30" ></div> 
+                    <ul class="list-nostyle list-inline" align="right">
+                        <li><a href="/mg-admin/cadastrarpersonagem" class="btn btn-inverse btn-rounded" > <i class=" iconfa-plus"></i>  &nbsp; Cadastrar personagem</a></li>
+                    </ul>
+            </div><!--span4-->
+        </div><!--row-fluid--> 
+
+    <% include admin-footer %>    
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            // dynamic table
+            jQuery('#dyntable').dataTable({
+                "sPaginationType": "full_numbers",
+                "aaSortingFixed": [[0,'asc']],
+                "fnDrawCallback": function(oSettings) {
+                    //jQuery.uniform.update();
+                }
+            });
+            
+            
+            
+        });
+    </script>

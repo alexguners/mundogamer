@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+  <html lang="pt">
+    <head>
+      <meta charset="utf-8">
+      <meta name="description" content="No WikiGamer você consulta todas as informações de história e seu jogo favorito.">
+      <meta name="keywords" content="videogames, games xbox one, nintendo 3ds games,notícias games, lançamento de games, notícias de jogos, ps4, Xbox, Xbox Live, PSN, Nintendo, news games, games, Wii U, psn games">
+      <title>WikiGamer - Jogos do Mundo Gamer</title>
+      <meta name="robots" content="index, follow">
+      <meta name="language" content="Portuguese">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <!-- Meta do Bing -->
+      <meta name="msvalidate.01" content="A5436FA15E86A82C20783D38485927D3" />
+      <!-- Fim do Bing -->   
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Início do código para TAGS de compartihamento do site no Facebook -->
+      
+
+      <!-- Loading Bootstrap -->
+      <link href="/home/bootstrap/css/bootstrap.css" rel="stylesheet">
+      <!-- Loading Flat UI -->
+      <link href="/home/css/flat-ui.css" rel="stylesheet">
+      <link rel="shortcut icon" href="/images/favicon.ico">
+    </head>   
+<!-- NAVBAR
+================================================== -->
+  <body onselectstart='return false' ondragstart='return false'> <!--Bloqueia a cópia de conteúdo-->
+  <% include navbar %>  
+   <div class="container marketing"> 
+
+        <center>
+               <!-- MundoGamer Blog -->
+               <script type="text/javascript">  
+                   google_ad_client = "ca-pub-0061672681197040";  
+                   google_ad_slot = "";  
+                   if(window.innerWidth >= 800) {  
+                    //visible-desktop  
+                    //Medium Rectangle  
+                    google_ad_slot = "2984023486";  
+                    google_ad_width = 728;  
+                    google_ad_height = 90;  
+                   }  
+                   else if((window.innerWidth > 480)&&(window.innerWidth < 800)) {  
+                    //visible-tablet  
+                    //Square  
+                    google_ad_slot = "6709861485";  
+                    google_ad_width = 320;  
+                    google_ad_height = 100;  
+                   }  
+                   else if(window.innerWidth <= 480) {  
+                    //visible-phone  
+                    //Large Rectangle  
+                    google_ad_slot = "6709861485";  
+                    google_ad_width = 320;  
+                    google_ad_height = 100;  
+                   }  
+                   if(google_ad_slot != "")  
+                    document.write(' <scr'+'ipt type=\"text/javascript\" src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\"></scri'+'pt>');  
+                </script>  
+       </center>   
+              <div class="well">
+        <p>O Mundo Gamer está trabalhando com a criação de uma WikiGamer, onde todos os dias estaremos realizando o cadastramento de novos conteúdos dos jogos atuais e clássicos. Caso o jogo de seu interesse ainda não esteja disponível, entre em contato através do e-mail contato@mundogamer.com.br para que possamos realizar o cadastro o mais rápido possível. Em breve a WikiGamer estará aberta aos usuários de nosso site.</p>
+      </div>
+
+      <!-- Three columns of text below the carousel -->
+
+
+    <% for(var i=0; i<jogos.length; i++) {%>
+        <div class="col-xs-4 col-md-3">
+            <a href="/jogos/<%= jogos[i].url %>" target="_blank">
+              <img data-src="holder.js/180x200" alt="..." src="/images/wikigamer/jogos/capas/<%= jogos[i].id %>"  class="thumbnail img-responsive" >
+            </a>
+        </div>   
+    <% } %>
+
+      <!-- START THE FEATURETTES -->
+
+      <hr class="featurette-divider">
+
+    </div><!-- /.container -->
+    <% include footer %>    
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/home/bootstrap/js/bootstrap.min.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script src="/home/js/footerfixed.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script type="text/javascript">
+
+    /* Adsense */
+     (adsbygoogle = window.adsbygoogle || []).push({});
+    /* Fim Adsense */
+
+
+          /*Código de Análise do Google Analitics*/
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-45182358-1', 'mundogamer.com.br');
+          ga('send', 'pageview');
+
+    </script> 
+
+  </body>
+</html>

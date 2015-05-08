@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<% include admin-header %>   
+ <% if (message.length>0) { %>
+        <div class="alert alert-success"><%= message %></div>
+    <% } %>
+        <div class="maincontent">
+            <div class="maincontentinner">
+  
+                <form id="LoginForm" role="form" class="form-horizontal" autocomplete="off"  method="post">
+                    <!-- Id do usuário -->
+                    <input type="hidden" value="<%= user.id %>" name="id" />
+	            	<div class="row-fluid">
+	                
+	              	 	 <div class="span9">
+	              	 	    <div class="tab-pane" id="meuperfil">
+
+			                    <!-- Imagem de perfil -->
+			                    <center>
+			                    <p>
+			                      <div class="par">
+			                          <label>Escolhar uma imagem de perfil (Tamanho recomendado 100x100 pixels até 100k)</label>
+			                          <div class="fileupload fileupload-new" data-provides="fileupload">
+			                            <div class="fileupload-preview thumbnail" style="width: 100px; height: 100px;"></div>
+			                            <div class="input-append">
+			                                <div class="uneditable-input span3">
+			                                  <i class="iconfa-file fileupload-exists"></i>
+			                                  <span class="fileupload-preview"></span>
+			                                </div>
+			                                <span class="btn btn-file"><span class="fileupload-new">Selecione uma imagem</span>
+			                                <span class="fileupload-exists">Alterar</span>
+			                                <input type="file" accept="image/*" class="form-control" id="imagem_perfil" name="imagem_perfil"/> 
+			                                <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a>
+			                            </div>
+			                          </div>
+			                     </div>                                         
+			                    </p>
+			                    </center> 
+			                    <!-- Fim da Imagem de perfil -->
+
+	                             <p>
+	                               <label for="nome">Nome do usuário</label>
+	                               <input type="text" class="input-block-level"  id="nome" name="nome" required="required" value="<%= user.local.nome %>"/>
+	                             </p>
+	                             <!-- Fim Nome do usuário -->
+
+	                             <!-- E-mail do usuário -->
+	                             <p>
+	                               <label for="titulo">E-mail de Login</label>
+	                               <input type="text" class="input-block-level"  id="email" name="email" required="required" value="<%= user.local.email %>"/>
+	                             </p>
+	                             <!-- Fim E-mail do usuário  -->
+
+	                                                <!-- Endereço site oficial do autor -->
+				                    <p>
+				                        <label>Site oficial</label>
+				                        <input type="text" class="form-control" id="user_site" name="user_site" placeholder="http://www.meusite.com.br" value="<%= user.local.user_site %>"/>
+				                        <span class="help-block"></span>   
+				                    </p>
+				                    <!-- Fim do  site oficial da plataforma -->
+
+				                        <!-- Campo Twitter da Plataforma -->
+				                        <p>
+				                           <label>Perfil Twitter</label>
+				                           <input type="text"  placeholder="http://www.twitter.com/meuusuario" id="user_twitter" name="user_twitter" class="input-block-level" value="<%= user.local.user_twitter %>"/>
+				                        </p>
+				                        <!-- Fim Campo Twitter da Plataforma -->
+
+				                        <!-- Campo Facebook da Plataforma -->
+				                        <p>
+				                           <label>Página Facebook</label>
+				                           <input type="text" name="user_facebook" id="user_facebook" class="input-block-level" placeholder="http://www.facebook.com/meuendereço" value="<%= user.local.user_facebook %>"/>
+				                        </p>
+				                        <!-- FIM do Campo Facebook da Plataforma -->
+
+				                        <!-- Campo Instagram da Plataforma -->
+				                        <p>
+				                           <label>Instagram</label>
+				                           <input type="text" name="user_instagram" id="user_instagram" class="input-block-level" placeholder="http://www.instagram.com/meuusuario" value="<%= user.local.user_instagram %>"/>
+				                        </p>
+				                        <!-- Fim do Campo Instagram da Plataforma -->
+
+				                        <!-- Campo Canal do Youtube da Plataforma -->
+				                        <p>
+				                          <label>Canal Youtube</label>
+				                          <input type="text" name="user_youtube" id="user_youtube" class="input-block-level" placeholder="Endereço do canal" value="<%= user.local.user_youtube %>"/>
+				                        </p>
+
+                                <p>
+                                  <label>ID PSN</label>
+                                  <input type="text" name="user_psnid" id="user_psnid" class="input-block" placeholder="Digite o seu ID da PSN" value="<%= user.local.user_psnid %>"/> <a href="http://br.playstation.com/portableid/" target="blank">&nbsp;&nbsp;<u id="sobrepsnid" rel="popover"  data-placement="right" title="Sobre o ID Portátil">Crie aqui sua ID Portátil</u></a>
+                                </p>
+
+                                <p>
+                                  <label>ID Xbox Live</label>
+                                  <input type="text" name="user_xboxlive" id="user_xboxlive" class="input-block" placeholder="Endereço do canal" value="<%= user.local.user_xboxlive %>"/><a href="#">&nbsp;&nbsp;<u id="sobrexboxlive" rel="popover"  data-placement="right" title="Sobre o Gamertag da Xbox Live">Gamertag da Xbox Live?</u></a>
+                                </p>
+
+                                <p>
+                                  <label>Nintendo Network ID </label>
+                                <input type="text" name="user_nintendoid" id="user_nintendoid" class="input-block" placeholder="Endereço do canal" value="<%= user.local.user_nintendoid %>"/>
+                                </p>
+
+                                <p>
+                                  <label>ID Origin</label>
+                                  <input type="text" name="user_origin" id="user_origin" class="input-block" placeholder="ID Origin" value="<%= user.local.user_origin %>"/>
+                                </p>
+
+                                <p>
+                                  <label>ID Steam</label>
+                                <input type="text" name="user_steam" id="user_steam" class="input-block" placeholder="ID da Steam" value="<%= user.local.user_steam %>"/>
+                                </p>
+				                        <!-- Fim do Campo Canal do Youtube da Plataforma -->
+	                             <!-- Modal da senha do usuário -->
+	                              <!-- <p>
+	                             <label for="titulo">Senha de acesso</label>
+	                               <button href="#myModal" data-toggle="modal" class="btn btn-small btn-inverse">Alterar Senha</button>
+	                            <div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog"   tabindex="-1" class="modal hide fade in" id="myModal">
+                                    <div class="modal-header">
+                                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
+                                        <h3 id="myModalLabel">Alteração de Senha</h3>
+                                    </div>
+                                     <div class="modal-body">
+                                        <div class="modal-body form-horizontal">
+                                            <div class="control-group">
+                                                <label for="current_password" class="control-label">Digite sua senha atual</label>
+                                                <div class="controls">
+                                                    <input type="password" name="current_password">
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="new_password" class="control-l	abel">Digite a nova senha</label>
+                                                <div class="controls">
+                                                    <input type="password" name="new_password">
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="confirm_password" class="control-label">Confirme a nova senha</label>
+                                                <div class="controls">
+                                                    <input type="password" name="confirm_password">
+                                                </div>
+                                            </div>      
+                                        </div>
+                                    </div> 
+                                    <div class="modal-footer">
+                                        <button data-dismiss="modal" class="btn">Fechar</button>
+                                        <button class="btn btn-inverse">Salvar senha</button>
+                                    </div>
+                                </div>
+                            	</p> -->
+                            <p>
+				                      <label><h4 class="widgettitle">Descrição de seu perfil gamer</h4></label>                    
+				                      <textarea  class="ckeditor" name="descricao" id="descricao" value="<%= user.local.descricao %>" ><%= user.local.descricao %></textarea>
+				                    </p>
+
+                         </div> 
+                    <!-- Botão de Publicar notícia-->
+                    <p>
+                       <center><button id="SubmitBtn" name="SubmitBtn" type="submit" class="btn btn-large btn-inverse">Salvar</button></center>
+                    </p>   
+                    <!-- Fim do Botão de Publicar notícia-->
+	                       
+	               		 </div><!--span9-->
+	                
+	                	<div class="span3">           
+
+		                  	<h4 class="subtitle3">Configurações</h4>
+                           	<ul class="nav nav-tabs nav-stacked samplenavs" id="myTab">
+                               	<li><a href="#dadospessoais" data-toggle="tab"><i class="iconsweets-create"></i> &nbsp; Dados pessoais</a></li>
+                                <li class="active" data-toggle="tab"><a href="#meuperfil"><i class="iconsweets-user2"></i> &nbsp; Meu perfil</a></li>
+                                <li><a href="#minhasplataformas" data-toggle="tab"><i class="iconsweets-monitor"></i> &nbsp; Minhas plataformas</a></li>
+                                <li><a href="#meusjogos" data-toggle="tab"><i class="iconsweets-pacman"></i> &nbsp; Meus jogos</a></li>
+                                <li><a href="#privacidade" data-toggle="tab"><i class="iconsweets-settings2"></i> &nbsp; Privacidade</a></li>
+                                <li><a href="#seguranca" data-toggle="tab"><i class="iconsweets-locked2"></i> &nbsp; Segurança</a></li>
+                            </ul>
+		                               
+		                </div><!--span3-->
+	                
+	            	</div><!--row-fluid-->
+
+                </form>
+
+	        </div><!--maincontentinner-->
+       </div><!--maincontent-->
+        
+
+
+
+    <script src="/editor/ckeditor.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> 
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+       $('#sobrepsnid').popover({
+        html : true,
+        trigger : 'manual',
+        content : function() {
+            return '<div class="box">Crie seu ID portátil da PSN, permitindo assim a visualização de seu ID e suas conquistas pelos visitantes do Mundo Gamer como na imagem a seguir:<br><br><center><img src="/home/images/footer/idpsn.png"</center></div>';
+        }
+            });
+        $(document).on('mouseover', '#sobrepsnid', function(){
+            $('#sobrepsnid').popover('show');
+        });
+        $(document).on('mouseleave', '#sobrepsnid', function(){
+            $('#sobrepsnid').popover('hide');
+        });
+
+        $('#sobrexboxlive').popover({
+        html : true,
+        trigger : 'manual',
+        content : function() {
+            return '<div class="box">A gamertag é o seu ID de identificação na Xbox Live que permite conhecer novos amigos e o compartilhamento de informações de conquistas.<br>Exemplo a seguir:<br><br><center><img src="/home/images/footer/xboxid.png"</center></div>';
+        }
+            });
+        $(document).on('mouseover', '#sobrexboxlive', function(){
+            $('#sobrexboxlive').popover('show');
+        });
+        $(document).on('mouseleave', '#sobrexboxlive', function(){
+            $('#sobrexboxlive').popover('hide');
+        });
+
+
+	</script>
+
+<% include admin-footer %>    

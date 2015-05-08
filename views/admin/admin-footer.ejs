@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+                <center>
+	                <div class="footer">
+	                		<span>Projeto: <a href="http://www.mundogamer.com.br/">Mundo Gamer</a></span>
+	                </div>
+	            </center><!--footer-->
+                
+            </div><!--maincontentinner-->
+        </div><!--maincontent-->
+        
+    </div><!--rightpanel-->
+    
+</div><!--mainwrapper-->
+<script type="text/javascript" src="/admin/js/modernizr.min.js"></script>
+<script type="text/javascript" src="/admin/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/admin/js/bootstrap.min.js"></script>
+<!-- <script type="text/javascript" src="/admin/js/jquery-ui-1.9.2.min.js"></script>
+ --><script type="text/javascript" src="/admin/js/jquery-1.9.1.min.js"></script>
+<!-- <script type="text/javascript" src="/admin/js/jquery-migrate-1.1.1.min.js"></script>
+ --><script type="text/javascript" src="/admin/js/flot/jquery.flot.min.js"></script>
+<script type="text/javascript" src="/admin/js/flot/jquery.flot.resize.min.js"></script>
+<script type="text/javascript" src="/admin/js/responsive-tables.js"></script>
+<script type="text/javascript" src="/admin/js/custom.js"></script>
+<script type="text/javascript" src="/admin/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/admin/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/admin/js/bootstrap-fileupload.min.js"></script>
+<script type="text/javascript" src="/admin/js/bootstrap-timepicker.min.js"></script>
+<script type="text/javascript" src="/admin/js/jquery.autogrow-textarea.js"></script>
+<script type="text/javascript" src="/admin/js/colorpicker.js"></script>
+<script type="text/javascript" src="/admin/js/bootstrap-fileupload.min.js"></script>
+<script type="text/javascript">
+
+//Java Script do Calendario 
+
+    function dateMask(inputData, e){
+    if(document.all) // Internet Explorer
+        var tecla = event.keyCode;
+    else //Outros Browsers
+        var tecla = e.which;
+
+    if(tecla >= 47 && tecla < 58){ // numeros de 0 a 9 e "/"
+        var data = inputData.value;
+       if (data.length == 2 || data.length == 5){
+        data += '/';
+        inputData.value = data;
+        }
+    }else if(tecla == 8 || tecla == 0) // Backspace, Delete e setas direcionais(para mover o cursor, apenas para FF)
+    return true;
+    else
+        return false;
+    }    
+
+</script>
+</body>
+</html>

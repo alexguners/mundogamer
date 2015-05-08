@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<% include admin-header %>   
+ <% if (message) { %>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
+                <div class="row-fluid">
+                    <div id="dashboard-left" class="span8">
+						<div class="panel panel-primary">
+
+						  <div class="panel-body">
+						    <form id="LoginForm" role="form" class="form-horizontal" enctype="multipart/form-data" autocomplete="off"  method="post">
+
+                <div class="form-group">
+                  <label class="control-label col-sm-3 col-md-3" for="titulo">Titulo:</label>
+                  <div class="col-md-5 col-xm-6">
+                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Digite o Titulo da noticia" required="required" />
+                    <span class="help-block"></span>
+                  </div>
+                </div>
+
+						    <div class="form-group">
+                  <div id="datainicio" class="input-append date col-md-5 col-xm-6">
+                    <label class="control-label col-sm-3 col-md-3" for="datafinal">Data inicial:</label>
+                    <input type="text" class="form-control" name="datainicio" id="datainicio" required="required"></input>
+                      <span class="add-on">
+                        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                      </span>
+                  </div>
+                </div>
+                <br>
+              <div class="form-group">
+                <div id="datafinal" class="input-append date col-md-5 col-xm-6">
+                  <label class="control-label col-sm-3 col-md-3" for="datafinal">Data final:</label>
+                   <input type="text" class="form-control" name="datafinal" id="datafinal" required="required"></input>
+                    <span class="add-on">
+                      <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                    </span>
+                  </div>
+               </div>
+               </br>
+              <div class="form-group">
+                  <label class="control-label col-sm-3 col-md-3" for="Password">Link Externo:</label>
+                  <div class="col-md-5 col-xm-6">
+                    <input type="text" class="form-control" id="src" name="src" placeholder="Link para noticia externa" />
+                    <span class="help-block"></span>
+                  </div>
+              </div>
+                </br>
+						    <div class="form-group">
+						      <label class="control-label col-sm-3 col-md-3" for="Password">Foto de capa:</label>
+						      <div class="col-md-5 col-xm-6">
+						        <input type="file" accept="image/*" class="form-control" id="capa" name="capa" required="required" />
+						        <span class="help-block"></span>
+						      </div>
+						    </div>
+                </br>
+                <div class="form-group">
+                  <textarea  class="ckeditor" name="editor1" id="editor1"></textarea>
+                </div>
+                <br>
+						    <div class="form-group">
+						      <div class="col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-md-9">
+                  <p>
+						        <center><button id="SubmitBtn" name="SubmitBtn" type="submit" class="btn btn-large btn-inverse">Cadastrar Notícia</button></center>
+						      </p>   
+						      </div>
+						    </div>
+						    </form>
+						  </div>
+						</div>     
+                    
+                    </div>
+                </div>
+
+                <!-- Place inside the <head> of your HTML -->
+
+
+<script src="/editor/ckeditor.js"></script>
+<script type="text/javascript"
+     src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+    </script> 
+    <script type="text/javascript"
+     src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js">
+    </script>
+    
+    <script type="text/javascript"
+     src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
+    </script>
+    <script type="text/javascript"
+     src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+    </script>
+    <script type="text/javascript"
+     src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
+    </script>
+    <script type="text/javascript">
+      $('#datafinal').datetimepicker({
+        format: 'dd/MM/yyyy hh:mm:ss',
+        language: 'pt-BR'
+      });
+
+       $('#datainicio').datetimepicker({
+        format: 'dd/MM/yyyy hh:mm:ss',
+        language: 'pt-BR'
+      });
+    </script>
+    <script src="//connect.facebook.net/pt_BR/all.js"></script>
+    <script> 
+    	$(document).ready(function () {
+    var datainicio = $("#datainicio");
+    var titulo = $("#titulo");
+    var LoginForm = $('#LoginForm');
+    var SubmitBtn = $('#SubmitBtn');
+ 
+    LoginForm.validate();
+ 
+    datainicio.rules("add", {
+      required: true,
+      length: 9,
+      messages: {
+        required: "Você deve preencher data de início",
+        rangelength: "Data inválida"
+      }
+    });
+    titulo.rules("add", {
+      required: true,
+      messages: {
+        required: "Titulo é obrigatório."
+      }
+    });
+ 
+    $('#LoginForm').submit(function () {
+      if ($(this).valid()) {
+        $('#SubmitBtn').prop('disabled', true);
+        return true;
+      }
+      return false;
+    });
+ 
+  });
+	</script>
+
+<script type="text/javascript">
+
+	jQuery(document).ready(function(){
+		
+		jQuery('.taglist .close').click(function(){
+			jQuery(this).parent().remove();
+			return false;
+		});
+		
+	});
+</script>
+
+<% include admin-footer %>    

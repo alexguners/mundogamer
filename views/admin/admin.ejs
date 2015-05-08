@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<% include admin-header %>  
+
+                <table class="table table-bordered responsive" id="dyntable">
+                    <colgroup>
+                        <col class="con0" style="align: center; width: 4%" />
+                        <col class="con1" />
+                        <col class="con0" />
+                        <col class="con1" />
+                        <col class="con0" />
+                        <col class="con1" />
+                        <col class="con0" />
+                        <col class="con1" />
+                        <col class="con0" />
+                        <col class="con1" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="head0 nosort"><input type="checkbox" class="checkall" /></th>
+                            <th class="head1">Imagem</th>
+                            <th class="head0">Data/Hora</th>
+                            <th class="head1">Tipo</th>
+                            <th class="head0">Título</th>
+                            <th class="head1">Jogo</th>
+                            <th class="head0">Parceiro</th>
+                            <th class="head1">Cliques</th>
+                            <th class="head0"><i class="iconfa-eye-open"></i> Visualizações</th>
+                            <th class="head1">Ver/Editar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    <% for(var i=0; i<noticias.length; i++) {%>
+                        <tr class="gradeX">
+                            <td class="aligncenter">
+                                <span class="center">
+                                    <input type="checkbox" />
+                                </span>
+                            </td>
+                            <td class="center">       
+                                    <a href="noticia/<%= noticias[i].url %> "target="_blank"><img src="/images/noticia/capa/<%= noticias[i].id %>"/></a>
+                            </td>
+
+                            <td class="center"><% var d = new Date(noticias[i].data); 
+                            %><%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/'
+                                + d.getFullYear() %> às <%= ('0' + (d.getHours())).slice(-2) + ':' + ('0' + (d.getMinutes())).slice(-2) %></td>
+                            <td class="center"><%= noticias[i].tipo %></td>
+                            <td class="center" ><%= noticias[i].titulo.substr(0,38) %>...</td>
+                            <td class="center">Nome Jogo</td>
+                            <td class="center"><%= noticias[i].parceiro %></td>
+                            <td class="center"><% if (typeof noticias[i].clicks == 'undefined') {%>Nenhum clique <% }else{  %> <%= noticias[i].clicks %> cliques<%}%></td>
+                            <td class="center"><% if (typeof noticias[i].views == 'undefined') {%>Nenhuma<% }else{  %> <%= noticias[i].views %> visualizações<%}%></td>
+
+                            <td class="center">
+                              <% if (typeof noticias[i].tipo !== 'undefined'){ %>
+                                <% if (noticias[i].tipo == 'Noticia'){ %> 
+                                   <a href="/mg-admin/editarnoticia/<%=noticias[i]._id%>" data-toggle="modal" class="btn btn-inverse"><i class="iconfa-pencil"></i></a>
+                                <%} else if (noticias[i].tipo == 'Análise'){ %>
+                                <a href="/mg-admin/editaranalise/<%=noticias[i]._id%>" data-toggle="modal" class="btn btn-inverse"><i class="iconfa-pencil"></i></a>
+                                <%} else if ( (noticias[i].tipo == 'Vídeo/Entrevista') || (noticias[i].tipo == 'Video/Gameplay') || (noticias[i].tipo == 'Vídeo/Trailer') ){ %>
+                                <a href="/mg-admin/editarvideo/<%=noticias[i]._id%>" data-toggle="modal" class="btn btn-inverse"><i class="iconfa-pencil"></i></a>
+                                <%}  else{ %>
+                                 <a href="/mg-admin/editarnoticia/<%=noticias[i]._id%>" data-toggle="modal" class="btn btn-inverse"><i class="iconfa-pencil"></i></a>   
+                                <%} %>  
+                                <%} else{ %>
+                                <a href="/mg-admin/editarnoticia/<%=noticias[i]._id%>" data-toggle="modal" class="btn btn-inverse"><i class="iconfa-pencil"></i></a>
+                                <%}%>
+                            </td>
+                        </tr>
+                        <% } %>
+
+                    </tbody>
+                </table>
+                    
+                <div class="divider30" ></div> 
+                                        <ul class="list-nostyle list-inline" align="right">
+                                            <li><a href="/mg-admin/novanoticia" class="btn btn-inverse btn-rounded" > <i class=" iconfa-plus"></i>  &nbsp; Nova Notícia</a></li>
+                                        </ul>
+
+
+                    </div><!--span4-->
+                </div><!--row-fluid--> 
+<% include admin-footer %>                   
+<!-- Script para busca, paginações das notícias -->
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            // dynamic table
+            jQuery('#dyntable').dataTable({
+                "sPaginationType": "full_numbers",
+                "aaSortingFixed": [[0,'asc']],
+                "fnDrawCallback": function(oSettings) {
+                    //jQuery.uniform.update();
+                }
+            });
+        });
+
+    </script>
+
+ 

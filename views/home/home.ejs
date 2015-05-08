@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+
+	<meta name="description" content="No mundo gamer você encontra diariamente as últimas noticias de games, as melhores análises e promoções. O melhor do Mundo Gamer você encontra aqui">
+	<meta name="keywords" content="videogames, games xbox one, nintendo 3ds games,notícias games, lançamento de games, notícias de jogos, ps4, Xbox, Xbox Live, PSN, Nintendo, news games, games, Wii U, psn games ">
+	<title>Mundo Gamer - Notícias, Análises e Games é no Mundo Gamer</title>
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Portuguese">
+    <!-- Meta do Bing -->
+     <meta name="msvalidate.01" content="A5436FA15E86A82C20783D38485927D3" />
+    <!-- Fim do Bing -->   
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <!-- Loading Bootstrap -->
+    <link href="/home/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="/home/css/flat-ui.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+
+            <!--para o sistema Open Graph-->
+        <meta property="og:site_name" content="Mundo Gamer">
+        <meta property="og:title" content="Mundo Gamer - Venha fazer parte desse Mundo">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="http://www.mundogamer.com.br">
+        <meta property="og:image" content="http://www.mundogamer.com.br/images/MundoGamerFacebook.png">
+        <meta property="og:description" content="Fique por dentro de tudo que acontece no Mundo Gamer">
+        <meta property="fb:admins" content="1541352318">
+        <meta property="fb:app_id" content="625583237494479">
+        <meta property="fb:page_id" content="417660025000594">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fim do código para TAGS de compartihamento do site no Facebook -->
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+		<script src="/home/js/html5shiv.js"></script>
+		<script src="/home/js/respond.min.js"></script>
+		<![endif]-->
+
+    <!-- Código de Análise do Google Analitics -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-45182358-1', 'mundogamer.com.br');
+  ga('send', 'pageview');
+
+</script>
+    <!-- Fim do Código de Análise do Google Analitics -->
+
+</head>
+
+<body>
+   <% include navbar %>   
+
+<div class="container">
+	<center>
+         <!-- MundoGamer Blog -->
+         <script type="text/javascript">  
+             google_ad_client = "ca-pub-0061672681197040";  
+             google_ad_slot = "";  
+             if(window.innerWidth >= 800) {  
+              //visible-desktop  
+              //Medium Rectangle  
+              google_ad_slot = "2984023486";  
+              google_ad_width = 728;  
+              google_ad_height = 90;  
+             }  
+             else if((window.innerWidth > 480)&&(window.innerWidth < 800)) {  
+              //visible-tablet  
+              //Square  
+              google_ad_slot = "6709861485";  
+              google_ad_width = 320;  
+              google_ad_height = 100;  
+             }  
+             else if(window.innerWidth <= 480) {  
+              //visible-phone  
+              //Large Rectangle  
+              google_ad_slot = "6709861485";  
+              google_ad_width = 320;  
+              google_ad_height = 100;  
+             }  
+             if(google_ad_slot != "")  
+              document.write(' <scr'+'ipt type=\"text/javascript\" src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\"></scri'+'pt>');  
+          </script>  
+	</center>
+</div>
+
+<div class="container" id="rolar">
+	<div class="row">
+
+		<!-- Coluna do feed -->
+
+		<div class="col-sm-12 col-md-12" id="feed">
+			<%
+			set = 4;
+			rows = parseInt(noticias.length/set);
+			resto = noticias.length%set;
+			rows+=resto;
+			initrow=0;
+
+			if(rows<1){
+
+			}else{
+			for(var j=0; j
+			<rows; j++){
+
+			limite=(j+1)*set;
+			if (limite>
+				noticias.length){
+				limite=noticias.length;
+				}
+
+				%>
+				<div class="row">
+					<% for(var i=initrow; i<limite; i++) {%>
+					<div class="col-sm-6 col-md-3">
+						<% if (typeof noticias[i].tipo !== 'undefined'){ %>
+							<% if (noticias[i].tipo == 'Noticia'){ %> 
+								<div class="thumbnail estilonoticia estilonoticia-hot fixHeight">
+							<%} else if (noticias[i].tipo == 'Análise'){ %>
+								<div class="thumbnail estiloanalise estiloanalise-hot fixHeight">
+							<%} else if (noticias[i].tipo == 'Video/Gameplay'){ %>
+								<div class="thumbnail estilovideogameplay estilovideogameplay-hot fixHeight">
+							<%} else if (noticias[i].tipo == 'Video/Trailer'){ %>
+								<div class="thumbnail estilovideotrailer estilovideotrailer-hot fixHeight">
+							<%} else if (noticias[i].tipo == 'Vídeo/Entrevista'){ %>
+								<div class="thumbnail estilovideoentrevista estilovideoentrevista-hot fixHeight">
+							<%} else{ %>
+									<div class="thumbnail estilovideotrailer estilovideotrailer-hot fixHeight">	
+								<%}	%>	
+					<%} else{ %>
+						<div class="thumbnail estilonoticia estilonoticia-hot fixHeight">
+					<%}%>			
+						<% if (noticias[i].src){ %>	
+							<% if ((typeof noticias[i].tipo !== 'undefined') && (noticias[i].tipo == 'tipo')){ %>
+								<a href="<%= noticias[i].src%>" class="titulo youtube" idnoticia="<%= noticias[i]._id %>" id="">
+							<%} else{ %>
+								<a href="/noticia/<%= noticias[i].url%>" class="titulo" idnoticia="<%= noticias[i]._id %>" id="" target="_blank">
+							<%}%>
+                        <%}else{%>
+                            <a href="/noticia/<%= noticias[i].url %>" class="titulo" target="_blank" idnoticia="<%= noticias[i]._id %>">
+                        <% } %>
+								<img src="/images/noticia/capa/<%= noticias[i].id %>" alt="<%= noticias[i].url %>" title="<%= noticias[i].url %>">			
+                                <div class="caption">
+									<%
+									tags = noticias[i].tags;
+									if(tags){
+
+										for (var k = 0; k < tags.length; k++){ %> 
+											<span class="label label-danger" style="margin-left:6px;"> <%=   tags[k].nome %> </span> <%  }
+
+									} else { %> <span class="label label-danger" style="padding-left:10px;" >Notícias</span> 
+									<% } %> 
+									<p><small><%= noticias[i].titulo.substr(0,60) %>...</small></p>
+									<p class="descricao"><%= noticias[i].descricao.toString().replace(/<.*?>/g, '').substr(0,90) %>...(Ler Mais)       
+									</p>
+                                    </div>
+									</a>												
+								</div>
+					</div>
+
+						<%  }
+						initrow=initrow+set; %>
+				</div>
+				<%
+				}
+
+				} %>
+
+				<div class="row">
+					<div id="loadmoreajaxloader" style="display:none;"><center>Carregando...</center></div>
+				</div>
+		</div> <!-- / Coluna do feed -->
+
+
+
+	</div>
+</div>
+
+
+	<script src="/home/js/jquery-1.8.3.min.js"></script>
+	<script src="/home/js/bootstrap.min.js"></script>
+	<script src="/home/js/bootstrap.youtubepopup.min.js"></script>	
+    <script src="/home/js/app.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script type="text/javascript">
+	/* Adsense */
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    /* Fim Adsense */
+
+			$("a").on({
+				click: function(){
+						console.log('on click');
+						$.ajax({
+				            url: '/noticia/count',
+				            type: 'POST',
+				            data: {"id":$(this).attr('idnoticia')},
+				            success: function() {console.log('post ok')}
+				        });
+					}
+				});
+
+			/*$(function () {
+				$(".youtube").YouTubeModal({autoplay:0, width:640, height:480});
+			});
+			
+			$(document).ready(function() {
+				
+			}); */
+
+	</script>
+  </body>
+  
+</html>

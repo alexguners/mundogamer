@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="No mundo gamer você encontra as últimas noticias de games, as melhores análises e promoções. O melhor do Mundo Gamer você encontra aqui">
+    <meta name="keywords" content="games, playstation, xbox, nintendo, sony, microsoft, pc, notícias,promoções, gameplay, análises">
+    <title>Mundo Gamer - Notícias</title>
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Portuguese">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+        <!-- Evitando cópias de conteúdo no site -->
+        <script language='JavaScript'> 
+        //Bloqueador de Selecao - iceBreaker http://www.icebreaker.com.br/ 
+        function bloquear(e){return false} 
+        function desbloquear(){return true} 
+        document.onselectstart=new Function (&quot;return false&quot;) 
+        if (window.sidebar){document.onmousedown=bloquear 
+        document.onclick=desbloquear} 
+        </script>
+        <!-- Fim de cópias de conteúdo no site -->
+
+
+    <!-- Meta do Bing -->
+     <meta name="msvalidate.01" content="A5436FA15E86A82C20783D38485927D3" />
+    <!-- Fim do Bing -->   
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Início do código para TAGS de compartihamento do site no Facebook -->
+        <!--para o sistema Open Graph-->
+        <meta property="og:site_name" content="Mundo Gamer">
+        <meta property="og:title" content="<%= noticia.titulo %>">
+        <meta property="og:type" content="article">
+        <meta property="og:url" content="http://www.mundogamer.com.br/noticia/<%= noticia.id %>">
+        <meta property="og:image" content="http://www.mundogamer.com.br/images/noticia/capa/<%= noticia.id %>">
+        <meta property="og:description" content="<%= noticia.descricao.toString().replace(/<.*?>/g, '')%>">
+        <meta property="fb:admins" content="1541352318">
+        <meta property="fb:app_id" content="625583237494479">
+        <meta property="fb:page_id" content="417660025000594"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fim do código para TAGS de compartihamento do site no Facebook -->
+    <!-- Loading Bootstrap -->
+    <link href="/home/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="/home/css/flat-ui.css" rel="stylesheet">
+    
+
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+		<script src="/home/js/html5shiv.js"></script>
+		<script src="/home/js/respond.min.js"></script>
+		<![endif]-->
+
+    <!-- Código de Análise do Google Analitics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-45182358-1', 'mundogamer.com.br');
+  ga('send', 'pageview');
+
+</script>
+    <!-- Fim do Código de Análise do Google Analitics -->
+      <style type="text/css">
+
+        #footer {
+          height: 60px;
+        }
+        #footer {
+          background-color: #f5f5f5;
+        }
+
+        /* Lastly, apply responsive CSS fixes as necessary */
+        @media (max-width: 767px) {
+          #footer {
+            margin-left: -20px;
+            margin-right: -20px;
+            padding-left: 20px;
+            padding-right: 20px;
+          }
+        }
+      </style>
+
+
+</head>
+
+<body onselectstart='return false'> <!-- Onselect bloqueia a cópia do conteúdo do site -->
+    <div class="container">
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img style="margin-top: -15px; margin-bottom: -14px;" src="/images/logo_beta.png" alt="...">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse-01">
+                <ul class="nav navbar-nav">
+                    <li class="<% if( id==0 ){ %>
+							active
+						<% } %>">
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="<% if( id==1 ){ %>
+							active
+						<% } %>">
+                        <a href="/aplicativos">Aplicativos</a>
+
+                    </li>
+                    <li class="<% if( id==2 ){ %>
+							active
+						<% } %>">
+                        <a href="http://lojamdg.com//mundogamer" target="_blank">Loja</a>
+                    </li>
+
+                    <li class="<% if( id==3 ){ %>
+							active
+						<% } %>">
+                        <a href="/sobre">Sobre</a>
+                    </li>
+                   <li class="dropdown">
+                        <li class="<% if( id==4 ){ %>
+    							active
+    						<% } %>">
+                            <a href="/contato">Contato</a>
+                        </li>
+                    </li> 
+
+                </ul>
+                    <div style="position:relative; float:right; ">
+                      <a  href="https://facebook.com/brasilmundogamer" target="_blank" ><img src="/home/images/footer/facebook2.png" alt="Facebook" /></a>
+                      <a href="https://twitter.com/brasilmundogame" target="_blank"  ><img  src="/home/images/footer/twitter.png" alt="Twitter"></a>
+                      <a href="https://youtube.com/brasilmundogamer" target="_blank" ><img src="/home/images/footer/youtube2.png" alt="Youtube"></a>
+
+                    </div>
+            </div>
+
+            <!-- /.navbar-collapse -->
+        </nav>
+        <!-- /navbar -->
+    </div>

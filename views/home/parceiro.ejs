@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+  <html lang="pt">
+    <head>
+      <meta charset="utf-8">
+      <meta name="description" content="No mundo gamer você encontra as últimas noticias de games, as melhores análises e promoções. O melhor do Mundo Gamer você encontra aqui">
+      <meta name="keywords" content="videogames, games xbox one, nintendo 3ds games,notícias games, lançamento de games, notícias de jogos, ps4, Xbox, Xbox Live, PSN, Nintendo, news games, games, Wii U, psn games">
+      <title><%= parceiro.nome_parceiro %> - WikiGamer Mundo Gamer</title>
+      <meta name="robots" content="index, follow">
+      <meta name="language" content="Portuguese">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <!-- Meta do Bing -->
+      <meta name="msvalidate.01" content="A5436FA15E86A82C20783D38485927D3" />
+      <!-- Fim do Bing -->   
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <!-- Início do código para TAGS de compartihamento do site no Facebook -->
+      <!--para o sistema Open Graph-->
+      <meta property="og:site_name" content="Mundo Gamer">
+      <meta property="og:title" content="Você sabia que <%= parceiro.nome_parceiro %> também está em nosso WikiGamer">
+      <meta property="og:type" content="article">
+      <meta property="og:url" content="http://www.mundogamer.com.br/parceiros/<%= parceiro.url %>">
+      <meta property="og:image" content="http://www.mundogamer.com.br/images/wikigamer/parceiros/parceiros_banners/<%= parceiro._id %>01">
+      <meta property="og:image:width" content="1200">
+      <meta property="og:image:height" content="628">
+      <meta property="og:description" content="<%= parceiro.descricao_parceiro.toString().replace(/<.*?>/g, '')%>">
+      <meta property="fb:admins" content="1541352318">
+      <meta property="fb:app_id" content="625583237494479">
+      <meta property="fb:page_id" content="417660025000594"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Fim do código para TAGS de compartihamento do site no Facebook -->
+      
+
+      <!-- Loading Bootstrap -->
+      <link href="/home/bootstrap/css/bootstrap.css" rel="stylesheet">
+      <!-- Loading Flat UI -->
+      <link href="/home/css/flat-ui.css" rel="stylesheet">
+      <link rel="shortcut icon" href="/images/favicon.ico">
+
+    </head>   
+<!-- NAVBAR
+================================================== -->
+  <body onselectstart='return false' ondragstart='return false'> <!--Bloqueia a cópia de conteúdo-->
+  <% include navbar %>  
+   <div class="container marketing"> 
+       <div class="col-md-9">
+
+        <center>
+               <!-- MundoGamer Blog -->
+               <script type="text/javascript">  
+                   google_ad_client = "ca-pub-0061672681197040";  
+                   google_ad_slot = "";  
+                   if(window.innerWidth >= 800) {  
+                    //visible-desktop  
+                    //Medium Rectangle  
+                    google_ad_slot = "2984023486";  
+                    google_ad_width = 728;  
+                    google_ad_height = 90;  
+                   }  
+                   else if((window.innerWidth > 480)&&(window.innerWidth < 800)) {  
+                    //visible-tablet  
+                    //Square  
+                    google_ad_slot = "6709861485";  
+                    google_ad_width = 320;  
+                    google_ad_height = 100;  
+                   }  
+                   else if(window.innerWidth <= 480) {  
+                    //visible-phone  
+                    //Large Rectangle  
+                    google_ad_slot = "6709861485";  
+                    google_ad_width = 320;  
+                    google_ad_height = 100;  
+                   }  
+                   if(google_ad_slot != "")  
+                    document.write(' <scr'+'ipt type=\"text/javascript\" src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\"></scri'+'pt>');  
+                </script>  
+       </center>  
+          <!-- Carousel
+          ================================================== -->
+          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <!-- <li data-target="#myCarousel" data-slide-to="2"></li> -->
+            </ol>
+            <div class="carousel-inner">
+              <div class="item active">
+                <img src="/images/wikigamer/parceiros/parceiros_banners/<%= parceiro._id%>01" alt="Saiba tudo sobre<%= parceiro.nome_parceiro %> no Mundo Gamer">
+                <!-- <div class="container">
+                  <div class="carousel-caption">
+                    <p>Saiba aqui no Mundo Gamer tudo sobre <%= parceiro.nome_parceiro %></p>
+                  </div>
+                </div> -->
+              </div>
+              <div class="item">
+                <img src="/images/wikigamer/parceiros/parceiros_banners/<%= parceiro._id %>02" alt="O <%= parceiro.nome_parceiro %> está aqui no Mundo Gamer">
+                <!-- <div class="container">
+                  <div class="carousel-caption">
+                    <p><%= parceiro.nome_parceiro %> é um console criado pela empresa <%= parceiro.empresa_responsavel %></p>
+                  </div>
+                </div> -->
+              </div>
+<!--               <div class="item">
+                <img src="/images/wikigamer/parceiros/parceiros_banners/<%= parceiro._id %>03" alt="O <%= parceiro.nome_parceiro %> está aqui no Mundo Gamer">
+                <div class="container">
+                  <div class="carousel-caption">
+                    <p><%= parceiro.nome_parceiro %> é um console criado pela empresa <%= parceiro.empresa_responsavel %></p>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div><!-- /.carousel -->
+
+            <!-- Marketing messaging and featurettes
+            ================================================== -->
+            <!-- Wrap the rest of the page in another container to center all the content. -->
+
+          <div class="well">
+            <article>
+                <% if (typeof parceiro.descricao_parceiro !== 'undefined'){ %>
+                    <% if((parceiro.descricao_parceiro == 'undefined') || (parceiro.descricao_parceiro == '') ){ %>
+                      O nosso parceiro <%= parceiro.nome_parceiro %> ainda não possui um conteúdo descritivo em nosso WikiGamer, estamos aguardando o complemento das informações por parte de nosso parceiro para atualização da página.
+                      <%}
+                      else { %>
+                        <p><%- parceiro.descricao_parceiro %> </p>
+                      <%}%>
+                <%}%>
+            </article>
+          </div>
+
+    
+      <hr class="featurette-divider">
+
+            <div class="row">
+
+      </div><!-- /.row -->
+        </div>
+
+        <div class="col-md-3">
+              <!-- Coluna da direita noticias recentes -->
+
+            <div class="table-responsive">
+            <center><img class="media-object" width="270" src="/images/wikigamer/parceiros/logos/<%= parceiro._id %>" ></center>
+                <table class="table">
+
+                 <tbody background-color="#808080">
+                    <% if (typeof parceiro.nome_parceiro !== 'undefined'){ %>
+                    <% if (parceiro.nome_parceiro !== 'undefined'){ %> 
+                      <tr>
+                         <td><span class="label label-primary">Nome</span></td>
+                         <td align="center"><small><%= parceiro.nome_parceiro %></small></td>
+                      </tr>
+                      <%} if ( (parceiro.categoria !== 'undefined') && (parceiro.categoria !== '') ) { %> 
+                      <tr>
+                       <td><span class="label label-primary">Categoria</span></td>
+                       <td align="center"><span class="label label-warning"><%= parceiro.categoria %></span></td>
+                      </tr>
+                      <%} if ( (parceiro.email_contato !== 'undefined') && (parceiro.email_contato !== '') ) { %> 
+                      <tr>
+                       <td><span class="label label-primary">Email</span></td>
+                       <td align="center"><a id="email_contato" rel="popover"  data-placement="top" href="mailto:<%- parceiro.email_contato %>" target="_top"><span class="label label-default">Enviar email</span></a></td>
+                      </tr>
+                      <%} if ( (parceiro.facebook !== 'undefined') && (parceiro.facebook !== '') ) { %>
+                      <tr>
+                         <td><a href="https://facebook.com/<%= parceiro.facebook %>" target="_blank"><span class="label label-primary">Facebook</span></a></td>
+                         <td align="center"><div class="fb-like" data-href="https://facebook.com/<%- parceiro.facebook %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div></td>
+                      </tr>
+                      <%} if ( (parceiro.instagram !== 'undefined') && (parceiro.instagram !== '') ) { %>
+                      <tr>
+                         <td><span class="label label-primary">Instagram</span></td>
+                         <td align="center"><a href="<%- parceiro.instagram %>"><a href="http://instagram.com/<%- parceiro.instagram %>?ref=badge" class="ig-b- ig-b-v-24" target="_blank"><img src="//badges.instagram.com/static/images/ig-badge-view-24.png" alt="Instagram"  /></a></td>
+                      </tr>
+                      <%} if ( (parceiro.twitter !== 'undefined') && (parceiro.twitter !== '') ) { %>
+                      <tr>
+                         <td><a href="https://twitter.com/<%- parceiro.twitter %>"><span class="label label-primary">Twitter</span></a></td>
+                         <td align="center"><a href="https://twitter.com/<%- parceiro.twitter %>" class="twitter-follow-button" data-show-count="false">Seguir @<%- parceiro.twitter %></a></td>
+                      </tr>
+                      <%} if ( (parceiro.canal_youtube !== 'undefined') && (parceiro.canal_youtube !== '') ) { %>
+                      <tr>
+                         <td><a href="https://youtube.com/<%- parceiro.canal_youtube %>" target="_blank"><span class="label label-primary">Youtube</span></td>
+                         <td align="center"><div class="g-ytsubscribe" data-channel="<%- parceiro.canal_youtube %>" data-layout="default" data-count="default"></div></td>
+                      </tr>
+                      <%} if ( (parceiro.site !== 'undefined') && (parceiro.site !== '') ) { %>
+                      <tr>
+                         <td><span class="label label-primary">Site Oficial</span></td>
+                         <td align="center"><a href="<%- parceiro.site %>" target="_blank"><span class="label label-success">Acessar site</span></a></td>
+                      </tr>
+                      <%}%> 
+                      <tr>
+                       <td class="success"><small>Visualizações</small></td>
+                       <td class="success"><small><% if (typeof parceiro.views == 'undefined') {%>1 visualização<% }else{ %><%= parceiro.views %> visualizações<%}%></small></a></small></a></td>
+                      </tr>
+                    <%}%>
+
+                 </tbody>
+              </table>
+            </div>
+
+          </div> 
+    </div>
+
+      <!-- START THE FEATURETTES -->
+
+      <hr class="featurette-divider">
+    <% include footer %> 
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/home/bootstrap/js/bootstrap.min.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script src="/home/js/footerfixed.js"></script>
+    <script src="/home/js/readmore.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+
+    <!-- Javascript para o Youtube botão inscrever -->
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <!-- FIm do Javascript para o Youtube botão inscrever -->
+    <script  type="text/javascript">
+    /* popover do e-mail */
+    $('#email_contato').popover({
+        html : true,
+        trigger : 'manual',
+        content : function() {
+            return '<div class="box"><small><%= parceiro.email_contato %></small></div>';
+        }
+            });
+        $(document).on('mouseover', '#email_contato', function(){
+            $('#email_contato').popover('show');
+        });
+        $(document).on('mouseleave', '#email_contato', function(){
+            $('#email_contato').popover('hide');
+        });
+
+    /*Twitter JavaScript */
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+      /*Facebook JavaScript */
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=625583237494479&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+
+
+
+      /* Adsense */
+       (adsbygoogle = window.adsbygoogle || []).push({});
+      /* Fim Adsense */
+
+
+    $('article').readmore({maxHeight: 250});
+
+
+    $(document).ready(function() {
+       $.ajax({
+        url: '/parceiros/views',
+        type: 'POST',
+        data: {"id":'<%=parceiro._id%>'},
+        success: function() {}
+       });
+     });
+
+          /*Código de Análise do Google Analitics*/
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-45182358-1', 'mundogamer.com.br');
+          ga('send', 'pageview');    
+
+     $(document).ready(function() {
+        $('#myCarousel').carousel({
+        //options here
+        });
+    });
+    </script> 
+
+  </body>
+</html>

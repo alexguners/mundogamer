@@ -1,0 +1,76 @@
+    <!DOCTYPE html>
+    <!--  <div id="footer" background = "black">
+       <hr >
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <h2>Sobre</h2>
+              <p>
+                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+              </p>
+              <p>
+                <a class="btn btn-default" href="#" role="button">View details »</a>
+              </p>
+            </div>
+            <div class="col-md-4">
+              <iframe id="ytplayer" type="text/html" width="360" height="270"
+              src="https://www.youtube.com/embed/Fl_zP55bRdU"
+              frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="col-md-4">
+            </div>
+          </div>
+          <div class="row">
+            <div class="fb-facepile" data-app-id="625583237494479" data-href="http://facebook.com/brasilmundogamer" data-action="A comma separated list of actions to show a Facepile for" data-width="1200" data-height="600" data-max-rows="20" data-colorscheme="dark" data-size="large" data-show-count="true"></div>
+
+          </div>
+          <p>
+
+          </p>
+        </div>
+      </div> -->
+
+       <!-- Load JS here for greater good =============================-->
+    <script src="/home/js/jquery-1.8.3.min.js"></script>
+    <script src="/home/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="/home/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="/home/js/bootstrap.min.js"></script>
+    <script src="/home/js/bootstrap-select.js"></script>
+    <script src="/home/js/bootstrap-switch.js"></script>
+    <script src="/home/js/flatui-checkbox.js"></script>
+    <script src="/home/js/flatui-radio.js"></script>
+    <script src="/home/js/jquery.tagsinput.js"></script>
+    <script src="/home/js/jquery.placeholder.js"></script>
+    <script src="/home/js/application.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        // Associa o evento do popover ao clicar no link.
+        $('#a-popover').popover({
+          placement : 'bottom',
+          trigger : 'click',
+          html : true,
+          content : $('#div-popover').html() // Adiciona o conteúdo da div oculta para dentro do popover.
+        }).click(function(e) {
+          e.preventDefault();
+          // Exibe o popover.
+          $(this).popover('show');
+        });
+
+        $('#btn-fechar').live('click', function(e) {
+          // Oculta o popover ao clicar no botão fechar.
+          $('#a-popover').popover('hide');
+        });
+      });
+    </script>
+    <script type="text/javascript" src="//conversionsbox.com/cb.js"></script>
+    <script type="text/javascript">
+      function r(f) {
+        /in/.test(document.readyState) ? setTimeout('r(' + f + ')', 9) : f()
+      }; r(function() {
+        new ConversionsBox("Gostou%20do%20site%3F%20Curta%20tamb%C3%A9m%20nossa%20p%C3%A1gina%20no%20Facebook", "https://www.facebook.com/brasilmundogamer");
+      });
+    </script>
+    
+  </body>
+</html>

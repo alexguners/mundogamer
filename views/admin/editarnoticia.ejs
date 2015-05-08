@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<% include admin-header %>   
+ <% if (message.length>0) { %>
+        <div class="alert alert-success"><%= message %></div>
+    <% } %>
+          <div class="row-fluid">
+            <div id="dashboard-left" class="span8">
+             <div class="panel panel-primary">  
+
+                <div class="panel-body">
+                  <form id="LoginForm" role="form" class="form-horizontal" autocomplete="off"  method="post">
+
+                    <!-- Id da Notícia -->
+                    <input type="hidden" value="<%= noticia.id %>" name="id" />
+
+                     <!-- Título da Notícia -->
+                     <p>
+                       <label for="titulo">Título cadastrado em sua publicação</label>
+                       <input type="text" class="input-block-level"  id="titulo" name="titulo" required="required" value="<%= noticia.titulo %>"/>
+                     </p>
+                     <!-- Fim Título da Notícia -->
+
+                    <!-- Data de Publicação -->
+                    <p>
+                      <div id="datainicio">
+                        <label for="datainicio">Selecione a data inicial de exibição ( Redefinir Data em caso de alteração)</label>
+                        <input type="text" class="form-control" name="datainicio" id="datainicio" required="required" value="<% var d = new Date(noticia.data);%><%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/' + d.getFullYear() %>&nbsp;<%= ('0' + (d.getHours())).slice(-2) + ':' + ('0' + (d.getMinutes())).slice(-2) + ':' + ('0' + (d.getSeconds())).slice(-2) %>"></input>
+                          <span class="add-on">
+                            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                          </span>
+                      </div>
+                    </p>
+                    <!-- Fim da Data de Publicação -->
+
+                    <!-- Data Final de Publicação -->
+                    <p>
+                      <div id="datafinal">
+                        <label for="datafinal">Selecione a data final de exibição  ( Redefinir Data em caso de alteração)</label>
+                        <input type="text" class="form-control" name="datafinal" id="datafinal" required="required" value="<% var d = new Date(noticia.data);%><%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/' + d.getFullYear() %>&nbsp;<%= ('0' + (d.getHours())).slice(-2) + ':' + ('0' + (d.getMinutes())).slice(-2) + ':' + ('0' + (d.getSeconds())).slice(-2) %>"></input>
+                        <span class="add-on">
+                          <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                        </span>
+                      </div>
+                   </p>
+                   <!-- Fim da Data Final de Publicação -->
+
+                    <!-- Endereço url da notícia -->
+                    <p>
+                        <label>Endereço de acesso de sua publicação em outro site</label>
+                        <input type="text" class="input-block-level" id="src" name="src" value="<%= noticia.src %>"/>
+                        <span class="help-block"></span>   
+                    </p>
+                    <!-- Fim do  Endereço url da notícia -->
+
+                    <!-- Parceiro da notícia-->
+                    <p>
+                        <label>Selecione um parceiro para divulgação em sua notícia</label>
+                            <span class="field">
+                              <select name="parceiro" id="parceiro" class="uniformselect" required="required">
+                                <option value="<%= noticia.parceiro %>"><%= noticia.parceiro %></option>
+                                <option value="ClubedaNuna">Clube da Nuna</option>
+                                <option value="GlobalGames">Global Games</option>
+                                <option value="JogosIndie">Jogos Indie</option>
+                                <option value="MundoGamer">Mundo Gamer</option>
+                                <option value="Nintedolátras">Nintedolátras</option>
+                                <option value="Pechinchador">Pechinchador</option>
+                                <option value="Player2">Player 2</option>
+                                <option value="ResidentEvilDatabase">Resident Evil Database</option>
+                                <option value="X-Nerd">X-Nerd</option>
+                              </select>
+                            </span>
+                    </p>
+                    <!-- Fim do Parceiro da notícia -->
+
+                    <!-- Editor de texto da notícia-->
+                    <p>
+                      <label><h4 class="widgettitle">Cadastre um conteúdo de descrição para sua publicação</h4></label>
+                      <textarea  class="ckeditor" name="editor1" id="editor1"><%= noticia.descricao %></textarea>
+                    </p>
+                    <!-- Fim do  Editor de texto da notícia-->
+
+                    <!-- Fonte da notícia -->
+                    <p>
+                    <label><h4 class="widgettitle">Caso sua publicação seja conteúdo de terceiros preencha os campos a seguir</h4></label>  
+                        <label>Nome da fonte de origem do conteúdo</label>
+                        <% if (typeof noticia.nome_fonte !== 'undefined'){ %>
+                          <% if ( (noticia.nome_fonte !== 'undefined') && (noticia.nome_fonte !== ' ') ){ %> 
+                          <input type="text" class="input-block" id="nome_fonte" name="nome_fonte" placeholder="Nome da Fonte" value="<%= noticia.nome_fonte %>"/> 
+                        <%}%>
+                        <%} else{ %>
+                          <input type="text" class="input-block" id="nome_fonte" name="nome_fonte" placeholder="Nome da Fonte" value=""/>
+                        <%}%>
+                        
+                        <label>Insira o endereço de acesso original do conteúdo</label>
+                        <% if (typeof noticia.url_fonte !== 'undefined'){ %>
+                          <% if ( (noticia.url_fonte !== 'undefined')  && (noticia.url_fonte !== ' ') ) { %>
+                          <input type="text" class="input-block-level" id="url_fonte" name="url_fonte" placeholder="URL de destino do conteúdo" value="<%= noticia.url_fonte %>" />
+                        <%}%>
+                        <%} else{ %>
+                          <input type="text" class="input-block-level" id="url_fonte" name="url_fonte" placeholder="URL de destino do conteúdo" value="" />
+                        <%}%>  
+                    </p>
+                    <!-- Fim do  Fonte  da notícia -->
+
+                    <!-- Botão de Publicar notícia-->
+                      <p>
+                        <center><button id="SubmitBtn" name="SubmitBtn" type="submit" class="btn btn-large btn-inverse">Salvar alterações</button></center>
+                      </p>   
+                    <!-- Fim do Botão de Publicar notícia-->
+                  </form>
+                </div>
+              </div>                         
+            </div>
+          </div>
+
+                <!-- Place inside the <head> of your HTML -->
+
+
+    <script src="/editor/ckeditor.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> 
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+    </script>
+    <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
+    </script>
+    <script type="text/javascript">
+      $('#datafinal').datetimepicker({
+        format: 'dd/MM/yyyy hh:mm:ss',
+        language: 'pt-BR'
+      });
+
+       $('#datainicio').datetimepicker({
+        format: 'dd/MM/yyyy hh:mm:ss',
+        language: 'pt-BR'
+      });
+    </script>
+    <script src="//connect.facebook.net/pt_BR/all.js"></script>
+    <script> 
+    	$(document).ready(function () {
+    var datainicio = $("#datainicio");
+    var titulo = $("#titulo");
+    var LoginForm = $('#LoginForm');
+    var SubmitBtn = $('#SubmitBtn');
+ 
+    LoginForm.validate();
+ 
+    datainicio.rules("add", {
+      required: true,
+      length: 9,
+      messages: {
+        required: "Você deve preencher data de início",
+        rangelength: "Data inválida"
+      }
+    });
+    titulo.rules("add", {
+      required: true,
+      messages: {
+        required: "Titulo é obrigatório."
+      }
+    });
+ 
+    $('#LoginForm').submit(function () {
+      if ($(this).valid()) {
+        $('#SubmitBtn').prop('disabled', true);
+        return true;
+      }
+      return false;
+    });
+ 
+  });
+	</script>
+
+<script type="text/javascript">
+
+	jQuery(document).ready(function(){
+		
+		jQuery('.taglist .close').click(function(){
+			jQuery(this).parent().remove();
+			return false;
+		});
+		
+	});
+</script>
+
+<% include admin-footer %>    

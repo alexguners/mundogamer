@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+  <html lang="pt">
+    <head>
+      <meta charset="utf-8">
+      <meta name="description" content="No mundo gamer você encontra as últimas noticias de games, as melhores análises e promoções. O melhor do Mundo Gamer você encontra aqui">
+      <meta name="keywords" content="videogames, games xbox one, nintendo 3ds games,notícias games, lançamento de games, notícias de jogos, ps4, Xbox, Xbox Live, PSN, Nintendo, news games, games, Wii U, psn games">
+      <title><%= jogo.nome_jogo %> - WikiGamer Mundo Gamer</title>
+      <meta name="robots" content="index, follow">
+      <meta name="language" content="Portuguese">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <!-- Meta do Bing -->
+      <meta name="msvalidate.01" content="A5436FA15E86A82C20783D38485927D3" />
+      <!-- Fim do Bing -->   
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <!-- Início do código para TAGS de compartihamento do site no Facebook -->
+      <!--para o sistema Open Graph-->
+      <meta property="og:site_name" content="Mundo Gamer">
+      <meta property="og:title" content="Você sabia que<%= jogo.nome_jogo %> também está em nosso WikiGamer">
+      <meta property="og:type" content="article">
+      <meta property="og:url" content="http://www.mundogamer.com.br/jogos/<%= jogo.url %>">
+      <meta property="og:image" content="http://www.mundogamer.com.br/images/wikigamer/jogos/banners/<%= jogo._id %>01">
+      <meta property="og:image:width" content="1200">
+      <meta property="og:image:height" content="628">
+      <meta property="og:description" content="<%= jogo.descricao_jogo.toString().replace(/<.*?>/g, '')%>">
+      <meta property="fb:admins" content="1541352318">
+      <meta property="fb:app_id" content="625583237494479">
+      <meta property="fb:page_id" content="417660025000594"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Fim do código para TAGS de compartihamento do site no Facebook -->
+      
+
+      <!-- Loading Bootstrap -->
+      <link href="/home/bootstrap/css/bootstrap.css" rel="stylesheet">
+      <!-- Loading Flat UI -->
+      <link href="/home/css/flat-ui.css" rel="stylesheet">
+      <link rel="shortcut icon" href="/images/favicon.ico">
+
+    </head>   
+<!-- NAVBAR
+================================================== -->
+  <!--<div class='backgroundjogo'><image src="/images/wikigamer/jogos/backgrounds/ResidentEvil6.jpg"></div> -->
+  <body onselectstart='return false' ondragstart='return false' > <!--Bloqueia a cópia de conteúdo-->
+  <% include navbar %>
+
+  <div class="container marketing"> 
+
+
+     <div class="col-md-9">
+
+       <center>
+               <!-- MundoGamer Blog -->
+               <script type="text/javascript">  
+                   google_ad_client = "ca-pub-0061672681197040";  
+                   google_ad_slot = "";  
+                   if(window.innerWidth >= 800) {  
+                    //visible-desktop  
+                    //Medium Rectangle  
+                    google_ad_slot = "2984023486";  
+                    google_ad_width = 728;  
+                    google_ad_height = 90;  
+                   }  
+                   else if((window.innerWidth > 480)&&(window.innerWidth < 800)) {  
+                    //visible-tablet  
+                    //Square  
+                    google_ad_slot = "6709861485";  
+                    google_ad_width = 320;  
+                    google_ad_height = 100;  
+                   }  
+                   else if(window.innerWidth <= 480) {  
+                    //visible-phone  
+                    //Large Rectangle  
+                    google_ad_slot = "6709861485";  
+                    google_ad_width = 320;  
+                    google_ad_height = 100;  
+                   }  
+                   if(google_ad_slot != "")  
+                    document.write(' <scr'+'ipt type=\"text/javascript\" src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\"></scri'+'pt>');  
+                </script>  
+       </center>   
+      <!-- Carousel
+      ================================================== -->
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="/images/wikigamer/jogos/banners/<%= jogo._id %>01" alt="Saiba tudo sobre<%= jogo.nome_jogo %> no Mundo Gamer">
+            <!-- <div class="container">
+              <div class="carousel-caption">
+                <p>Saiba aqui no Mundo Gamer tudo sobre <%= jogo.nome_jogo %></p>
+              </div>
+            </div> -->
+          </div>
+          <div class="item">
+            <img src="/images/wikigamer/jogos/banners/<%= jogo._id%>02" alt="O <%= jogo.nome_jogo %> está aqui no Mundo Gamer">
+            <!-- <div class="container">
+              <div class="carousel-caption">
+                <p><%= jogo.nome_jogo %> foi desenvolvido pela empresa <%= jogo.desenvolvedor %></p>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div><!-- /.carousel -->
+
+          <div class="well">
+            <article>
+                <% if (typeof jogo.descricao_jogo !== 'undefined'){ %>
+                    <% if((jogo.descricao_jogo == 'undefined') || (jogo.descricao_jogo == '') ){ %>
+                      <%= jogo.nome_jogo %> ainda não possui um conteúdo descritivo em nosso WikiGamer, caso você tenha interesse em contribuir com o Mundo Gamer, basta encaminhar o seu texto através do e-mail <b><u><a href="mailto:contato@mundogamer.com.br">contato@mundogamer.com.br</a></u></b> para ser analisado.
+                      <%}
+                      else { %>
+                        <p><%- jogo.descricao_jogo %> </p>
+                      <%}%>
+                <%}%>
+            </article>
+          </div>
+      
+      <hr class="featurette-divider">
+
+  </div>
+
+        <div class="col-md-3">
+              <!-- Coluna da direita noticias recentes -->
+
+            <div class="table-responsive">
+            <blockquote>
+                <table class="table">
+                 <center><img class="media-object" src="/images/wikigamer/jogos/capas/<%= jogo._id %>" height="250" width="200"></center>
+
+                 <tbody>
+                    <% if (typeof jogo.nome_jogo !== 'undefined'){ %>
+                    <% if (jogo.nome_jogo !== 'undefined'){ %> 
+                    <tr>
+                       <td><small>Nome do jogo:</small></td>
+                       <td align="center"><small><%= jogo.nome_jogo %></small></td>
+                    </tr>
+                    <%} if ( (jogo.data_lancamento !== 'undefined') && (jogo.data_lancamento !== '') ) { %> 
+                    <tr>
+                       <td><small>Lançamento:</small></td>
+                       <td><small> <% var d = new Date(jogo.data_lancamento); 
+                        %><%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/'  + d.getFullYear() %> </small></td>
+                    </tr>
+                    <%} if ( (jogo.categoria !== 'undefined') && (jogo.categoria !== '') ) { %>
+                    <tr>
+                       <td><small>Categoria:</small></td>
+                       <td><small><%= jogo.categoria %></small></td>
+                    </tr>
+                    <%} if ( (jogo.desenvolvedor !== 'undefined') && (jogo.desenvolvedor !== '') ) { %>
+                    <tr>
+                       <td><small>Desenvolvido por:</small></td>
+                       <td><small><%= jogo.desenvolvedor %></small></td>
+                    </tr>
+                    <%} if ( (jogo.editora !== 'undefined') && (jogo.editora !== '') ) { %>
+                    <tr>
+                       <td><small>Publicado por:</small></td>
+                       <td><small><%= jogo.editora %></small></td>
+                    </tr>
+                    <%} if ( (jogo.plataformas !== 'undefined') && (jogo.plataformas !== '') ) { %>
+                    <tr>
+                       <td><small>Plataformas:</small></td>
+                       <td><small><%= jogo.plataformas %></small></td>
+                    </tr>
+                    <%} if ( (jogo.site !== 'undefined') && (jogo.site !== '') ) { %>
+                    <tr>
+                       <td><small>Site Oficial:</small></td>
+                       <td><a href="<%- jogo.site %>" target="_blank"><span class="label label-success">Acessar site</span></a></td>
+                    </tr>
+                    <%}%> 
+                    <tr>
+                       <td class="success"><small>Visualizações</small></td>
+                       <td class="success"><small><% if (typeof jogo.views == 'undefined') {%>1 visualização<% }else{ %><%= jogo.views %> visualizações<%}%></small></a></td>
+                    </tr>
+
+                    <%}%>
+                    
+
+                 </tbody>
+              </table>
+            </div>
+
+      </div> 
+    </div>
+      <!-- START THE FEATURETTES -->
+
+    <% include footer %>  
+
+    </div><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/home/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/home/js/readmore.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script src="/home/js/footerfixed.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script type="text/javascript"> 
+
+    /* Adsense */
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    /* Fim Adsense */
+
+
+    $('article').readmore({maxHeight: 250});
+
+     $(document).ready(function() {
+       $.ajax({
+        url: '/jogos/views',
+        type: 'POST',
+        data: {"id":'<%=jogo._id%>'},
+        success: function() {}
+       });
+     });
+
+     $(document).ready(function() {
+        $('#myCarousel').carousel({
+        //options here
+        });
+    });
+
+               /*Código de Análise do Google Analitics*/
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-45182358-1', 'mundogamer.com.br');
+          ga('send', 'pageview');
+    </script> 
+
+  </body>
+</html>

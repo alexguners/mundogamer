@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<% include admin-header %>   
+ <% if (message.length>0) { %>
+        <div class="alert alert-success"><%= message %></div>
+    <% } %>
+          <div class="row-fluid">
+            <div id="dashboard-left" class="span8">
+             <div class="panel panel-primary">  
+
+                <div class="panel-body">
+                  <form id="LoginForm" role="form" class="form-horizontal" autocomplete="off"  method="post">
+
+                    <!-- Id da Notícia -->
+                    <input type="hidden" value="<%= noticia.id %>" name="id" />
+
+                     <!-- Título da Notícia -->
+                     <p>
+                       <label for="titulo">Título cadastrado em sua análise</label>
+                       <input type="text" class="input-block-level"  id="titulo" name="titulo" required="required" value="<%= noticia.titulo %>"/>
+                     </p>
+                     <!-- Fim Título da Notícia -->
+
+                    <!-- Data de Publicação -->
+                    <p>
+                      <div id="datainicio">
+                        <label for="datafinal">Data inicial de exibição ( Redefinir Data em caso de alteração)</label>
+                        <input type="text" class="form-control" name="datainicio" id="datainicio" required="required" value="<% var d = new Date(noticia.data);%><%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/' + d.getFullYear() %>&nbsp;<%= ('0' + (d.getHours())).slice(-2) + ':' + ('0' + (d.getMinutes())).slice(-2) + ':' + ('0' + (d.getSeconds())).slice(-2) %>"></input>
+                          <span class="add-on">
+                            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                          </span>
+                      </div>
+                    </p>
+                    <!-- Fim da Data de Publicação -->
+                    
+                    <!-- Parceiro da notícia-->
+                    <p>
+                        <label>Selecione um parceiro para divulgação em sua notícia</label>
+                            <span class="field">
+                              <select name="parceiro" id="parceiro" class="uniformselect">
+                                <option value="<%= noticia.parceiro %>"><%= noticia.parceiro %></option>
+                                <option value="ClubedaNuna">Clube da Nuna</option>
+                                <option value="GlobalGames">Global Games</option>
+                                <option value="JogosIndie">Jogos Indie</option>
+                                <option value="MundoGamer">Mundo Gamer</option>
+                                <option value="Nintedolátras">Nintedolátras</option>
+                                <option value="Pechinchador">Pechinchador</option>
+                                <option value="Player2">Player 2</option>
+                                <option value="ResidentEvilDatabase">Resident Evil Database</option>
+                                <option value="X-Nerd">X-Nerd</option>
+                              </select>
+                            </span>
+                    </p>
+                    <!-- Fim do Parceiro da notícia -->
+
+                    <!-- Editor de texto da notícia-->
+                    <p>
+                      <label><h4 class="widgettitle">Verifique as informações do conteúdo de descrição de sua análise</h4></label>
+                      <textarea  class="ckeditor" name="editor1" id="editor1"><%= noticia.descricao %></textarea>
+                    </p>
+                    <!-- Fim do  Editor de texto da notícia-->
+
+                    <!-- Botão de Publicar notícia-->
+                      <p>
+                        <center><button id="SubmitBtn" name="SubmitBtn" type="submit" class="btn btn-large btn-inverse">Salvar Alterações</button></center>
+                      </p>   
+                    <!-- Fim do Botão de Publicar notícia-->
+                  </form>
+                </div>
+              </div>                         
+            </div>
+          </div>
+
+                <!-- Place inside the <head> of your HTML -->
+
+
+<script src="/editor/ckeditor.js"></script>
+<script type="text/javascript"
+     src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+    </script> 
+    <script type="text/javascript"
+     src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js">
+    </script>
+    
+    <script type="text/javascript"
+     src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
+    </script>
+    <script type="text/javascript"
+     src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+    </script>
+    <script type="text/javascript"
+     src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
+    </script>
+    <script type="text/javascript">
+      $('#datafinal').datetimepicker({
+        format: 'dd/MM/yyyy hh:mm:ss',
+        language: 'pt-BR'
+      });
+
+       $('#datainicio').datetimepicker({
+        format: 'dd/MM/yyyy hh:mm:ss',
+        language: 'pt-BR'
+      });
+    </script>
+    <script src="//connect.facebook.net/pt_BR/all.js"></script>
+    <script> 
+    	$(document).ready(function () {
+    var datainicio = $("#datainicio");
+    var titulo = $("#titulo");
+    var LoginForm = $('#LoginForm');
+    var SubmitBtn = $('#SubmitBtn');
+ 
+    LoginForm.validate();
+ 
+    datainicio.rules("add", {
+      required: true,
+      length: 9,
+      messages: {
+        required: "Você deve preencher data de início",
+        rangelength: "Data inválida"
+      }
+    });
+    titulo.rules("add", {
+      required: true,
+      messages: {
+        required: "Titulo é obrigatório."
+      }
+    });
+ 
+    $('#LoginForm').submit(function () {
+      if ($(this).valid()) {
+        $('#SubmitBtn').prop('disabled', true);
+        return true;
+      }
+      return false;
+    });
+ 
+  });
+	</script>
+
+<script type="text/javascript">
+
+	jQuery(document).ready(function(){
+		
+		jQuery('.taglist .close').click(function(){
+			jQuery(this).parent().remove();
+			return false;
+		});
+		
+	});
+</script>
+
+<% include admin-footer %>    

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<% include admin-header %>   
+ <% if (message) { %>
+        <div class="alert alert-success"><%= message %></div>
+    <% } %>
+          <div class="row-fluid">
+            <div id="dashboard-left" class="span8">
+	 					 <div class="panel panel-primary">  
+
+						    <div class="panel-body">
+  						    <form id="LoginForm" role="form" class="form-horizontal" enctype="multipart/form-data" autocomplete="off"  method="post">
+
+                    <!-- Imagem do personagem -->
+                    <center>
+                    <p>
+                      <div class="par">
+                          <label>Imagem de perfil do personagem(Tamanho recomendado 250x250 pixels até 100k)</label>
+                          <div class="fileupload fileupload-new" data-provides="fileupload">
+                            <div class="fileupload-preview thumbnail" style="width: 300px; height: 200px;"></div>
+                            <div class="input-append">
+                                <div class="uneditable-input span3">
+                                  <i class="iconfa-file fileupload-exists"></i>
+                                  <span class="fileupload-preview"></span>
+                                </div>
+                                <span class="btn btn-file"><span class="fileupload-new">Selecione uma imagem</span>
+                                <span class="fileupload-exists">Alterar</span>
+                                <input type="file" accept="image/*" class="form-control" id="capa_personagem" name="capa_personagem" required="required" /> 
+                                <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a>
+                            </div>
+                          </div>
+                     </div>                                         
+                    </p>
+                    </center> 
+                    <!-- Fim da Imagem do personagem -->
+
+                    <!-- Nome do Personagem -->
+                    <p>
+                      <label for="titulo">Nome do Personagem</label>
+                      <input type="text" class="form-control" id="nome_personagem" name="nome_personagem" placeholder="Digite o nome do personagem" required="required" />
+                    </p>
+                    <!-- Fim do nome do Personagem -->
+
+                    <!-- Data de Nascimento -->
+                    <p>
+                       <label>Data de Nascimento</label>
+                       <input type="text" name="data_nascimento" id="data_nascimento" maxlength="10" placeholder="Exemplo 01/01/2014" onkeypress="return dateMask(this, event);"/>
+                    </p>
+                    <!-- Fim Data de Nascimento -->
+
+                     <!-- Primeira aparição do personagem -->
+                    <p>
+                       <label>Primeiro jogo em que apareceu</label>
+                       <input type="text" class="form-control" id="primeirojogo_personagem" name="primeirojogo_personagem" placeholder="Digite o nome do jogo"/> em <input type="text" class="input-small" id="anoprimjogo_personagem" name="anoprimjogo_personagem" placeholder="2014" maxlength="4" />
+                    </p>
+                    <!-- Fim  Primeira aparição do personagem -->
+
+                    <!--  genero do personagem-->
+                     <p>
+                        <label>Gênero</label>
+                          <select name="genero_personagem" id="genero_personagem" required="required">
+                             <option value="">Selecione uma opção</option>
+                             <option value="Masculino">Masculino</option>
+                             <option value="Feminino">Feminino</option>           
+                             <option value="Outros">Outros</option>                                         
+                          </select> 
+                     </p>
+                        <!--  Fim do genero -->
+
+                      <!-- Criado por -->
+                      <p>
+                        <label>Criado por</label>
+                        <input type="text" class="form-control" id="criador_personagem" name="criador_personagem" placeholder="Nome do criador"  />
+                     </p>
+                     <!-- Fim do criado por -->
+
+                      <!-- País de origem -->
+                      <p>
+                        <label>País de origem</label>
+                        <input type="text" class="form-control" id="origem_personagem" name="origem_personagem" placeholder="Nome do país"  />
+                     </p>
+                     <!-- Fim país de origem -->
+
+                      <!-- Planeta de origem -->
+                      <p>
+                        <label>Nascido no planeta</label>
+                        <input type="text" class="form-control" id="planeta_personagem" name="planeta_personagem" placeholder="Nome do país"  />
+                     </p>
+                     <!-- Planeta de origem-->
+
+                      <!-- Espécie -->
+                      <p>
+                        <label>Espécie</label>
+                        <input type="text" class="form-control" id="especie_personagem" name="especie_personagem" placeholder="Nome da espécie" />
+                     </p>
+                     <!-- Fim da espécie -->
+
+                      <!-- Profissão Personagem-->
+                      <p>
+                        <label>Profissão</label>
+                        <input type="text" class="form-control" id="profissao_personagem" name="profissao_personagem" placeholder="Nome da profissão"  />
+                     </p>
+                     <!-- Fim da Profissão Personagem-->
+
+                   
+                        <p>
+                          <div class="par">
+                              <label>Banner 01 (Tamanho recomendado 900x385 até 100k)</label>
+                              <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="input-append">
+                                    <span class="btn btn-file"><span class="fileupload-new">Selecione uma imagem</span>
+                                    <span class="fileupload-exists">Alterar</span>
+                                    <input type="file" accept="image/*" class="form-control" id="personagem_banner01" name="personagem_banner01" /> 
+                                    <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a>
+                                </div>
+                              </div>
+                         </div>  
+                         <div class="par">
+                              <label>Banner 02 (Tamanho recomendado 900x385 até 100k)</label>
+                              <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="input-append">
+                                    <span class="btn btn-file"><span class="fileupload-new">Selecione uma imagem</span>
+                                    <span class="fileupload-exists">Alterar</span>
+                                    <input type="file" accept="image/*" class="form-control" id="personagem_banner02" name="personagem_banner02"  /> 
+                                    <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a>
+                                </div>
+                              </div>
+                         </div>                                        
+                        </p>
+
+                        <!-- Editor de texto da plataforma-->
+                        <p>
+                          <label><h4 class="widgettitle">Cadastre uma descrição para o personagem</h4></label>  
+                          <textarea  class="ckeditor" name="editor1" id="editor1"></textarea>
+                        </p>
+                        <!-- Fim do  Editor de texto da plataforma-->
+
+                        <!-- Fonte das informações -->
+                        <p>
+                        <label><h4 class="widgettitle">Caso sua descrição seja conteúdo de terceiros preencha os campos a seguir</h4></label>  
+                            <label>Nome da fonte de origem do conteúdo</label>
+                            <input type="text" class="input-block" id="nome_fonte" name="nome_fonte" placeholder="Nome da Fonte" />
+                            <label>Insira o endereço de acesso original do conteúdo</label>
+                            <input type="text" class="input-block-level" id="url_fonte" name="url_fonte" placeholder="URL de destino do conteúdo" />
+                            <span class="help-block"></span>   
+                        </p>
+                        <!-- Fim das informações -->
+
+                        <!-- Botão de Publicar notícia-->
+                        <p>
+      						        <center><button id="SubmitBtn" name="SubmitBtn" type="submit" class="btn btn-large btn-inverse">Cadastrar Personagem</button></center>
+      						      </p>   
+                    <!-- Fim do Botão de Publicar notícia-->
+  						    </form>
+						    </div>
+						  </div>                         
+            </div>
+          </div>
+
+                <!-- Place inside the <head> of your HTML -->
+
+  <script src="/admin/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+  <script src="/admin/js/chosen.jquery.js" type="text/javascript"></script>
+  <script src="/editor/ckeditor.js" type="text/javascript"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js" type="text/javascript"></script> 
+  <script src="/admin/js/bootstrap.min.js" type="text/javascript"> </script>
+  <script type="text/javascript"> 
+
+    	$(document).ready(function () {
+
+
+    var nome_personagem = $("#nome_personagem");
+    var LoginForm = $('#LoginForm');
+    var SubmitBtn = $('#SubmitBtn');
+ 
+    LoginForm.validate();
+ 
+    titulo.rules("add", {
+      required: true,
+      messages: {
+        required: "O nome do personagem é obrigatório."
+      }
+    });
+ 
+    $('#LoginForm').submit(function () {
+      if ($(this).valid()) {
+        $('#SubmitBtn').prop('disabled', true);
+        return true;
+      }
+      return false;
+    });
+ 
+  });
+	</script>
+
+<% include admin-footer %>    

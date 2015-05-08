@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<% include admin-header %>   
+ <% if (message.length>0) { %>
+        <div class="alert alert-success"><%= message %></div>
+    <% } %>
+          <div class="row-fluid">
+            <div id="dashboard-left" class="span8">
+             <div class="panel panel-primary"> 
+
+                <div class="panel-body">
+  					        <form id="LoginForm" role="form" class="form-horizontal" autocomplete="off"  method="post">
+                    <!-- Id do Parceiro -->
+                    <input type="hidden" value="<%= parceiro.id %>" name="id" />
+
+                        <!-- Campo Nome do Parceiro -->
+                        <p>
+                          <label>Nome do Parceiro&nbsp;</label>
+                          <input type="text" class="input-block-level" id="nome_parceiro" name="nome_parceiro" placeholder="Nome do parceiro" required="required" value="<%= parceiro.nome_parceiro %>"/>
+                        </p>
+                        <!-- Fim do Campo Nome do Parceiro -->
+
+                        <!-- Campo Nome do Parceiro -->
+                        <p>
+                          <label>E-mail de contato&nbsp;</label>
+                          <input type="text" class="input-block-level" id="email_contato" name="email_contato" placeholder="Digite o e-mail de contato" required="required" value="<%= parceiro.email_contato %>" />
+                        </p>
+                        <!-- Fim do Campo Nome do Parceiro --> 
+
+                        <!-- Data de cadastro do parceiro -->
+                        <p>
+                           <label>Data de cadastro</label>
+                           <input type="text" name="data_cadastro" id="data_cadastro" maxlength="10" placeholder="Exemplo 01/01/2014" onkeypress="return dateMask(this, event);"  value="<% var d = new Date(parceiro.data_cadastro); 
+                        %><%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/'  + d.getFullYear() %>" disabled/>
+
+                        </p>
+                        <!-- Fim Data de cadastro do parceiro  -->                       
+
+                        <!-- Parceiro da notícia-->
+                        <p>
+                            <label>Categoria:</label>
+                                <select name="categoria" id="categoria" required="required" >
+                                  <option value="<%= parceiro.categoria %>"><%= parceiro.categoria %></option>
+                                    <option value="Blog">Blog</option>
+                                    <option value="Site">Site</option>                                
+                                    <option value="Loja">Loja</option>
+                                    <option value="Página no Facebook">Página Facebook</option>
+                                    <option value="Outros">Outros</option>
+                                </select> 
+
+                        </p>
+                        <!-- Fim do Parceiro da notícia -->
+
+                        <!-- Campo Site do Parceiro -->
+                        <p>
+                          <label>Site</label>
+                          <input type="text" class="input-block-level" id="site " name="site" placeholder="http://meusite.com" value="<%= parceiro.site%>"/>
+                        </p>
+                        <!-- Fim do Campo Site do Parceiro -->
+
+                        <!-- Campo Twitter do Parceiro -->
+                        <p>
+                           <label>Perfil Twitter</label>
+                           <div class="input-prepend">
+                              <span class="add-on">@</span>
+                                  <input type="text"  placeholder="@Usuário" id="twitter" name="twitter" class="input-block-level" value="<%= parceiro.twitter %>" />
+                           </div>
+                        </p>
+                        <!-- Fim Campo Twitter do Parceiro -->
+
+                        <!-- Campo Facebook do Parceiro -->
+                        <p>
+                           <label>Página Facebook</label>
+                          <div class="input-prepend">
+                              <span class="add-on">www.facebook.com/</span>
+                                <input type="text" name="facebook" id="facebook" class="input-block-level" placeholder="Nome da Página" value="<%= parceiro.facebook %>" />
+                           </div>
+                           
+                        </p>
+                        <!-- FIM do Campo Facebook do Parceiro -->
+
+                        <!-- Campo Instagram do Parceiro -->
+                        <p>
+                           <label>Instagram</label>
+                           <div class="input-prepend">
+                              <span class="add-on">www.instagram.com/</span>
+                           <input type="text" name="instagram" id="instagram" class="input-block-level" placeholder="Endereço Instagram" value="<%= parceiro.instagram%>" />
+                           </div>
+                        </p>
+                        <!-- Fim do Campo Instagram do Parceiro -->
+
+                        <!-- Campo Canal do Youtube do Parceiro -->
+                        <p>
+                          <label>Canal Youtube</label>
+                          <div class="input-prepend">
+                              <span class="add-on">www.youtube.com/</span>
+                          <input type="text" name="canal_youtube" id="canal_youtube" class="input-block-level" placeholder="Endereço do canal" value="<%= parceiro.canal_youtube %>"/>
+                          </div>
+                        </p>
+                        <!-- Fim do Campo Canal do Youtube do Parceiro -->
+
+                        <p>
+                          <label><h4 class="widgettitle">Cadastre um conteúdo de descrição para o jogo</h4></label>                    
+                          <textarea  class="ckeditor" name="editor1" id="editor1"><%= parceiro.descricao_parceiro %></textarea>                           
+                        </p>
+
+
+                        <!-- Botão de Cadastrar -->
+                        <p>
+                          <center>
+                            <button id="SubmitBtn" name="SubmitBtn" type="submit" class="btn btn-large btn-inverse">Editar Parceiro</button>
+                           </center>
+                        </p>      
+    						    </form>
+						    </div>
+						 </div>         
+            </div>
+        </div>
+                <!-- Place inside the <head> of your HTML -->
+
+
+<script src="/editor/ckeditor.js"></script>
+<script type="text/javascript"
+     src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+    </script> 
+    <script type="text/javascript"
+     src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js">
+    </script>
+    
+    <script type="text/javascript"
+     src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
+    </script>
+  
+    <script src="//connect.facebook.net/pt_BR/all.js"></script>
+    <script> 
+    	$(document).ready(function () {
+    var data_cadastro = $("#data_cadastro");
+    var nome_parceiro = $("#nome_parceiro");
+    var categoria = $("#categoria");
+    var LoginForm = $('#LoginForm');
+    var SubmitBtn = $('#SubmitBtn');
+ 
+    LoginForm.validate();
+ 
+    data_cadastro.rules("add", {
+      required: true,
+      length: 9,
+      messages: {
+        required: "Você deve preencher data de cadastro",
+        rangelength: "Data inválida"
+      }
+    });
+    nome_parceiro.rules("add", {
+      required: true,
+      messages: {
+        required: "Nome do parceiro é obrigatório."
+      }
+    });
+      categoria.rules("add", {
+      required: true,
+      messages: {
+        required: "Escolher categoria é obrigatório."
+      }
+    });
+ 
+    $('#LoginForm').submit(function () {
+      if ($(this).valid()) {
+        $('#SubmitBtn').prop('disabled', true);
+        return true;
+      }
+      return false;
+    });
+ 
+  });
+	</script>
+
+<script type="text/javascript">
+
+	jQuery(document).ready(function(){
+		
+		jQuery('.taglist .close').click(function(){
+			jQuery(this).parent().remove();
+			return false;
+		});
+		
+	});
+</script>
+
+
+<% include admin-footer %>    
+
+

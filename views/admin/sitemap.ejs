@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<% include admin-header %> 
+ <% if (message) { %>
+        <div class="alert alert-success"><%= message %></div>
+    <% } %>
+          <div class="row-fluid">
+
+             <div class="panel panel-primary">  
+
+                <div class="panel-body">
+                  <form id="LoginForm" role="form" class="form-horizontal" enctype="multipart/form-data" autocomplete="off"  method="post">
+
+
+					<label><h4 class="widgettitle">O último arquivo sitemap.xml foi gerado no dia <span class="label label-warning">Buscar data no Banco</span></h4></label>
+
+					<p>
+                          <label>Nome do arquivo XML&nbsp;</label>
+                          <input type="text" class="input-block-level" id="nome_xml" name="nome_xml" placeholder="Nome do Arquivo XML" required="required" />
+                    </p>
+                        <!-- Fim do Campo Nome do Arquivo XML -->
+
+                    <!-- Data de Criação -->
+                    <p>
+                      <div id="datainicio">
+                        <label for="datafinal">Selecione a data de criação do arquivo XML</label>
+                        <input type="text" class="form-control" name="criacao_xml" id="criacao_xml" required="required"></input>
+                          <span class="add-on">
+                            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                          </span>
+                      </div>
+                    </p>
+                    <!-- Fim da Data de Criação -->
+
+                         <p>
+                            <label>Determine a frequência de alterações para as páginas:</label>
+                                <select name="categoria" id="categoria" required="required">
+                                  <option value="">Selecione uma frequência</option>
+                                    <option value="none">None/Nenhuma</option>          
+                                    <option value="always">Always/Sempre</option>
+                                    <option value="hourly">Hourly/De hora em hora</option>
+                                    <option value="daily">Daily/Diariamente</option>
+                                    <option value="weekly">Weekly/Semanal</option>
+                                    <option value="monthly">Monthly/Mensal</option>
+                                    <option value="yearly">Yearly/Anual</option>
+                                    <option value="never">Never/Nunca</option>
+                                </select> 
+
+                        </p>
+
+
+					<label>Selecione os campos a seguir para geração de um novo arquivo sitemap.xml</label> 
+            
+            <table class="table table-bordered table-invoice-full">
+                <colgroup>
+                	<col class="con0 width3" />
+                    <col class="con1 width10" />
+                    <col class="con0 width37" />
+                    <col class="con1 width10" />
+                    <col class="con0 width15" />
+                    <col class="con1 width15" />
+                    <col class="con0 width10" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th class="head0"></th>
+                        <th class="head1 center">Páginas de</th>
+                        <th class="head0 center">Descrição</th>
+                        <th class="head1 center">Prioridade</th>
+                        <th class="head0 center">XML Anterior</th>
+                        <th class="head1 center">Páginas Ativas</th>
+                        <th class="head0 center">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    	<td class="center"><div class="checkbox disabled"><input type="checkbox" value="Principal"></div></td>
+                        <td>Principal</td>
+                        <td>Página principal do Mundo Gamer</td>
+                        <td class="center">
+                        	<select name="priority" id="priority" required="required" class="input-small">
+                              <option value="1.0" disabled>1.0</option>          
+                            </select> </td>
+                        <td class="center">5</td>
+                        <td class="center">5</td>
+                        <td class="center"><strong>5</strong></td>
+                    </tr>
+                    <tr>
+                    	<td class="center"><div class="checkbox disabled"><input type="checkbox" value="Acessórios"></div></td>
+                        <td>Menus</td>
+                        <td>Aplicativos/Contato/Sobre/Wikigamer</td>
+                        <td class="center">
+                        	   <select name="priority" id="priority" required="required" class="input-small">
+                                    <option value="1.0">1.0</option>          
+                                    <option value="0.9" selected>0.9</option>
+                                    <option value="0.85">0.85</option>
+                                    <option value="0.7">0.7</option>
+                                    <option value="0.5">0.5</option>
+                                    <option value="0.0">0.0</option>
+                                </select>
+                        </td>
+                        <td class="center">5</td>
+                        <td class="center">5</td>
+                        <td class="center"><strong>5</strong></td>
+                    </tr>
+                    <tr>
+                    	<td class="center"><div class="checkbox disabled"><input type="checkbox" value="Acessórios"></div></td>
+                        <td>Acessórios</td>
+                        <td>Páginas de acessórios cadastrados no Mundo Gamer</td>
+                        <td class="center">
+                        	   <select name="priority" id="priority" required="required" class="input-small">
+                                    <option value="1.0">1.0</option>          
+                                    <option value="0.9">0.9</option>
+                                    <option value="0.85">0.85</option>
+                                    <option value="0.7" selected>0.7</option>
+                                    <option value="0.5">0.5</option>
+                                    <option value="0.0">0.0</option>
+                                </select>
+                        </td>
+                        <td class="center"></td>
+                        <td class="center"></td>
+                        <td class="center"><strong></strong></td>
+                    </tr>
+                    <tr>
+                    	<td class="center"><div class="checkbox disabled"><input type="checkbox" value="Autores"></div></td>
+                        <td>Autores</td>
+                        <td>Páginas de autores cadastrados no Mundo Gamer</td>
+                        <td class="center">
+                        	   <select name="priority" id="priority" required="required" class="input-small">
+                                    <option value="1.0">1.0</option>          
+                                    <option value="0.9">0.9</option>
+                                    <option value="0.85">0.85</option>
+                                    <option value="0.7" selected>0.7</option>
+                                    <option value="0.5">0.5</option>
+                                    <option value="0.0">0.0</option>
+                                </select>
+                        </td>
+                        <td class="center"></td>
+                        <td class="center"></td>
+                        <td class="center"><strong></strong></td>
+                    </tr>
+                    <tr>
+                   	    <td class="center"><div class="checkbox disabled"><input type="checkbox" value="Jogos"></div></td>
+                        <td>Jogos</td>
+                        <td>Páginas de jogos cadastrados no Mundo Gamer</td>
+                        <td class="center">
+                        	   <select name="priority" id="priority" required="required" class="input-small">
+                                    <option value="1.0">1.0</option>          
+                                    <option value="0.9">0.9</option>
+                                    <option value="0.85">0.85</option>
+                                    <option value="0.7" selected>0.7</option>
+                                    <option value="0.5">0.5</option>
+                                    <option value="0.0">0.0</option>
+                                </select>
+                        </td>
+                        <td class="center"></td>
+                        <td class="center"></td>
+                        <td class="center"><strong></strong></td>
+                    </tr>
+                    <tr>
+                   	    <td class="center"><div class="checkbox disabled"><input type="checkbox" value="Publicações"></div></td>
+                        <td>Publicações</td>
+                        <td>Páginas de publicações cadastradas no Mundo Gamer</td>
+                        <td class="center">
+                        	   <select name="priority" id="priority" required="required" class="input-small">
+                                    <option value="1.0">1.0</option>          
+                                    <option value="0.9">0.9</option>
+                                    <option value="0.85" selected>0.85</option>
+                                    <option value="0.7" >0.7</option>
+                                    <option value="0.5">0.5</option>
+                                    <option value="0.0">0.0</option>
+                                </select>
+                        </td>
+                        <td class="center">0</td>
+                        <td class="center"></td>
+                        <td class="center"><strong></strong></td>
+                    </tr>
+                    <tr>
+                  	    <td class="center"><div class="checkbox disabled"><input type="checkbox" value="Parceiros"></div></td>
+                        <td>Parceiros</td>
+                        <td>Páginas de parceiros cadastrados no Mundo Gamer</td>
+                        <td class="center">
+                        	   <select name="priority" id="priority" required="required" class="input-small">
+                                    <option value="1.0">1.0</option>          
+                                    <option value="0.9">0.9</option>
+                                    <option value="0.85">0.85</option>
+                                    <option value="0.7" selected>0.7</option>
+                                    <option value="0.5">0.5</option>
+                                    <option value="0.0">0.0</option>
+                                </select>
+                        </td>
+                        <td class="center"></td>
+                        <td class="center"></td>
+                        <td class="center"><strong></strong></td>
+                    </tr>
+                    <tr>
+                  	    <td class="center"><div class="checkbox disabled"><input type="checkbox" value="Personagens"></div></td>
+                        <td>Personagens</td>
+                        <td>Páginas de personagens cadastrados no Mundo Gamer</td>
+                        <td class="center">
+                        	   <select name="priority" id="priority" required="required" class="input-small">
+                                    <option value="1.0">1.0</option>          
+                                    <option value="0.9">0.9</option>
+                                    <option value="0.85">0.85</option>
+                                    <option value="0.7" selected>0.7</option>
+                                    <option value="0.5">0.5</option>
+                                    <option value="0.0">0.0</option>
+                                </select>
+                        </td>
+                        <td class="center"></td>
+                        <td class="center"></td>
+                        <td class="center"><strong></strong></td>
+                    </tr>
+                    <tr>
+                  	    <td class="center"><div class="checkbox disabled"><input type="checkbox" value="Plataformas"></div></td>
+                        <td>Plataformas</td>
+                        <td>Páginas de plataformas cadastrados no Mundo Gamer</td>
+                        <td class="center">
+                        	   <select name="priority" id="priority" required="required" class="input-small">
+                                    <option value="1.0">1.0</option>          
+                                    <option value="0.9">0.9</option>
+                                    <option value="0.85">0.85</option>
+                                    <option value="0.7" selected>0.7</option>
+                                    <option value="0.5">0.5</option>
+                                    <option value="0.0">0.0</option>
+                                </select>
+                        </td>
+                        <td class="center"></td>
+                        <td class="center"></td>
+                        <td class="center"><strong></strong></td>
+                    </tr>
+                    </tbody>
+                </table>
+                                
+                <table class="table invoice-table">
+                    <tbody>
+                        <tr>
+                        	<td class="width65 msg-invoice">
+          						<h4>Observação:</h4>
+          						<p>Ao gerar um novo arquivo sitemap, acesse o <u><a href="https://www.google.com/webmasters/tools/sitemap-list?hl=pt-BR&siteUrl=http://www.mundogamer.com.br/#MAIN_TAB=0&CARD_TAB=-1" target="blank">Webtools do Google&nbsp;</a></u>para realizar o envio do arquivo atualizado. O tempo de indexação não é definido e pode demorar algumas semanas para ser finalizado.</p>
+                            </td>
+                            <td class="width15 right numlist">
+                            	  <strong>Páginas XML anterior</strong>
+                            	  <strong>Páginas XML atual</strong>
+
+                            </td>
+                            <td class="width20 right numlist">
+                                <strong>1000</strong>
+
+                            </td>
+                        </tr>
+                    </tbody>
+          </table>
+					<p>
+					<center><div class="amountdue"><h1><span>Total de Páginas</span>600</h1><br/><a href="" class="btn btn-inverse btn-large">Gerar Sitemap</a></div></center>
+					</p>
+                  </form>
+                </div>
+              </div>                         
+
+          </div>
+
+    <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js"></script>
+
+<% include admin-footer %> 

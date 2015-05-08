@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<% include admin-header %>   
+ <% if (message) { %>
+        <div class="alert alert-success"><%= message %></div>
+    <% } %>
+          <div class="row-fluid">
+            <div id="dashboard-left" class="span8">
+	 					 <div class="panel panel-primary">  
+
+						    <div class="panel-body">
+  						    <form id="LoginForm" role="form" class="form-horizontal" enctype="multipart/form-data" autocomplete="off"  method="post">
+
+                    <!-- Imagem da plataforma -->
+                    <center>
+                    <p>
+                      <div class="par">
+                          <label>Imagem da plataforma(Tamanho recomendado 250x250 pixels até 100k)</label>
+                          <div class="fileupload fileupload-new" data-provides="fileupload">
+                            <div class="fileupload-preview thumbnail" style="width: 300px; height: 200px;"></div>
+                            <div class="input-append">
+                                <div class="uneditable-input span3">
+                                  <i class="iconfa-file fileupload-exists"></i>
+                                  <span class="fileupload-preview"></span>
+                                </div>
+                                <span class="btn btn-file"><span class="fileupload-new">Selecione uma imagem</span>
+                                <span class="fileupload-exists">Alterar</span>
+                                <input type="file" accept="image/*" class="form-control" id="imagem" name="imagem" required="required" /> 
+                                <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a>
+                            </div>
+                          </div>
+                     </div>                                         
+                    </p>
+                    </center> 
+                    <!-- Fim da Imagem da plataforma -->
+
+                    <!-- Título da Notícia -->
+                    <p>
+                      <label for="titulo">Nome da Plataforma</label>
+                      <input type="text" class="input-block-level" id="nome_plataforma" name="nome_plataforma" placeholder="Digite o nome da plataforma" required="required" />
+                    </p>
+                    <!-- Fim Título da Notícia -->
+
+                    <!-- Data de Lançamento -->
+                    <p>
+                       <label>Data de lançamento</label>
+                       <input type="text" name="lancamento_plataforma" id="lancamento_plataforma" maxlength="10" placeholder="Exemplo 01/01/2014" onkeypress="return dateMask(this, event);" required="required"/>
+                    </p>
+                    <!-- Fim Data de Lançamento -->
+
+                    <!-- Empresa Responsavel -->
+                    <p>
+                      <label for="titulo">Empresa responsável</label>
+                      <input type="text" class="form-control" id="empresa_responsavel" name="empresa_responsavel" placeholder="Empresa responsável" required="required" />
+                   </p>
+                   <!-- Fim da Empresa Responsavel -->
+
+                        <!-- Tipo de Plataforma-->
+                        <p>
+                            <label>Tipo de console</label>
+                                <select name="tipo_plataforma" id="tipo_plataforma" required="required">
+                                  <option value="">Selecione uma Categoria</option>
+                                    <option value="Console de Videogame">Console de Videogame</option>
+                                    <option value="Console portátil">Console portátil</option>                                
+                                    <option value="Celular/Tablet">Celular/Tablet</option>
+                                    <option value="Outros">Outros</option>
+                                </select> 
+
+                        </p>
+                        <!-- Fim do Tipo de Plataforma -->
+
+                         <p>
+                            <label>Mídia suportada</label>
+                              <select data-placeholder="Tipo de mídia suportada" multiple class="chzn-select" name="tipomidia_plataforma" id="tipomidia_plataforma" style="width:350px;" tabindex="4" required="required">
+                                    <option value=""></option>
+                                      <option value="Disco de Blu-ray">Disco de Blu-ray</option>
+                                      <option value="CD/CD-ROM">CD/CD-ROM</option>
+                                      <option value="DVD">DVD</option>                                
+                                      <option value="Cartucho/Fita">Cartucho/Fita</option>
+                                      <option value="Mídia Digital">Mídia Digital</option>
+                                      <option value="Outros">Outros</option>
+                              </select> 
+
+                        </p>
+                        <!-- Fim do Tipo de mídia  Plataforma -->
+
+                        <!--  Geração da Plataforma-->
+                        <p>
+                            <label>Geração da Plataforma</label>
+                                <select name="geracao_plataforma" id="geracao_plataforma" required="required">
+                                  <option value="">Selecione uma geração</option>
+                                    <option value="1º geração">1º geração</option>
+                                    <option value="2º geração">2º geração</option>           
+                                    <option value="3º geração">3º geração</option>
+                                    <option value="4º geração">4º geração</option>
+                                    <option value="5º geração">5º geração</option>
+                                    <option value="6º geração">6º geração</option>
+                                    <option value="7º geração">7º geração</option>
+                                    <option value="8º geração">8º geração</option>                                                                    
+                                </select> 
+                        </p>
+                        <!--  Geração da Plataforma -->
+
+                   <!-- Endereço site oficial da plataforma -->
+                    <p>
+                        <label>Site oficial</label>
+                        <input type="text" class="form-control" id="site_plataforma" name="site_plataforma" placeholder="Site oficial da plataforma" />
+                        <span class="help-block"></span>   
+                    </p>
+                    <!-- Fim do  site oficial da plataforma -->
+
+                        <!-- Campo Twitter da Plataforma -->
+                        <p>
+                           <label>Perfil Twitter</label>
+                           <div class="input-prepend">
+                              <span class="add-on">@</span>
+                           <input type="text"  placeholder="Usuário" id="twitter_plataforma" name="twitter_plataforma" class="input-block-level" />
+                           </div>
+                        </p>
+                        <!-- Fim Campo Twitter da Plataforma -->
+
+                        <!-- Campo Facebook da Plataforma -->
+                        <p>
+                           <label>Página Facebook</label>
+                           <div class="input-prepend">
+                              <span class="add-on">www.facebook.com/</span>
+                           <input type="text" name="facebook_plataforma" id="facebook_plataforma" class="input-block-level" placeholder="http://www.facebook.com/minhapagina" />
+                           </div>
+                        </p>
+                        <!-- FIM do Campo Facebook da Plataforma -->
+
+                        <!-- Campo Instagram da Plataforma -->
+                        <p>
+                           <label>Instagram</label>
+                           <div class="input-prepend">
+                              <span class="add-on">www.instagram.com/</span>
+                           <input type="text" name="instagram_plataforma" id="instagram_plataforma" class="input-block-level" placeholder="Endereço Instagram" />
+                           </div>
+                        </p>
+                        <!-- Fim do Campo Instagram da Plataforma -->
+
+                        <!-- Campo Canal do Youtube da Plataforma -->
+                        <p>
+                          <label>Canal Youtube</label>
+                          <div class="input-prepend">
+                              <span class="add-on">www.youtube.com/</span>
+                          <input type="text" name="youtube_plataforma" id="youtube_plataforma" class="input-block-level" placeholder="Endereço do canal" />
+                          </div>
+                        </p>
+                        <!-- Fim do Campo Canal do Youtube da Plataforma -->
+                        <p>
+                          <div class="par">
+                              <label>Banner 01 (Tamanho recomendado 900x385 até 100k)</label>
+                              <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="input-append">
+                                    <span class="btn btn-file"><span class="fileupload-new">Selecione uma imagem</span>
+                                    <span class="fileupload-exists">Alterar</span>
+                                    <input type="file" accept="image/*" class="form-control" id="plataforma_banner01" name="plataforma_banner01" required="required" /> 
+                                    <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a>
+                                </div>
+                              </div>
+                         </div>  
+                         <div class="par">
+                              <label>Banner 02 (Tamanho recomendado 900x385 até 100k)</label>
+                              <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="input-append">
+                                    <span class="btn btn-file"><span class="fileupload-new">Selecione uma imagem</span>
+                                    <span class="fileupload-exists">Alterar</span>
+                                    <input type="file" accept="image/*" class="form-control" id="plataforma_banner02" name="plataforma_banner02" required="required" /> 
+                                    <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a>
+                                </div>
+                              </div>
+                         </div>                                        
+                        </p>
+
+                        <!-- Editor de texto da plataforma-->
+                        <p>
+                          <label><h4 class="widgettitle">Cadastre uma descrição para a plataforma</h4></label>  
+                          <textarea  class="ckeditor" name="editor1" id="editor1"></textarea>
+                        </p>
+                        <!-- Fim do  Editor de texto da plataforma-->
+
+                        <!-- Fonte das informações -->
+                        <p>
+                        <label><h4 class="widgettitle">Caso sua descrição seja conteúdo de terceiros preencha os campos a seguir</h4></label>  
+                            <label>Nome da fonte de origem do conteúdo</label>
+                            <input type="text" class="input-block" id="nome_fonte" name="nome_fonte" placeholder="Nome da Fonte" />
+                            <label>Insira o endereço de acesso original do conteúdo</label>
+                            <input type="text" class="input-block-level" id="url_fonte" name="url_fonte" placeholder="URL de destino do conteúdo" />
+                            <span class="help-block"></span>   
+                        </p>
+                        <!-- Fim das informações -->
+
+                        <!-- Botão de Publicar notícia-->
+                        <p>
+      						        <center><button id="SubmitBtn" name="SubmitBtn" type="submit" class="btn btn-large btn-inverse">Cadastrar Plataforma</button></center>
+      						      </p>   
+                    <!-- Fim do Botão de Publicar notícia-->
+  						    </form>
+						    </div>
+						  </div>                         
+            </div>
+          </div>
+
+                <!-- Place inside the <head> of your HTML -->
+
+  <script src="/admin/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+  <script src="/admin/js/chosen.jquery.js" type="text/javascript"></script>
+  <script src="/editor/ckeditor.js" type="text/javascript"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js" type="text/javascript"></script> 
+  <script src="/admin/js/bootstrap.min.js" type="text/javascript"> </script>
+  <script type="text/javascript"> 
+
+    	$(document).ready(function () {
+
+          var config = {
+      '.chzn-select'           : {},
+      '.chzn-select-deselect'  : {allow_single_deselect:true},
+      '.chzn-select-no-single' : {disable_search_threshold:10},
+      '.chzn-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chzn-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+
+
+    var datainicio = $("#datainicio");
+    var nome_plataforma = $("#nome_plataforma");
+    var LoginForm = $('#LoginForm');
+    var SubmitBtn = $('#SubmitBtn');
+ 
+    LoginForm.validate();
+ 
+    datainicio.rules("add", {
+      required: true,
+      length: 9,
+      messages: {
+        required: "Você deve preencher data de início",
+        rangelength: "Data inválida"
+      }
+    });
+    titulo.rules("add", {
+      required: true,
+      messages: {
+        required: "O nome da platafoma é obrigatório."
+      }
+    });
+ 
+    $('#LoginForm').submit(function () {
+      if ($(this).valid()) {
+        $('#SubmitBtn').prop('disabled', true);
+        return true;
+      }
+      return false;
+    });
+ 
+  });
+	</script>
+
+<% include admin-footer %>    

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<% include admin-header %>   
+ <% if (message.length>0) { %>
+        <div class="alert alert-success"><%= message %></div>
+    <% } %>
+          <div class="row-fluid">
+            <div id="dashboard-left" class="span8">
+             <div class="panel panel-primary"> 
+
+                <div class="panel-body">
+  					        <form id="LoginForm" role="form" class="form-horizontal" autocomplete="off"  method="post">
+                    <!-- Id da Plataforma -->
+                    <input type="hidden" value="<%= jogo.id %>" name="id" />
+
+                    <!-- Nome do jogo -->
+                    <p>
+                      <label>Nome do jogo</label>
+                      <input type="text" class="input-block-level" id="nome_jogo" name="nome_jogo" placeholder="Digite o nome do jogo" required="required" value="<%= jogo.nome_jogo %>" />
+                    </p>
+                    <!-- Fim Nome do jogo -->
+
+                    <!-- Data de Lançamento -->
+                    <p>
+                       <label>Data de lançamento</label>
+                       <input type="text" name="data_lancamento" id="data_lancamento" maxlength="10" placeholder="Exemplo 01/01/2014" onkeypress="return dateMask(this, event);" value="<% var d = new Date(jogo.data_lancamento); 
+                        %><%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/'  + d.getFullYear() %>"/>
+                    </p>
+                    <!-- Fim Data de Lançamento -->
+
+                    <!-- Empresa Responsavel -->
+                    <p>
+                      <label>Desenvolvedor</label>
+                      <input type="text" class="form-control" id="desenvolvedor" name="desenvolvedor" placeholder="Empresa responsável" required="required" value="<%= jogo.desenvolvedor %>"/>
+                   </p>
+                   <!-- Fim da Empresa Responsavel -->
+
+                    <!-- Editora Responsavel -->
+                    <p>
+                      <label>Editora</label>
+                      <input type="text" class="form-control" id="editora" name="editora" placeholder="Empresa responsável" required="required" value="<%= jogo.editora %>"/>
+                   </p>
+                   <!-- Fim da Editora Responsavel -->
+
+                    <!-- Site oficial do jogo -->
+                    <p>
+                        <label>Site oficial</label>
+                        <input type="text" class="form-control" id="site" name="site" placeholder="Site oficial do jogo" value="<%= jogo.site %>"/>
+                        <span class="help-block"></span>  
+                   </p>
+                   <!-- Fim do Site oficial do jogo --> 
+
+                    <!-- Site oficial do jogo -->
+                    <p>
+                        <label>Seleciona uma categoria</label>
+                        <input type="text" class="form-control" id="categoria" name="categoria" placeholder="Categorias do jogo" value="<%= jogo.categoria %>"/>
+                        <span class="help-block"></span>  
+                   </p>
+                   <!-- Fim do Site oficial do jogo --> 
+
+                    <label>Selecione as Plataformas em que o jogo foi lançado</label>
+                    <input type="text" class="input-block-level" name="plataformas" id="plataformas" value="<%= jogo.plataformas %>"/> 
+                    
+
+                    <!-- Editor de texto da descrição do jogo-->
+                    <p>
+                      <label><h4 class="widgettitle">Cadastre um conteúdo de descrição para o jogo</h4></label>                    
+                      <textarea  class="ckeditor" name="editor1" id="editor1"><%= jogo.descricao_jogo %></textarea>                    
+                    </p>
+                    <!-- Fim do  Editor de texto da descrição do jogo-->
+
+                    <!-- Fonte das informações -->
+                    <p>
+                     <label><h4 class="widgettitle">Caso sua descrição seja conteúdo de terceiros preencha os campos a seguir</h4></label>
+                        <label>Nome da fonte de origem do conteúdo</label>
+                        <% if (typeof jogo.nome_fonte !== 'undefined'){ %>
+                          <% if ( (jogo.nome_fonte !== 'undefined')  && (jogo.nome_fonte !== ' ') ){ %> 
+                          <input type="text" class="input-block" id="nome_fonte" name="nome_fonte" placeholder="Nome da Fonte" value="<%= jogo.nome_fonte %>"/> 
+                        <%}%>
+                        <%} else{ %>
+                          <input type="text" class="input-block" id="nome_fonte" name="nome_fonte" placeholder="Nome da Fonte" value=""/>
+                        <%}%>
+                        
+                        <label>Insira o endereço de acesso original do conteúdo</label>
+                        <% if (typeof jogo.url_fonte !== 'undefined'){ %>
+                          <% if ( (jogo.url_fonte !== 'undefined') && (jogo.url_fonte !== ' ') ) { %>
+                          <input type="text" class="input-block-level" id="url_fonte" name="url_fonte" placeholder="URL de destino do conteúdo" value="<%= jogo.url_fonte %>" />
+                        <%}%>
+                        <%} else{ %>
+                          <input type="text" class="input-block-level" id="url_fonte" name="url_fonte" placeholder="URL de destino do conteúdo" value="" />
+                        <%}%>  
+                    </p>
+                        <!-- Fim das informações -->
+
+                    <!-- Botão de Publicar jogo-->
+                      <p>
+                        <center><button id="SubmitBtn" name="SubmitBtn" type="submit" class="btn btn-large btn-inverse">Editar Jogo</button></center>
+                      </p>   
+                    <!-- Fim do Botão de Publicar jogo-->
+                  </form>
+						    </div>
+						 </div>         
+            </div>
+        </div>
+                <!-- Place inside the <head> of your HTML -->
+
+
+    <script src="/editor/ckeditor.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> 
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+    <script src="//connect.facebook.net/pt_BR/all.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function () {
+    var nome_plataforma = $("#nome_plataforma");
+    var tipo_plataforma = $("#tipo_plataforma");
+    var LoginForm = $('#LoginForm');
+    var SubmitBtn = $('#SubmitBtn');
+ 
+    LoginForm.validate();
+ 
+    nome_plataforma.rules("add", {
+      required: true,
+      messages: {
+        required: "Nome da plataforma é obrigatório."
+      }
+    });
+ 
+    $('#LoginForm').submit(function () {
+      if ($(this).valid()) {
+        $('#SubmitBtn').prop('disabled', true);
+        return true;
+      }
+      return false;
+    });
+ 
+  });
+
+	jQuery(document).ready(function(){
+		
+		jQuery('.taglist .close').click(function(){
+			jQuery(this).parent().remove();
+			return false;
+		});
+		
+	});
+</script>
+
+
+<% include admin-footer %>    
+
+

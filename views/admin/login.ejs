@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mundo Gamer - Acesso Restrito</title>
+<link rel="stylesheet" href="/admin/css/style.default.css" type="text/css" />
+<link rel="stylesheet" href="/admin/css/style.black.css" type="text/css" />
+
+</head>
+
+<body class="loginpage">
+
+<div class="loginpanel">
+    <div class="loginpanelinner">
+        <div class="logo animate0 bounceIn"><img src="/images/logo_beta.png" alt="" /></div>
+
+    <!-- show any messages that come back with authentication -->
+    <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
+    
+        <form id="login" action="/mg-admin/login" method="post">
+            <div class="inputwrapper login-alert">
+                <div class="alert alert-error">Usuário ou Senha inválidos</div>
+            </div>
+            <div class="inputwrapper animate1 bounceIn">
+                <input type="text" name="email" id="email" placeholder="Usuário" />
+            </div>
+            <div class="inputwrapper animate2 bounceIn">
+                <input type="password" name="password" id="password" placeholder="Senha" />
+            </div>
+              <div class="inputwrapper animate4 bounceIn">
+                <label><input type="checkbox" class="remember" name="signin" /> Continuar conectado</label>
+            </div>
+
+            <div class="inputwrapper animate3 bounceIn">
+                <button name="submit">Acessar Mundo</button>
+            </div>
+
+            <div class="inputwrapper animate3 bounceIn" >
+                <button href="/auth/facebook"><i class="iconfa-facebook-sign"></i>     Entrar com Facebook</button>
+            </div>
+        </form>
+
+    </div><!--loginpanelinner-->
+</div><!--loginpanel-->
+
+<div class="loginfooter">
+    <p> <a href="http://www.mundogamer.com.br/">&copy;Mundo Gamer 2014.</p>
+</div>
+
+</body>
+<script type="text/javascript" src="/admin/js/jquery-1.9.1.min.js"></script>
+<!-- <script type="text/javascript" src="/admin/js/jquery-migrate-1.1.1.min.js"></script> -->
+<script type="text/javascript" src="/admin/js/jquery-ui-1.9.2.min.js"></script>
+<script type="text/javascript" src="/admin/js/modernizr.min.js"></script>
+<script type="text/javascript" src="/admin/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/admin/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/admin/js/custom.js"></script>
+<script type="text/javascript">
+
+    jQuery(document).ready(function(){
+        jQuery('#login').submit(function(){
+            var u = jQuery('#username').val();
+            var p = jQuery('#password').val();
+            if(u == '' && p == '') {
+                jQuery('.login-alert').fadeIn();
+                return false;
+            }
+        });
+    });
+</script>
+</html>

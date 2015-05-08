@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<% include admin-header %>  
+<!-- Script para busca, paginações das notícias -->
+
+                <table class="table table-bordered responsive" id="dyntable">
+                    <colgroup>
+                        <col class="con0" style="align: center; width: 4%" />
+                        <col class="con1" />
+                        <col class="con0" />
+                        <col class="con1" />
+                        <col class="con0" />
+                        <col class="con1" />
+                        <col class="con0" />
+                        <col class="con1" />
+                        <col class="con0" />
+
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="head0 nosort"><input type="checkbox" class="checkall" /></th>
+                            <th class="head1">Capa</th>
+                            <th class="head0">Jogo</th>
+                            <th class="head1">Descrição</th>
+                            <!-- <th class="head0">Data Lançamento</th>
+                            <th class="head1">Desenvolvedor</th> -->
+                            <th class="head0">Categoria</th>
+                            <th class="head1">Plataformas</th>
+                            <th class="head0">Visualizações</th>
+                            <th class="head1"><i class="iconfa-eye-open"></i>Notícias</th>
+                            <th class="head0">Ver/Editar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    <% for(var i=0; i<jogos.length; i++) {%>
+                        <tr class="gradeX">
+                            <td class="aligncenter">
+                                <span class="center">
+                                    <input type="checkbox" />
+                                </span>
+                            </td>
+                            <td class="center">       
+                                 <a href="jogos/<%= jogos[i].url %> "target="_blank"><img src="/images/wikigamer/jogos/capas/<%= jogos[i].id %>"/></a>
+                            </td>
+
+                            <td class="center"><%= jogos[i].nome_jogo %></td>
+                            <td class="center"><% if (typeof jogos[i].descricao_jogo !== 'undefined'){ %>
+                                <% if((jogos[i].descricao_jogo == 'undefined') || (jogos[i].descricao_jogo == '') ){ %>
+                                    <span class="label label-danger">Sem descrição</span>
+                                    <%}else { %>
+                                        <span class="label label-success">Descrição cadastrada</span>
+                                    <%}%>
+                                <%}%></td>
+                            <!-- <td class="center"><% var d = new Date(jogos[i].data_lancamento); 
+                            %><%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/'
+                                + d.getFullYear() %></td>
+                            <td class="center"><%= jogos[i].desenvolvedor %></td> -->
+                            <td class="center"><%= jogos[i].categoria %></td>
+                            <td class="center"><%= jogos[i].plataformas %></td>
+                            <td class="center"><% if (typeof jogos[i].views == 'undefined') {%>Nenhuma<% }else{  %> <%= jogos[i].views %> visualizações<%}%></td>
+                            <td class="center"></td>
+                            <td class="center">
+                                <a href="/mg-admin/editarjogo/<%= jogos[i].id %>" data-toggle="modal" class="btn btn-inverse">
+                                    <i class="iconfa-pencil"></i>
+                                </a>
+                            </td>
+
+                        </tr>
+                        <% } %>
+
+                    </tbody>
+                </table>
+                    
+                <div class="divider30" ></div> 
+                  <ul class="list-nostyle list-inline" align="right">
+                    <li><a href="/mg-admin/cadastrarjogo" class="btn btn-inverse btn-rounded" > <i class=" iconfa-plus"></i> &nbsp; Cadastrar jogo</a></li>
+                  </ul>
+
+
+                    </div><!--span4-->
+                </div><!--row-fluid--> 
+<% include admin-footer %> 
+     <script type="text/javascript">
+        jQuery(document).ready(function(){
+            // dynamic table
+            jQuery('#dyntable').dataTable({
+                "sPaginationType": "full_numbers",
+                "aaSortingFixed": [[0,'asc']],
+                "fnDrawCallback": function(oSettings) {
+                    //jQuery.uniform.update();
+                }
+            });
+            
+            
+            
+        });
+    </script>
+  

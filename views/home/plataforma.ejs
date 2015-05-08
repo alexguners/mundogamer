@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+  <html lang="pt">
+    <head>
+      <meta charset="utf-8">
+      <meta name="description" content="No mundo gamer você encontra as últimas noticias de games, as melhores análises e promoções. O melhor do Mundo Gamer você encontra aqui">
+      <meta name="keywords" content="videogames, games xbox one, nintendo 3ds games,notícias games, lançamento de games, notícias de jogos, ps4, Xbox, Xbox Live, PSN, Nintendo, news games, games, Wii U, psn games">
+      <title><%= plataforma.nome_plataforma %> - WikiGamer Mundo Gamer</title>
+      <meta name="robots" content="index, follow">
+      <meta name="language" content="Portuguese">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <!-- Meta do Bing -->
+      <meta name="msvalidate.01" content="A5436FA15E86A82C20783D38485927D3" />
+      <!-- Fim do Bing -->   
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <!-- Início do código para TAGS de compartihamento do site no Facebook -->
+      <!--para o sistema Open Graph-->
+      <meta property="og:site_name" content="Mundo Gamer">
+      <meta property="og:title" content="Saiba tudo sobre  <%= plataforma.nome_plataforma %> aqui no WikiGamer do Mundo Gamer">
+      <meta property="og:type" content="article">
+      <meta property="og:url" content="http://www.mundogamer.com.br/plataformas/<%= plataforma.url %>">
+      <meta property="og:image" content="http://www.mundogamer.com.br/images/wikigamer/plataformas/consoles_banner/<%= plataforma._id %>01">                      
+      <meta property="og:image:width" content="1200">
+      <meta property="og:image:height" content="628">
+      <meta property="og:description" content="<%= plataforma.descricao_plataforma.toString().replace(/<.*?>/g, '')%>">
+      <meta property="fb:admins" content="1541352318">
+      <meta property="fb:app_id" content="625583237494479">
+      <meta property="fb:page_id" content="417660025000594"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Fim do código para TAGS de compartihamento do site no Facebook -->
+      
+
+      <!-- Loading Bootstrap -->
+      <link href="/home/bootstrap/css/bootstrap.css" rel="stylesheet">
+      <!-- Loading Flat UI -->
+      <link href="/home/css/flat-ui.css" rel="stylesheet">
+      <link rel="shortcut icon" href="/images/favicon.ico">
+    </head>   
+<!-- NAVBAR
+================================================== -->
+  <body onselectstart='return false' ondragstart='return false'> <!--Bloqueia a cópia de conteúdo-->
+  <% include navbar %>  
+   <div class="container marketing"> 
+       <div class="col-md-9">
+
+        <center>
+               <!-- MundoGamer Blog -->
+               <script type="text/javascript">  
+                   google_ad_client = "ca-pub-0061672681197040";  
+                   google_ad_slot = "";  
+                   if(window.innerWidth >= 800) {  
+                    //visible-desktop  
+                    //Medium Rectangle  
+                    google_ad_slot = "2984023486";  
+                    google_ad_width = 728;  
+                    google_ad_height = 90;  
+                   }  
+                   else if((window.innerWidth > 480)&&(window.innerWidth < 800)) {  
+                    //visible-tablet  
+                    //Square  
+                    google_ad_slot = "6709861485";  
+                    google_ad_width = 320;  
+                    google_ad_height = 100;  
+                   }  
+                   else if(window.innerWidth <= 480) {  
+                    //visible-phone  
+                    //Large Rectangle  
+                    google_ad_slot = "6709861485";  
+                    google_ad_width = 320;  
+                    google_ad_height = 100;  
+                   }  
+                   if(google_ad_slot != "")  
+                    document.write(' <scr'+'ipt type=\"text/javascript\" src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\"></scri'+'pt>');  
+                </script>  
+       </center>  
+          <!-- Carousel
+          ================================================== -->
+          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="item active">
+                <img src="/images/wikigamer/plataformas/consoles_banner/<%= plataforma._id %>01" alt="Saiba tudo sobre<%= plataforma.nome_plataforma %> no Mundo Gamer">
+                <!-- <div class="container">
+                  <div class="carousel-caption">
+                    <p>Saiba aqui no Mundo Gamer tudo sobre <%= plataforma.nome_plataforma %></p>
+                  </div>
+                </div> -->
+              </div>
+              <div class="item">
+                <img src="/images/wikigamer/plataformas/consoles_banner/<%= plataforma._id %>02" alt="O <%= plataforma.nome_plataforma %> está aqui no Mundo Gamer">
+                <!-- <div class="container">
+                  <div class="carousel-caption">
+                    <p><%= plataforma.nome_plataforma %> é um console criado pela empresa <%= plataforma.empresa_responsavel %></p>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div><!-- /.carousel -->
+
+
+            <!-- Marketing messaging and featurettes
+            ================================================== -->
+            <!-- Wrap the rest of the page in another container to center all the content. -->
+          <div class="well">
+           <article>
+           <% if (typeof plataforma.descricao_plataforma !== 'undefined'){ %>
+                    <% if((plataforma.descricao_plataforma == 'undefined') || (plataforma.descricao_plataforma == '') ){ %>
+                      O <%= plataforma.nome_plataforma %> ainda não possui um conteúdo descritivo em nosso WikiGamer, caso você tenha interesse em contribuir com o Mundo Gamer, basta encaminhar o seu texto através do e-mail <b><u><a href="mailto:contato@mundogamer.com.br">contato@mundogamer.com.br</a></u></b> para ser analisado.
+                      <%}
+                      else { %>
+                        <p><%- plataforma.descricao_plataforma %> </p>
+                      <%}%>
+                <%}%>
+            </article>
+          </div>
+
+    
+      <hr class="featurette-divider">
+
+            <div class="row">
+        <div class="col-lg-4">
+          <center><img class="img-circle" src="/images/wikigamer/wikigamer/jogos.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+          <h4>Jogos</h4>
+          <p>Confira todos os jogos do <%= plataforma.nome_plataforma %> cadastrados no Mundo Gamer.</p>
+          <p><a style="display: block; width: 100%;" class="btn btn-inverse" href="#" role="button">Ver jogos</a></p></center>
+        </div><!-- /.col-lg-4 -->
+
+        <div class="col-lg-4">
+          <center><img class="img-circle" src="/images/wikigamer/wikigamer/autores.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+          <h4>Publicações</h4>
+          <p>Confira todas as publicações relacionadas ao <%= plataforma.nome_plataforma %> no Mundo Gamer.</p>
+          <p><a  style="display: block; width: 100%;"class="btn btn-inverse" href="#" role="button">Ver notícias</a></p></center>
+        </div><!-- /.col-lg-4 -->
+
+        <div class="col-lg-4">
+          <center><img class="img-circle" src="/images/wikigamer/wikigamer/personagens.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+          <h4>Personagens</h4>
+          <p>Confira todos os personagens presentes em jogos do <%= plataforma.nome_plataforma %> cadastrados no Mundo Gamer.</p>
+          <p><a style="display: block; width: 100%;" class="btn btn-inverse" href="#" role="button">Ver personagens</a></p></center>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
+        </div>
+
+        <div class="col-md-3">
+              <!-- Coluna da direita noticias recentes -->
+
+            <div class="table-responsive">
+            <blockquote>
+                <table class="table">
+                 <center><img class="media-object" src="/images/wikigamer/plataformas/consoles_capa/<%= plataforma._id %>" ></center>
+
+                 <tbody background-color="#808080">
+                    <% if (typeof plataforma.nome_plataforma !== 'undefined'){ %>
+                    <% if (plataforma.nome_plataforma !== 'undefined'){ %> 
+                      <tr>
+                         <td><span class="label label-primary">Nome</td>
+                         <td align="center"><small><%= plataforma.nome_plataforma %></small></td>
+                      </tr>
+                      <%} if ( (plataforma.lancamento_plataforma !== 'undefined') && (plataforma.lancamento_plataforma !== '') ) { %> 
+                      <tr>
+                       <td><span class="label label-primary">Lançamento</td>
+                       <td align="center"><small> <% var d = new Date(plataforma.lancamento_plataforma); 
+                        %><%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/'  + d.getFullYear() %> </small></td>
+                      </tr>
+                      <%} if ( (plataforma.empresa_responsavel !== 'undefined') && (plataforma.empresa_responsavel !== '') ) { %> 
+                      <tr>
+                       <td><span class="label label-primary">Empresa</td>
+                       <td align="center"><small><%= plataforma.empresa_responsavel %></small></td>
+                      </tr>
+                      <%} if ( (plataforma.tipo_plataforma !== 'undefined') && (plataforma.tipo_plataforma !== '') ) { %>
+                      <tr>
+                       <td><span class="label label-primary">Tipo</span></td>
+                       <td align="center"><small><%= plataforma.tipo_plataforma %></small></td>
+                      </tr>
+                      <%} if ( (plataforma.geracao_plataforma !== 'undefined') && (plataforma.geracao_plataforma !== '') ) { %> 
+                      <tr>
+                       <td><span class="label label-primary">Geração</span></td>
+                       <td align="center"><small><%= plataforma.geracao_plataforma %></small></td>
+                      </tr>
+                      <%} if ( (plataforma.tipomidia_plataforma !== 'undefined') && (plataforma.tipomidia_plataforma !== '') ) { %> 
+                      <tr>
+                       <td><span class="label label-primary">Formato de mídia</span></td>
+                       <td align="center"><small><%= plataforma.tipomidia_plataforma %></small></td>
+                      </tr>  
+                      <%} if ( (plataforma.facebook_plataforma !== 'undefined') && (plataforma.facebook_plataforma !== '') ) { %>
+                      <tr>
+                         <td><a href="https://facebook.com/<%= plataforma.facebook_plataforma %>" target="_blank"><span class="label label-primary">Facebook</span></a></td>
+                         <td align="center"><div class="fb-like" data-href="https://facebook.com/<%- plataforma.facebook_plataforma %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div></td>
+                      </tr>
+                       <%} if ( (plataforma.twitter_plataforma !== 'undefined') && (plataforma.twitter_plataforma !== '') ) { %>
+                      <tr>
+                         <td><a href="https://twitter.com/<%- plataforma.twitter_plataforma %>"><span class="label label-primary">Twitter</span></a></td>
+                         <td align="center"><a href="https://twitter.com/<%- plataforma.twitter_plataforma %>" class="twitter-follow-button" data-show-count="false">Seguir @<%- plataforma.twitter_plataforma %></a></td>
+                      </tr>
+                      <%} if ( (plataforma.instagram_plataforma !== 'undefined') && (plataforma.instagram_plataforma !== '') ) { %>
+                      <tr>
+                         <td><span class="label label-primary">Instagram</span></td>
+                         <td align="center"><a href="<%- plataforma.instagram_plataforma %>"><a href="http://instagram.com/<%- plataforma.instagram_plataforma %>?ref=badge" class="ig-b- ig-b-v-24" target="_blank"><img src="//badges.instagram.com/static/images/ig-badge-view-24.png" alt="Instagram"  /></a></td>
+                      </tr>
+                      <%} if ( (plataforma.youtube_plataforma !== 'undefined') && (plataforma.youtube_plataforma !== '') ) { %>
+                      <tr>
+                         <td><a href="https://youtube.com/<%- plataforma.youtube_plataforma %>" target="_blank"><span class="label label-primary">Youtube</span></td>
+                         <td align="center"><div class="g-ytsubscribe" data-channel="<%- plataforma.youtube_plataforma %>" data-layout="default" data-count="default"></div></td>
+                      </tr>
+                      <%} if ( (plataforma.site_plataforma !== 'undefined') && (plataforma.site_plataforma !== '') ) { %>
+                      <tr>
+                         <td><span class="label label-primary">Site oficial</span></td>
+                         <td align="center"><a href="<%- plataforma.site_plataforma %>" target="_blank"><span class="label label-success">Acessar site</span></a></td>
+                      </tr>
+                      <%}%> 
+                      <tr>
+                       <td class="success"><small>Visualizações</small></td>
+                       <td class="success"><small><% if (typeof plataforma.views == 'undefined') {%>1 visualização<% }else{ %><%= plataforma.views %> visualizações<%}%></small></a></small></a></td>
+                      </tr>
+                    <%}%>
+
+                 </tbody>
+              </table>
+            </div>
+
+          </div> 
+    </div>
+
+      <!-- START THE FEATURETTES -->
+
+      <hr class="featurette-divider">
+      <!-- FOOTER -->
+    <% include footer %>  
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/home/bootstrap/js/bootstrap.min.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script src="/home/js/footerfixed.js"></script>
+    <script src="/home/js/readmore.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script  type="text/javascript">
+
+              /*Posicione esta tag depois da última tag do compartilhar*/
+          window.___gcfg = {lang: 'pt-BR'};
+          (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+          })();
+
+          /* Botão Twitter */  
+          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+          /* FIM Botão Twitter */  
+
+          /*Início Botão Compartilhar Facebook */
+          (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+             js = d.createElement(s); js.id = id;
+             js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1&appId=625583237494479";
+             fjs.parentNode.insertBefore(js, fjs);
+             }(document, 'script', 'facebook-jssdk'));
+          /*FIM Botão Compartilhar Facebook*/
+
+          
+      /* Adsense */
+       (adsbygoogle = window.adsbygoogle || []).push({});
+      /* Fim Adsense */
+
+
+    $('article').readmore({maxHeight: 250});
+
+
+    $(document).ready(function() {
+       $.ajax({
+        url: '/plataformas/views',
+        type: 'POST',
+        data: {"id":'<%=plataforma._id%>'},
+        success: function() {}
+       });
+     });
+
+          /*Código de Análise do Google Analitics*/
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-45182358-1', 'mundogamer.com.br');
+          ga('send', 'pageview');    
+
+     $(document).ready(function() {
+        $('#myCarousel').carousel({
+        //options here
+        });
+    });
+    </script> 
+
+  </body>
+</html>

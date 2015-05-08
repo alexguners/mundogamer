@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<% include admin-header %>   
+ <% if (message) { %>
+        <div class="alert alert-success"><%= message %></div>
+    <% } %>
+          <div class="row-fluid">
+            <div id="dashboard-left" class="span8">
+	 					 <div class="panel panel-primary">  
+
+						    <div class="panel-body">
+  						    <form id="LoginForm" role="form" class="form-horizontal" enctype="multipart/form-data" autocomplete="off"  method="post">
+
+                    <!-- Imagem de capa do jogo -->
+                    <center>
+                    <p>
+                      <div class="par">
+                          <label>Capa do jogo (Tamanho recomendado 200x250 até 100k)</label>
+                          <div class="fileupload fileupload-new" data-provides="fileupload">
+                            <div class="fileupload-preview thumbnail" style="width: 200px; height: 250px;"></div>
+                            <div class="input-append">
+                                <div class="uneditable-input span3">
+                                  <i class="iconfa-file fileupload-exists"></i>
+                                  <span class="fileupload-preview"></span>
+                                </div>
+                                <span class="btn btn-file"><span class="fileupload-new">Selecione uma imagem</span>
+                                <span class="fileupload-exists">Alterar</span>
+                                <input type="file" accept="image/*" class="form-control" id="capa_jogo" name="capa_jogo" required="required" /> 
+                                <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a>
+                            </div>
+                          </div>
+                     </div>                                         
+                    </p>
+                    </center> 
+                    <!-- Fim da  Imagem de capa do jogo -->
+
+                    <!-- Nome do jogo -->
+                    <p>
+                      <label>Nome do jogo</label>
+                      <input type="text" class="input-block-level" id="nome_jogo" name="nome_jogo" placeholder="Digite o nome do jogo" required="required" />
+                    </p>
+                    <!-- Fim Nome do jogo -->
+
+                    <!-- Data de Lançamento -->
+                    <p>
+                       <label>Data de lançamento</label>
+                       <input type="text" name="data_lancamento" id="data_lancamento" maxlength="10" placeholder="Exemplo 01/01/2014" onkeypress="return dateMask(this, event);"/>
+                    </p>
+                    <!-- Fim Data de Lançamento -->
+
+                    <!-- Empresa Responsavel -->
+                    <p>
+                      <label>Desenvolvedor</label>
+                      <input type="text" class="form-control" id="desenvolvedor" name="desenvolvedor" placeholder="Empresa responsável" required="required" />
+                   </p>
+                   <!-- Fim da Empresa Responsavel -->
+
+                    <!-- Editora Responsavel -->
+                    <p>
+                      <label>Editora</label>
+                      <input type="text" class="form-control" id="editora" name="editora" placeholder="Empresa responsável" required="required" />
+                   </p>
+                   <!-- Fim da Editora Responsavel -->
+
+                    <!-- Site oficial do jogo -->
+                    <p>
+                        <label>Site oficial</label>
+                        <input type="text" class="form-control" id="site" name="site" placeholder="Site oficial do jogo" />
+                        <span class="help-block"></span>  
+                   </p>
+                   <!-- Fim do Site oficial do jogo --> 
+
+                    <!-- Site oficial do jogo -->
+                    <p> 
+                        <label>Categorias</label>
+                        <input class="typeahead" data-placeholder="Categorias do jogo" type="text" name="categoria" id="categoria"/>
+
+                   </p>
+     
+                   <!-- Fim do Site oficial do jogo --> 
+
+                    <label>Selecione as Plataformas em que o jogo foi lançado</label>
+                    <input type="text" class="input-block-level" name="plataformas" id="plataformas"/> 
+
+                    <p>
+                      <div class="par">
+                          <label>Banner 01 (Tamanho recomendado 900x385 até 100k)</label>
+                          <div class="fileupload fileupload-new" data-provides="fileupload">
+                            <div class="input-append">
+                                <span class="btn btn-file"><span class="fileupload-new">Selecione uma imagem</span>
+                                <span class="fileupload-exists">Alterar</span>
+                                <input type="file" accept="image/*" class="form-control" id="jogo_banner01" name="jogo_banner01" required="required" /> 
+                                <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a>
+                            </div>
+                          </div>
+                     </div>  
+                     <div class="par">
+                          <label>Banner 02 (Tamanho recomendado 900x385 até 100k)</label>
+                          <div class="fileupload fileupload-new" data-provides="fileupload">
+                            <div class="input-append">
+                                <span class="btn btn-file"><span class="fileupload-new">Selecione uma imagem</span>
+                                <span class="fileupload-exists">Alterar</span>
+                                <input type="file" accept="image/*" class="form-control" id="jogo_banner02" name="jogo_banner02" required="required" /> 
+                                <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a>
+                            </div>
+                          </div>
+                     </div>                                        
+                    </p>
+                    
+
+                    <!-- Editor de texto da descrição do jogo-->
+                        <p>
+                          <label><h4 class="widgettitle">Cadastre um conteúdo de descrição para o jogo</h4></label>                    
+                         <textarea  class="ckeditor" name="editor1" id="editor1"></textarea>                           
+                        </p>
+                    <!-- Fim do  Editor de texto da descrição do jogo-->
+
+                    <!-- Fonte das informações -->
+                    <p>
+                      <label><h4 class="widgettitle">Caso sua descrição seja conteúdo de terceiros preencha os campos a seguir</h4></label>  
+                       <label>Nome da fonte de origem do conteúdo</label>
+                       <input type="text" class="input-block" id="nome_fonte" name="nome_fonte" placeholder="Nome da Fonte" />
+                       <label>Insira o endereço de acesso original do conteúdo</label>
+                       <input type="text" class="input-block-level" id="url_fonte" name="url_fonte" placeholder="URL de destino do conteúdo" />
+                       <span class="help-block"></span>   
+                    </p>
+                    <!-- Fim das informações -->            
+
+                    <!-- Botão de Publicar jogo-->
+                      <p>
+    						        <center><button id="SubmitBtn" name="SubmitBtn" type="submit" class="btn btn-large btn-inverse">Cadastrar Jogo</button></center>
+    						      </p>   
+                    <!-- Fim do Botão de Publicar jogo-->
+  						    </form>
+						    </div>
+						  </div>                         
+            </div>
+          </div>
+
+                <!-- Place inside the <head> of your HTML -->
+  <script src="/admin/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+  <script src="/editor/ckeditor.js" type="text/javascript"></script>
+  <script src="/admin/js/chosen.jquery.js" type="text/javascript"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js" type="text/javascript"></script>
+  <script src="/admin/js/bootstrap.min.js" type="text/javascript"> </script>
+  <script type="text/javascript">
+
+    $(document).ready(function () {
+
+          var config = {
+      '.chzn-select'           : {},
+      '.chzn-select-deselect'  : {allow_single_deselect:true},
+      '.chzn-select-no-single' : {disable_search_threshold:10},
+      '.chzn-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chzn-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+
+    // $(document).ready(function () {
+
+    // console.log("ola");
+    // $('#typeahead').typeahead({
+    //       source: function (query, process) {
+    //         console.log("ola query " + query);
+    //           return $.getJSON(
+    //               'parceiros',
+    //               { nome: query },
+    //               function (data) {
+    //                   var newData = [];
+    //                   console.log("data " + data);
+    //                   $.each(data, function(){
+    //                     console.log("data2 " + this.nome_parceiro);
+    //                       newData.push(this.nome_parceiro);
+    //                   });
+    //                   return process(newData);
+
+    //               }); 
+    //       }
+
+    //   });
+
+
+    var nome_jogo = $("#nome_jogo");
+    var LoginForm = $('#LoginForm');
+    var SubmitBtn = $('#SubmitBtn');
+ 
+    LoginForm.validate();
+ 
+    nome_jogo.rules("add", {
+      required: true,
+      messages: {
+        required: "Nome do jogo é obrigatório."
+      }
+    });
+ 
+    $('#LoginForm').submit(function () {
+      if ($(this).valid()) {
+        $('#SubmitBtn').prop('disabled', true);
+        return true;
+      }
+      return false;
+    });
+		
+		
+	});
+    
+</script>
+
+
+<% include admin-footer %>      
