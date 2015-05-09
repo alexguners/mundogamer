@@ -53,7 +53,7 @@ $(window).scroll(function () {
 
                                     } else if (noticias[i].tipo == 'Video/Trailer') {
 
-                                        html += '<div class="estilovideoentrevista estilovideoentrevista-hot fixHeight">';
+                                        html += '<div class="estilovideotrailer estilovideotrailer-hot fixHeight">';
 
                                     } else if (noticias[i].tipo == 'Vídeo/Entrevista'){ 
 
