@@ -33,39 +33,65 @@ $(window).scroll(function () {
 
                             html += '<div class="row">';
                             for (var i = initrow; i < limite; i++) {
-                                 html += '<div class="col-sm-6 col-md-3"><div class="thumbnail estilonoticia estilonoticia-hot fixHeight" >';
+                                 html += '<div class="col-sm-6 col-md-3 noticiaanimator">';
+
+                                 /* Validação dos Tile das notícias que são carregadas ao rolar a página principal */
+                                
+                                if (typeof noticias[i].tipo !== 'undefined') {
+
+                                    if (noticias[i].tipo == 'Noticia') {
+
+                                        html += '<div class="estilonoticia estilonoticia-hot fixHeight">' ;
+                                        
+                                    } else if (noticias[i].tipo == 'Análise') {
+                                        
+                                          html += '<div class="estiloanalise estiloanalise-hot fixHeight">'; 
+
+                                    } else if (noticias[i].tipo == 'Video/Gameplay') {
+
+                                        html += '<div class="estilovideogameplay estilovideogameplay-hot fixHeight">'; 
+
+                                    } else if (noticias[i].tipo == 'Video/Trailer') {
+
+                                        html += '<div class="estilovideoentrevista estilovideoentrevista-hot fixHeight">';
+
+                                    } else if (noticias[i].tipo == 'Vídeo/Entrevista'){ 
+
+                                        html += '<div class="estilovideoentrevista estilovideoentrevista-hot fixHeight">';
+
+                                    }else {
+
+                                        html += '<div class="estilonoticia estilonoticia-hot fixHeight">';
+
+                                    }
+                                } else{
+                                        html += '<div class="estilonoticia estilonoticia-hot fixHeight">';
+                                }
+                                /* VFim da alidação dos Tile das notícias que são carregadas ao rolar a página principal */
+
                                 if (noticias[i].src) {
 
-                                    html += '<a href="' + noticias[i].src + '" class="titulo" target="_blank" idnoticia="' + noticias[i].url + '"><img src="/images/noticia/capa/';
+                                    html += '<a href="' + noticias[i].src + '" class="titulo" target="_blank" idnoticia="' + noticias[i].url + '"><img class=" img-responsive" src="/images/noticia/capa/' ;
                                     
                                 } else {
                                     
-                                      html += '<a href="/noticia/' + noticias[i].url + '" class="titulo" target="_blank" idnoticia="' + noticias[i]._id + '"> <img src="/images/noticia/capa/';                                    
+                                      html += '<a href="/noticia/' + noticias[i].url + '" class="titulo" target="_blank" idnoticia="' + noticias[i]._id + '"> <figure><img src="/images/noticia/capa/';                                    
                                 }
 
                                     html += noticias[i]._id;
 
-                                    html += '" alt="..."><div class="caption">';
-                                    var tags = noticias[i].tags;
-                                    if (tags) {
+                                    html += '" alt="..." class=" img-responsive"></figure>';
 
-                                        for (var k = 0; k < tags.length; k++) {
-                                            html += '<span class="label label-danger" style="margin-left:6px;">' + tags[k].nome + '</span> ';
-                                        }
-                                    } else {
-                                        html += '<span class="label label-danger" style="padding-left:10px;" >NotÃ­cias</span>';
-                                    }
-
-                                    html += '<p class="titulo">' + noticias[i].titulo.substr(0, 38) + '</p>';
+                                    html += '<small><center>' + noticias[i].titulo.substr(0, 60) + '</small></center>';
 
                                     var text = noticias[i].descricao.toString().replace(/<.*?>/g, '').substr(0, 90);
-                                    html += '<p class="descricao">' + text + '... (ver mais)' + '</p></div></a>';
+                                    html += '<p class="descricao">' + text + '... (Ler mais)' + '</p></a>';
                                 
                                 html += '</div></div>';
 
                             }
                             initrow = initrow + set;
-                            html += '</div>';
+                            html += '</div></div>';
 
                         }
 

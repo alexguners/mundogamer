@@ -3868,7 +3868,7 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
   content: '';
   height: 82px;
   position: absolute;
-  right: -4px;
+  right: -2px;
   top: -4px;
   width: 82px;
 }
@@ -3901,7 +3901,7 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
   content: '';
   height: 82px;
   position: absolute;
-  right: -4px;
+  right: -2px;
   top: -4px;
   width: 82px;
 }
@@ -3935,7 +3935,7 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
   content: '';
   height: 82px;
   position: absolute;
-  right: -4px;
+  right: -2px;
   top: -4px;
   width: 82px;
 }
@@ -3969,7 +3969,7 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
   content: '';
   height: 82px;
   position: absolute;
-  right: -4px;
+  right: -2px;
   top: -4px;
   width: 82px;
 }
@@ -4003,7 +4003,7 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
   content: '';
   height: 82px;
   position: absolute;
-  right: -4px;
+  right: -2px;
   top: -4px;
   width: 82px;
 }
@@ -4992,6 +4992,8 @@ background-repeat: no-repeat;
 -moz-background-size: 100% 100%;
 -webkit-background-size: 100% 100%;
 background-size: 100% 100%;
+background-position: center center;
+background-size: cover;
 }
 
 .backgrounderro500 {
@@ -5001,6 +5003,8 @@ background-repeat: no-repeat;
 -moz-background-size: 100% 100%;
 -webkit-background-size: 100% 100%;
 background-size: 100% 100%;
+background-position: center center;
+background-size: cover;
 }
 
 .backgrounddireita {
@@ -5087,7 +5091,6 @@ font-size: 14px;
   overflow-x:hidden;
 }
 
-
 .backgroundjogo {
   width: inherit;
   min-width: 100px;
@@ -5112,3 +5115,24 @@ position: fixed;
 opacity: 0.5;
 filter: alpha(opacity=50); 
 }
+
+/*Efeito da notícia na home */
+.noticiaanimator figure img {
+    display: initial;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
+}
+
+.noticiaanimator figure:hover img {
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+
+}
+/*Fim do Efeito da notícia na home */

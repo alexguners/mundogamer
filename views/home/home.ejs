@@ -123,51 +123,44 @@
 				%>
 				<div class="row">
 					<% for(var i=initrow; i<limite; i++) {%>
-					<div class="col-sm-6 col-md-3">
+					<div class="col-sm-6 col-md-3 noticiaanimator">
 						<% if (typeof noticias[i].tipo !== 'undefined'){ %>
 							<% if (noticias[i].tipo == 'Noticia'){ %> 
-								<div class="thumbnail estilonoticia estilonoticia-hot fixHeight">
+								<div class="estilonoticia estilonoticia-hot fixHeight">
 							<%} else if (noticias[i].tipo == 'Análise'){ %>
-								<div class="thumbnail estiloanalise estiloanalise-hot fixHeight">
+								<div class="estiloanalise estiloanalise-hot fixHeight ">
 							<%} else if (noticias[i].tipo == 'Video/Gameplay'){ %>
-								<div class="thumbnail estilovideogameplay estilovideogameplay-hot fixHeight">
+								<div class="estilovideogameplay estilovideogameplay-hot fixHeight">
 							<%} else if (noticias[i].tipo == 'Video/Trailer'){ %>
-								<div class="thumbnail estilovideotrailer estilovideotrailer-hot fixHeight">
+								<div class="estilovideotrailer estilovideotrailer-hot fixHeight">
 							<%} else if (noticias[i].tipo == 'Vídeo/Entrevista'){ %>
-								<div class="thumbnail estilovideoentrevista estilovideoentrevista-hot fixHeight">
+								<div class="estilovideoentrevista estilovideoentrevista-hot fixHeight">
 							<%} else{ %>
-									<div class="thumbnail estilovideotrailer estilovideotrailer-hot fixHeight">	
+								<div class="estilovideotrailer estilovideotrailer-hot fixHeight">	
 								<%}	%>	
-					<%} else{ %>
-						<div class="thumbnail estilonoticia estilonoticia-hot fixHeight">
-					<%}%>			
+						<%} else{ %>
+								<div class="estilonoticia estilonoticia-hot fixHeight">
+						<%}%>		
+
 						<% if (noticias[i].src){ %>	
 							<% if ((typeof noticias[i].tipo !== 'undefined') && (noticias[i].tipo == 'tipo')){ %>
-								<a href="<%= noticias[i].src%>" class="titulo youtube" idnoticia="<%= noticias[i]._id %>" id="">
+								<a href="<%= noticias[i].src%>" class="titulo" idnoticia="<%= noticias[i]._id %>" id="">
 							<%} else{ %>
-								<a href="/noticia/<%= noticias[i].url%>" class="titulo" idnoticia="<%= noticias[i]._id %>" id="" target="_blank">
+								<a href="/noticia/<%= noticias[i].url%>" class="titulo" idnoticia="<%= noticias[i]._id %>" target="_blank">
 							<%}%>
                         <%}else{%>
                             <a href="/noticia/<%= noticias[i].url %>" class="titulo" target="_blank" idnoticia="<%= noticias[i]._id %>">
-                        <% } %>
-								<img src="/images/noticia/capa/<%= noticias[i].id %>" alt="<%= noticias[i].url %>" title="<%= noticias[i].url %>">			
-                                <div class="caption">
-									<%
-									tags = noticias[i].tags;
-									if(tags){
+                        <%}%>
+                        	<figure>
+								<img src="/images/noticia/capa/<%= noticias[i].id %>" alt="<%= noticias[i].url %>" title="<%= noticias[i].url %>" class=" img-responsive">	
+							</figure>	
+								<small><center><%= noticias[i].titulo.substr(0,60) %>...</center></small>
+								<p class="descricao"><%= noticias[i].descricao.toString().replace(/<.*?>/g, '').substr(0,90) %>...(Ler Mais)</p>
 
-										for (var k = 0; k < tags.length; k++){ %> 
-											<span class="label label-danger" style="margin-left:6px;"> <%=   tags[k].nome %> </span> <%  }
-
-									} else { %> <span class="label label-danger" style="padding-left:10px;" >Notícias</span> 
-									<% } %> 
-									<p><small><%= noticias[i].titulo.substr(0,60) %>...</small></p>
-									<p class="descricao"><%= noticias[i].descricao.toString().replace(/<.*?>/g, '').substr(0,90) %>...(Ler Mais)       
-									</p>
-                                    </div>
+							
 									</a>												
 								</div>
-					</div>
+						</div>
 
 						<%  }
 						initrow=initrow+set; %>

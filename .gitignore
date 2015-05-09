@@ -1,0 +1,7 @@
+node_modules/**/*
+public/images/noticia/**/*
+public/images/wikigamer/jogos/**/*
+public/images/wikigamer/parceiros/**/*
+public/images/wikigamer/personagens/**/*
+public/images/wikigamer/plataformas/**/*
+public/images/wikigamer/autores/**/*

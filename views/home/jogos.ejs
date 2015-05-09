@@ -65,10 +65,12 @@
 
 
     <% for(var i=0; i<jogos.length; i++) {%>
-        <div class="col-xs-4 col-md-3">
-            <a href="/jogos/<%= jogos[i].url %>" target="_blank">
-              <img data-src="holder.js/180x200" alt="..." src="/images/wikigamer/jogos/capas/<%= jogos[i].id %>"  class="thumbnail img-responsive" >
-            </a>
+        <div class="col-xs-4 col-md-2 noticiaanimator">
+            <figure>
+              <a href="/jogos/<%= jogos[i].url %>" target="_blank">
+              <img data-src="holder.js/180x200" alt="..." src="/images/wikigamer/jogos/capas/<%= jogos[i].id %>"  class=" img-responsive" >
+            </figure>
+            </a><br>
         </div>   
     <% } %>
 

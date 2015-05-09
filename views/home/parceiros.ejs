@@ -66,12 +66,13 @@
 
     <% for(var i=0; i<parceiros.length; i++) {%>
 
-        <div class="col-xs-4 col-md-3">
+        <div class="col-xs-6 col-md-2 noticiaanimator">
             <a href="/parceiros/<%= parceiros[i].url %>" target="_blank">
-              <img data-src="holder.js/180x200" alt="..." src="/images/wikigamer/parceiros/logos/<%= parceiros[i].id %>"class="thumbnail img-responsive">
+            <figure>
+              <img data-src="holder.js/180x200" alt="..." src="/images/wikigamer/parceiros/logos/<%= parceiros[i].id %>"class="img-responsive">
               <!--<p align="center"><small><%= parceiros[i].nome_parceiro %></small></p> -->
-
-            </a>
+            </figure>
+            </a><br>
         </div>    
     <% } %>
 

@@ -65,12 +65,13 @@
 
     <% for(var i=0; i<personagens.length; i++) {%>
 
-        <div class="col-xs-4 col-md-3">
-            <center><a href="/personagens/<%= personagens[i].url %>" target="_blank">
-              <img data-src="holder.js/180x200" alt="..." src="/images/wikigamer/personagens/capas/<%= personagens[i].id %>"  class="thumbnail img-responsive">
-              <small><%= personagens[i].nome_personagem %></small></center>
+        <div class="col-xs-4 col-md-2 noticiaanimator">
+          <figure>
+            <a href="/personagens/<%= personagens[i].url %>" target="_blank">
+              <img data-src="holder.js/180x200" alt="..." src="/images/wikigamer/personagens/capas/<%= personagens[i].id %>"  class="img-responsive">
+              <center><small><%= personagens[i].nome_personagem %></small></center>
             </a>
-            
+          </figure>
         </div>    
     <% } %>
 
