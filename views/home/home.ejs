@@ -152,7 +152,7 @@
                             <a href="/noticia/<%= noticias[i].url %>" class="titulo" target="_blank" idnoticia="<%= noticias[i]._id %>">
                         <%}%>
                         	<figure>
-								<img src="/images/noticia/capa/<%= noticias[i].id %>" alt="<%= noticias[i].url %>" title="<%= noticias[i].url %>" class=" img-responsive">	
+								<img src="/images/noticia/capa/<%= noticias[i].id %>" alt="<%= noticias[i].url %>" title="<%= noticias[i].url %>" class=" listanoticia">	
 							</figure>	
 								<small><center><%= noticias[i].titulo.substr(0,60) %>...</center></small>
 								<p class="descricao"><%= noticias[i].descricao.toString().replace(/<.*?>/g, '').substr(0,90) %>...(Ler Mais)</p>

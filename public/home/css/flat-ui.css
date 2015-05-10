@@ -5136,3 +5136,20 @@ filter: alpha(opacity=50);
 
 }
 /*Fim do Efeito da notícia na home */
+
+.listanoticia{
+height:auto; 
+width: 100%;
+padding-top: 0px;
+padding-left: 0px;
+max-height: 200px;
+overflow:auto;
+}
+
+.listaparceiro{
+height:auto; 
+width: 100%;
+padding-top: 0px;
+}
+
+

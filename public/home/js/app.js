@@ -61,7 +61,7 @@ $(window).scroll(function () {
 
                                     }else {
 
-                                        html += '<div class="estilonoticia estilonoticia-hot fixHeight">';
+                                        html += '<div class="estilovideotrailer estilovideotrailer-hot fixHeight">';
 
                                     }
                                 } else{

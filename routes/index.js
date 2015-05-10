@@ -288,7 +288,7 @@ exports.noticia = function(req, res) {
 		if (err)
 			return console.error(err);
 
-			NoticiaModel.find({_criador:noticia._criador, _id:{$ne : new ObjectId(req.route.params.id)}}).limit(5).sort({ data: 'desc'}).exec(function(err, noticiasAutor) {
+			NoticiaModel.find({_criador:noticia._criador, _id:{$ne : new ObjectId(req.route.params.id)}}).limit(3).sort({ data: 'desc'}).exec(function(err, noticiasAutor) {
 				if (err)
 				return console.error(err);
 
