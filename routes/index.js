@@ -132,7 +132,7 @@ exports.jogo = function(req, res) {
 		res.render('home/jogo',
 		{
 			jogo:jogo,
-			id:7
+			id:8
 		});
 
 	});
@@ -162,7 +162,7 @@ exports.jogos = function(req, res) {
 		res.render('home/jogos',
 		{
 			jogos:jogos,
-			id:8
+			id:9
 		});
 
 	});
@@ -178,7 +178,7 @@ exports.parceiro = function(req, res) {
 		res.render('home/parceiro',
 		{
 			parceiro:parceiro,
-			id:9
+			id:10
 		});
 
 	});
@@ -208,7 +208,7 @@ exports.parceiros = function(req, res) {
 		res.render('home/parceiros',
 		{
 			parceiros:parceiros,
-			id:10
+			id:11
 		});
 
 	});
@@ -224,7 +224,7 @@ exports.personagem = function(req, res) {
 		res.render('home/personagem',
 		{
 			personagem:personagem,
-			id:11
+			id:12
 		});
 
 	});
@@ -254,7 +254,7 @@ exports.personagens = function(req, res) {
 		res.render('home/personagens',
 		{
 			personagens:personagens,
-			id:12
+			id:13
 		});
 
 	});
@@ -295,7 +295,7 @@ exports.noticia = function(req, res) {
 			console.log(noticiasAutor);			
 
 				res.render('home/noticia', {
-					id:14,
+					id:15,
 					noticia : noticia,
 					noticiasAutor : noticiasAutor
 				});
@@ -305,6 +305,12 @@ exports.noticia = function(req, res) {
 
 	}	
 };
+
+exports.login = function(req, res) {
+		res.render('home/login',{
+			id:16
+		});
+	}
 
 exports.contatoEmail = function(req, res) {
 

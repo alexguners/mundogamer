@@ -44,4 +44,6 @@ CKEDITOR.editorConfig = function( config ) {
 
 	config.youtube_height = '480';
 
+	config.extraPlugins = 'imageresponsive';
+
 };

@@ -81,24 +81,10 @@
             <div class="typography-row"> 
               <dl class="palette palette-midnight-blue">
                   <dt>Postado por <%=noticia._criador.local.nome%>
-                   <div style="float:right;margin-top:-2px;margin-right:100px"><quote>Compartilhe essa notícia em suas redes sociais</quote></div>
-                    <dd> <% var d = new Date(noticia.data); 
+                     <% var d = new Date(noticia.data); 
                         %>no dia <%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/'  + d.getFullYear() %> às <%= ('0' + (d.getHours())).slice(-2) + ':' + ('0' + (d.getMinutes())).slice(-2) %>
-                        <!-- Essa notícia já foi acessada <%- noticia.views%> vezes -->
-
-                        <!-- Google + -->
-                        <div style="float:right;" >
-                          <a  class="g-plus"  data-action="share" data-annotation="bubble"></a> 
-                          <!-- Botão do Twitter -->
-                          <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="MundoGamer" data-text="<%= noticia.titulo %>" data-via="brasilmundogame" data-lang="pt">Tweetar</a>
-                        </div>
-                        <!-- Facebook like -->
-                        <div style="float:right;padding: 2px; margin-top:-2px;">
-                          <a class="fb-like" data-href="http://mundogamer.com.br/noticia/<%= noticia._id %>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></a><!-- Botão do Facebook -->
-                        </div><!-- /.Facebook like -->
-                    </dd>
                   </dt>
-            </dl>
+              </dl>
           </div><!-- /. descrição do autor e botoes comparilha -->
 
           <!-- descrição da noticia -->
@@ -113,7 +99,16 @@
 
           <%}%>
 
-          
+            <!-- AddToAny BEGIN -->
+            <div class="a2a_kit a2a_kit_size_32 a2a_default_style botoescompartilhamento">
+              <a class="a2a_button_facebook"></a>
+              <a class="a2a_button_twitter"></a>
+              <a class="a2a_button_google_plus"></a>
+              <a class="a2a_button_whatsapp"></a>
+              <a class="a2a_button_linkedin"></a>
+            </div>
+            <!-- AddToAny END -->
+            <br>
           <!-- Comentários pelo Facebook -->
           <center><div class="fb-comments" data-href="http://mundogamer.com.br/noticia/<%- noticia.id %>" data-width="100%" data-numposts="10" data-colorscheme="light"></div></center> 
 
@@ -193,7 +188,6 @@
                                                 <small  style="color:#999">  | Publicada por <%=noticia._criador.local.nome%>
                                                 <% var d = new Date(noticiasAutor[i].data); 
                                               %>no dia <%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/'  + d.getFullYear()%> às <%= ('0' + d.getHours()).slice(-2) + ':' + ('0' + (d.getMinutes())).slice(-2) %></small></a>
-                                           
                                           </figure>
                                        </li>
                                        <hr>
@@ -205,9 +199,7 @@
                         </div>
                     </div>
                   </div>
-                              <br>
-                  <div id="fb-root"></div>
-                  <div class="fb-page" data-href="https://www.facebook.com/brasilmundogamer" data-width="255" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/brasilmundogamer"><a href="https://www.facebook.com/brasilmundogamer">Mundo Gamer</a></blockquote></div></div>
+                  <br>
 
                   <!--Coluna da direita Publicidade -->
                   <dl class="palette palette-midnight-blue" align="center">
@@ -238,13 +230,10 @@
                              <figure><a href="http://www.mundogamer.com.br" target="_blank"><img align="center"src="/images/wikigamer/parceiros/logos/5449f06dbfb99d000082927f" alt="Conheça o Mundo Gamer" ></a></figure>
                     <%}%>   
                   </div>  
-
-                  </blockquote>
+                  <br>
+                  
           </div><!-- /.Coluna da direita -->
-             
-
         </div>
-        
       </div><!--container -->
       <br>  
 
@@ -256,6 +245,7 @@
         <script src="/home/js/bootstrap.min.js"></script>   
         <script src="/home/js/footerfixed.js"></script>
         <script src="/home/js/jquery.slimscroll.js"></script>
+        <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
         <script type="text/javascript">
 
             /* Barra de rolagem das notícias do sidebar */
@@ -340,27 +330,6 @@
               });
          });
 
-          /*Posicione esta tag depois da última tag do compartilhar*/
-          window.___gcfg = {lang: 'pt-BR'};
-          (function() {
-          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-          po.src = 'https://apis.google.com/js/platform.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-          })();
-
-          /* Botão Twitter */  
-          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-          /* FIM Botão Twitter */  
-
-          /*Início Botão Compartilhar Facebook */
-          (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-             js = d.createElement(s); js.id = id;
-             js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1&appId=625583237494479";
-             fjs.parentNode.insertBefore(js, fjs);
-             }(document, 'script', 'facebook-jssdk'));
-          /*FIM Botão Compartilhar Facebook*/
 
           /*ComentáriosFacebook */
           (function(d, s, id) {
@@ -384,16 +353,6 @@
           $(function () {
           $('#myTab a:last').tab('show')
           })
-
-        /*Javascript do Plugin de curtir página no Facebook */
-
-        (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.3&appId=354523451392220";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
 
         </script>
     <% include footer %>  

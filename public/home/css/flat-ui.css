@@ -2447,14 +2447,14 @@ select[multiple].navbar-form .btn {
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #000000;
-  background-color: transparent;
+  background-color: #fff;
+  color: #34495E;
 }
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
-  color: #ffffff;
-  background-color: #000000;
+  background-color: #fff;
+  color: #34495E;
 }
 .navbar-inverse .navbar-nav > .disabled > a,
 .navbar-inverse .navbar-nav > .disabled > a:hover,
@@ -5116,6 +5116,127 @@ opacity: 0.5;
 filter: alpha(opacity=50); 
 }
 
+/* =Register or Sign in Page
+-------------------------------------------------------------- */
+.signin {
+  text-align: center;
+  background-color: #ffffff;
+  padding: 40px;
+  border: solid 1px #e7e7e7;
+  margin-bottom: 24px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+.signin form input {
+  margin-bottom: 10px;
+}
+.signin form .forgot {
+  padding: 0 0 20px 0;
+  font-weight: 300;
+}
+.signin form .forgot .checkbox {
+  font-weight: 300;
+}
+.signin form .forgot .checkbox input[type="checkbox"] {
+  float: none;
+}
+.social_sign h3 {
+  font-weight: 300;
+  font-size: 20px;
+  margin-bottom: 30px;
+  line-height: 22px;
+}
+.social_sign a {
+  background-color: #428bca;
+  color: #ffffff;
+  text-align: center;
+  display: inline-block;
+  margin: 0 8px;
+  border-radius: 50%;
+  font-size: 30px;
+  width: 66px;
+  height: 66px;
+  line-height: 30px;
+  padding: 18px;
+  -webkit-transition: all 100ms linear;
+  transition: all 100ms linear;
+}
+.social_sign a.fb {
+  background-color: #3B5998;
+
+}
+.social_sign a.tw {
+  background-color: #00ACEE;
+}
+.social_sign a.gp {
+  background-color: #E44B39;
+}
+.social_sign a:link,
+.social_sign a:visited {
+  color: #ffffff;
+}
+.social_sign a:hover,
+.social_sign a:active {
+  -moz-transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+  -webkit-transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+  -o-transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+  -ms-transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+  transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+}
+.or {
+  overflow: hidden;
+  text-align: center;
+  padding: 30px 0 0 0;
+}
+.or .or_l,
+.or .or_r {
+  width: 40%;
+  border-bottom: solid 1px #cccccc;
+  display: inline-block;
+  position: relative;
+  left: 0px;
+  top: -4px;
+}
+.or span {
+  width: 8%;
+  display: inline-block;
+}
+p.sign_title {
+  font-weight: 300;
+  padding: 30px 0 20px 0;
+}
+.signup {
+  text-align: center;
+  background-color: #ffffff;
+  padding: 40px;
+  border: solid 1px #e7e7e7;
+  margin-bottom: 24px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+.signup form input {
+  margin-bottom: 10px;
+}
+.signup form .checkbox {
+  font-weight: 300;
+}
+.signup form .checkbox input[type="checkbox"] {
+  float: none;
+}
+.signup form .btn {
+  margin-top: 47px;
+}
+
 /*Efeito da notícia na home */
 .noticiaanimator figure img {
     display: initial;
@@ -5150,6 +5271,11 @@ overflow:auto;
 height:auto; 
 width: 100%;
 padding-top: 0px;
+}
+
+/*Botões de compartilhamento do AddToAny  na página de notícia */
+.botoescompartilhamento{
+float: right;
 }
 
 

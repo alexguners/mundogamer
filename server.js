@@ -108,6 +108,8 @@ var MundoGamerApp = function() {
 
         self.app.get('/queroserparceiro', routes.queroserparceiro);
 
+        self.app.get('/login', routes.login);
+
         //self.app.get('/plataforma', routes.plataforma);
 
         self.app.get('/jogos', routes.jogos);

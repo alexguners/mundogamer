@@ -25,18 +25,20 @@
                         <col class="con0" />
                         <col class="con1" />
                         <col class="con0" />
-                        <col class="con1" />
+                        <!-- <col class="con1" /> -->
+                        <col class="con0" />
                     </colgroup>
                     <thead>
                         <tr>
                             <th class="head0 nosort"><input type="checkbox" class="checkall" /></th>
                             <th class="head1">Foto</th>
                             <th class="head0">Data do Cadastro</th>
-                            <th class="head1">Nome</th>
-                            <th class="head0">E-mail de Cadastro</th>
-                            <th class="head1">Nível de acesso</th>
-                            <th class="head0">Numero de noticias</th>
-                            <th class="head1">Ver/Editar</th>
+                            <th class="head1">Origem</th>
+                            <th class="head0">Nome</th>
+                            <th class="head1">E-mail de Cadastro</th>
+                            <th class="head0">Nível de acesso</th>
+                            <!-- <th class="head1">Numero de noticias</th> -->
+                            <th class="head0">Ver/Editar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,10 +51,11 @@
                             </td>
                             <td class="center">
                             <td class="center">
+                            <td class="center">
                             <td class="center"><%= users[i].local.nome %></td>
                             <td class="center"><%= users[i].local.email %></td>
                             <td class="center"><%= users[i].local.tipo %>
-                            <td class="center"><%= numberPosts %></td>
+                            <!-- <td class="center"><%= numberPosts %></td> -->
                             <td class="center">
                                 <a href="/mg-admin/users/edit/<%=users[i]._id%>" data-toggle="modal" class="btn btn-inverse">
                                     <i class="iconfa-pencil">

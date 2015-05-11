@@ -193,7 +193,7 @@ exports.index = function(req, res) {
   var ObjectId = require('mongoose').Types.ObjectId; 
     if (typeof req.user.local.tipo == 'undefined'){
 
-      NoticiaModel.find().sort({ data: 'desc'}).exec(function(err, noticias) {
+      NoticiaModel.find({'_criador': new ObjectId(req.user.id)}).sort({ data: 'desc'}).exec(function(err, noticias) {
         if (err)
           return console.error(err);
 
@@ -1734,15 +1734,15 @@ exports.saveParceiro = function(req, res) {
                                                             });
 
                                                   //  im.crop({
-                                                  //   srcPath: files['parceiro_banner03'].path,
-                                                  //   dstPath: saveToBanner + "03",
-                                                  //   width:   900,
-                                                  //   height:  385,
+                                                  //   srcPath: files['jogo_banner02'].path,
+                                                  //   dstPath: saveToBanner + "02",
+                                                  //   width:   200,
+                                                  //   height:  250,
                                                   //   strip: true
                                                   // }, function(err, stdout, stderr){
                                                   //     if (err){
                                                   //        console.error(err);
-                                                  //         fs.remove(files['parceiro_banner03'].path, function(err){
+                                                  //         fs.remove(files['jogo_banner02'].path, function(err){
                                                   //           if (err) return console.error(err);
                                                   //         });
                                                   //         fs.remove(saveTo, function(err){
@@ -1754,25 +1754,22 @@ exports.saveParceiro = function(req, res) {
                                                   //         fs.remove(saveToBanner + "02", function(err){
                                                   //           if (err) return console.error(err);
                                                   //         });
-                                                  //         fs.remove(saveToBanner + "03", function(err){
-                                                  //           if (err) return console.error(err);
-                                                  //         });
-                                                  //           res.render('admin/cadastrarparceiro',{
+                                                  //           res.render('admin/cadastrarjogo',{
                                                   //           user : req.user,
-                                                  //           title: "Cadastre um novo parceiro",
-                                                  //           subtitle: "Cadastre um novo parceiro Mundo Gamer",
-                                                  //           message:"Atenção!Parceiro inserido com erro no upload de banner!"
-                                                  //           });
+                                                  //           title: "Cadastre um novo jogo",
+                                                  //           subtitle: "Cadastre um novo jogo no Mundo Gamer",
+                                                  //           message:"Atenção!Jogo inserido com erro ao fazer upload da logo."
+                                                  //       });
                                                   //       }else{
-                                                  //           fs.remove(files['parceiro_banner03'].path, function(err){
+                                                  //           fs.remove(files['jogo_banner02'].path, function(err){
                                                   //             if (err) return console.error(err);
                                                   //           });
 
-                                                  //           res.render('admin/cadastrarparceiro',{
+                                                  //           res.render('admin/cadastrarjogo',{
                                                   //           user : req.user,
-                                                  //           title: "Cadastre um novo parceiro",
-                                                  //           subtitle: "Cadastre um novo parceiro Mundo Gamer",
-                                                  //           message:"Atenção!Parceiro inserido com sucesso."
+                                                  //           title: "Cadastre um novo jogo",
+                                                  //           subtitle: "Cadastre um novo jogo no Mundo Gamer",
+                                                  //           message:"Atenção!Jogo inserido com sucesso."
                                                   //           });
                                                   //         }  
                                                   // });
