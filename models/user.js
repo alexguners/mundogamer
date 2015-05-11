@@ -24,9 +24,15 @@ var userSchema = mongoose.Schema({
     },
     facebook         : {
         id           : String,
+        origin       : String,
         token        : String,
         email        : String,
-        name         : String
+        name         : String,
+        profileUrl   : String,
+        gender       : String,
+        location     : String,
+        birthday     : Date,
+        website      : String
     },
     twitter          : {
         id           : String,

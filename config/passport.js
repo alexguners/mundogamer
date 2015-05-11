@@ -89,7 +89,7 @@ module.exports = function(passport) {
                     } else {
 
                         // create the user
-                        var newUser            = new User();
+                        var newUser           = new User();
                         newUser.local.nome    = req.body.nome;
                         newUser.local.email    = email;
                         newUser.local.password = newUser.generateHash(password);
@@ -150,6 +150,11 @@ module.exports = function(passport) {
                             user.facebook.token = token;
                             user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
                             user.facebook.email = profile.emails[0].value;
+                            user.facebook.profileUrl = profile.profileUrl;
+                            user.facebook.gender = profile.gender; 
+                            user.facebook.location = profile.location.name; 
+                            user.facebook.birthday = profile.birthday; 
+                            user.facebook.website = profile.website;
 
                             user.save(function(err) {
                                 if (err)
@@ -165,8 +170,14 @@ module.exports = function(passport) {
 
                         newUser.facebook.id    = profile.id;
                         newUser.facebook.token = token;
+                        newUser.facebook.origin = 'Facebook';
                         newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
                         newUser.facebook.email = profile.emails[0].value;
+                        newUser.facebook.profileUrl = profile.profileUrl;
+                        newUser.facebook.gender = profile.gender;
+                        newUser.facebook.location = profile.location.name;
+                        newUser.facebook.birthday = profile.birthday;
+                        newUser.facebook.website = profile.website;
 
                         newUser.save(function(err) {
                             if (err)
@@ -182,8 +193,14 @@ module.exports = function(passport) {
 
                 user.facebook.id    = profile.id;
                 user.facebook.token = token;
+                user.facebook.origin = 'Facebook';
                 user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
                 user.facebook.email = profile.emails[0].value;
+                user.facebook.profileUrl = profile.profileUrl; 
+                user.facebook.gender = profile.gender;             
+                user.facebook.location = profile.location.name; 
+                user.facebook.birthday = profile.birthday;
+                user.facebook.website = profile.website;  
 
                 user.save(function(err) {
                     if (err)

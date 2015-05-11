@@ -27,6 +27,10 @@ CKEDITOR.editorConfig = function( config ) {
 	];
 
 	// Remove some buttons, provided by the standard plugins, which we don't
+
+	//Função do imageresponsive
+
+
 	// need to have in the Standard(s) toolbar.
 	config.removeButtons = 'Underline,Subscript,Superscript';
 
@@ -43,7 +47,5 @@ CKEDITOR.editorConfig = function( config ) {
 	config.youtube_width = '640';
 
 	config.youtube_height = '480';
-
-	config.extraPlugins = 'imageresponsive';
 
 };

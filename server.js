@@ -298,7 +298,7 @@ var MundoGamerApp = function() {
         self.app.post('/upload', admin.imageUpload);
 
         // send to facebook to do the authentication
-        self.app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+        self.app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email,public_profile,user_friends' }));
         // handle the callback after facebook has authenticated the user
         self.app.get('/auth/facebook/callback',
                     passport.authenticate('facebook', {
