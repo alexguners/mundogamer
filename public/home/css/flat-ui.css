@@ -4709,7 +4709,8 @@ footer {
   color: #bac1c8;
   font-size: 15px;
   position:relative;
-  height: auto;
+  overflow-y: hidden;
+overflow-x: hidden;
   width:100%;
   clear:both;
   bottom: 0 !important;
