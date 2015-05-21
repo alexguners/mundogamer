@@ -148,13 +148,18 @@ module.exports = function(passport) {
                         // if there is a user id already but no token (user was linked at one point and then removed)
                         if (!user.facebook.token) {
                             user.facebook.token = token;
+                                user.local.origin = 'Facebook';
+                            user.local.tipo = 'Colaborador';
+                            user.local.created_at = new Date();
                             user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
                             user.facebook.email = profile.emails[0].value;
                             user.facebook.profileUrl = profile.profileUrl;
+                            user.facebook.username = profile.username;
                             user.facebook.gender = profile.gender; 
-                            user.facebook.location = profile.location.name; 
+                            user.facebook.location = profile.location;
+                            user.facebook.locale = profile.locale; 
                             user.facebook.birthday = profile.birthday; 
-                            user.facebook.website = profile.website;
+
 
                             user.save(function(err) {
                                 if (err)
@@ -170,14 +175,20 @@ module.exports = function(passport) {
 
                         newUser.facebook.id    = profile.id;
                         newUser.facebook.token = token;
-                        newUser.facebook.origin = 'Facebook';
+                        newUser.local.origin = 'Facebook';
+                        newUser.local.tipo = 'Colaborador';
+                        newUser.local.created_at = new Date();
                         newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
                         newUser.facebook.email = profile.emails[0].value;
+                        newUser.local.nome  = profile.name.givenName + ' ' + profile.name.familyName;
+                        newUser.local.email = profile.emails[0].value;
+                        newUser.facebook.username = profile.username;
                         newUser.facebook.profileUrl = profile.profileUrl;
                         newUser.facebook.gender = profile.gender;
-                        newUser.facebook.location = profile.location.name;
+                        newUser.facebook.location = profile.location;
+                        newUser.facebook.locale = profile.locale;
                         newUser.facebook.birthday = profile.birthday;
-                        newUser.facebook.website = profile.website;
+                        newUser.facebook.photos = profile.photos;
 
                         newUser.save(function(err) {
                             if (err)
@@ -193,14 +204,18 @@ module.exports = function(passport) {
 
                 user.facebook.id    = profile.id;
                 user.facebook.token = token;
-                user.facebook.origin = 'Facebook';
+                // user.local.origin = 'Facebook';
+                // user.local.tipo = 'Colaborador';
+                user.local.created_at = new Date();
                 user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
                 user.facebook.email = profile.emails[0].value;
                 user.facebook.profileUrl = profile.profileUrl; 
+                user.facebook.username = profile.username;
                 user.facebook.gender = profile.gender;             
-                user.facebook.location = profile.location.name; 
+                user.facebook.location = profile.location; 
+                user.facebook.locale = profile.locale; 
                 user.facebook.birthday = profile.birthday;
-                user.facebook.website = profile.website;  
+
 
                 user.save(function(err) {
                     if (err)

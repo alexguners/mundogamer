@@ -9,6 +9,7 @@ var userSchema = mongoose.Schema({
         email          : String,
         password       : String,
         tipo           : String,
+        origin         : String,
         descricao      : String,
         user_site      : String,
         user_facebook  : String,
@@ -20,19 +21,21 @@ var userSchema = mongoose.Schema({
         user_nintendoid  : String,
         user_origin    : String,
         user_steam     : String,
-        imagem_perfil  :String 
+        created_at     : {type: Date}
+
     },
     facebook         : {
         id           : String,
-        origin       : String,
         token        : String,
         email        : String,
         name         : String,
+        username     : String,
         profileUrl   : String,
         gender       : String,
         location     : String,
-        birthday     : Date,
-        website      : String
+        locale       : String,
+        birthday     : String,
+        age_range    : String
     },
     twitter          : {
         id           : String,
