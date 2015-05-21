@@ -110,6 +110,8 @@ var MundoGamerApp = function() {
 
         self.app.get('/login', routes.login);
 
+        self.app.get('/steps', routes.steps);
+
         //self.app.get('/plataforma', routes.plataforma);
 
         self.app.get('/jogos', routes.jogos);
@@ -298,12 +300,12 @@ var MundoGamerApp = function() {
         self.app.post('/upload', admin.imageUpload);
 
         // send to facebook to do the authentication
-        self.app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email,public_profile,user_friends,user_birthday,user_location' }));
+        self.app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email,public_profile,user_friends,user_location,user_birthday,user_activities' }));
         // handle the callback after facebook has authenticated the user
         self.app.get('/auth/facebook/callback',
                     passport.authenticate('facebook', {
                         successRedirect : '/mg-admin',
-                        failureRedirect : '/mg-admin/login'
+                        failureRedirect : '/home/login'
         }));
     };
 

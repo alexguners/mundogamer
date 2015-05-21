@@ -20,7 +20,9 @@
     <link rel="stylesheet" href="/home/fonts/font-awesome/css/font-awesome.min.css" media="screen">
 
   </head>
-     <% include navbar %> 
+
+    <div class="backgroundlogin img"><image src="/images/wikigamer/backgrounds/background3.jpg"></div>
+    <% include navbar %> 
      <body onselectstart='return false' ondragstart='return false'> <!--Bloqueia a cópia de conteúdo--> 
         <!-- Container --> 
         <div class="container">   
@@ -95,7 +97,7 @@
         <script src="/home/js/jquery-1.8.3.min.js"></script>
         <script src="/home/js/application.js"></script>
         <script src="/home/js/bootstrap.min.js"></script>  
-        <script src="/home/js/footerfixed.js"></script>
+<!--         // <script src="/home/js/footerfixed.js"></script> -->
         <!-- Evitando cópias de conteúdo no site -->
         <script type="text/javascript"> 
             //Bloqueador de Selecao - iceBreaker http://www.icebreaker.com.br/ 
@@ -126,8 +128,24 @@
               });
           });
 
+            //SDK do Facebook
+            window.fbAsyncInit = function() {
+              FB.init({
+                appId      : '625583237494479',
+                xfbml      : true,
+                version    : 'v2.3'
+              });
+            };
+
+            (function(d, s, id){
+               var js, fjs = d.getElementsByTagName(s)[0];
+               if (d.getElementById(id)) {return;}
+               js = d.createElement(s); js.id = id;
+               js.src = "//connect.facebook.net/en_US/sdk.js";
+               fjs.parentNode.insertBefore(js, fjs);
+             }(document, 'script', 'facebook-jssdk'));
+
+
         </script>
-        
-    <% include footer %>  
      </body>
 </html>

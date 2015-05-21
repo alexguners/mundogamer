@@ -5145,14 +5145,43 @@ opacity: 0.5;
 filter: alpha(opacity=50); 
 }
 
+/*.backgroundlogin {
+
+  min-width: 100px;
+  max-width: 100px;
+  background-color:#ffffff;
+  background-size: 100% 100%;
+  float: left;
+  height: 100%;
+  position:relative;
+  overflow-y:auto;
+  overflow-x:hidden;
+  color: #000;
+  background: rgba(0, 0, 0, 0.6);
+
+}*/
+
+.backgroundlogin img{  
+     
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+position: fixed;
+border: #191919 solid 2px;
+opacity: 0.9;
+filter: alpha(opacity=30); 
+overflow:auto;
+}
+
 /* =Register or Sign in Page
 -------------------------------------------------------------- */
 .signin {
   text-align: center;
-  background-color: #ffffff;
+  /*background-color: #ffffff;*/
   padding: 40px;
-  border: solid 1px #e7e7e7;
-  margin-bottom: 24px;
+  /*border: solid 1px #e7e7e7;*/
+  /*margin-bottom: 24px;*/
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -5179,6 +5208,10 @@ filter: alpha(opacity=50);
   font-size: 20px;
   margin-bottom: 30px;
   line-height: 22px;
+  text-transform: uppercase;
+  color: #999;
+  font-weight: bold;
+
 }
 .social_sign a {
   background-color: #428bca;
@@ -5221,6 +5254,7 @@ filter: alpha(opacity=50);
   overflow: hidden;
   text-align: center;
   padding: 30px 0 0 0;
+
 }
 .or .or_l,
 .or .or_r {
@@ -5238,6 +5272,9 @@ filter: alpha(opacity=50);
 p.sign_title {
   font-weight: 300;
   padding: 30px 0 20px 0;
+  text-transform: uppercase;
+  color: #999;
+  font-weight: bold;
 }
 .signup {
   text-align: center;
