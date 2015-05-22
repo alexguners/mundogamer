@@ -33,7 +33,7 @@ var MundoGamerApp = function() {
     self.setupVariables = function() {
         //  Set the environment variables we need.
         self.ipaddress      = process.env.OPENSHIFT_NODEJS_IP;
-        self.port           = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+        self.port           = process.env.OPENSHIFT_NODEJS_PORT || 80;
         self.engine         = "ejs";
         self.viewEngine     = "ejs";
         self.expireStatic   = 86400000;
@@ -45,7 +45,7 @@ var MundoGamerApp = function() {
             //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
             //  allows us to run/test the app locally.
             console.warn('No OPENSHIFT_NODEJS_IP var, using 127.0.0.1');
-            self.ipaddress = "127.0.0.1";
+            self.ipaddress = "mundogamer.com.br";
             self.app.set('env','development');
         };
     };   

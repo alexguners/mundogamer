@@ -143,7 +143,7 @@
           <div class="palette palette-midnight-blue">  
 
             <div class="media">
-              <a class="pull-left" href="#"><img src="/images/perfis/perfil01.png" alt="Perfil de <%=noticia._criador.local.nome%>"/></a>
+              <a class="pull-left" href="#"><img src='https://graph.facebook.com/<%= users[i].facebook.id %>/picture?type=small' alt="Perfil de <%=noticia._criador.local.nome%>"/></a>
 
                 <% if (typeof noticia._criador.local.descricao !== 'undefined'){ %>
                     <% if ((noticia._criador.local.descricao == 'undefined') || (noticia._criador.local.descricao == '') ){ %> 
@@ -159,7 +159,7 @@
           <!-- Inicio dos comentários Disqs -->        
              <!-- <div id="disqus_thread"></div> -->
           <!-- Fim dos comentários Disqs -->
-        </div>	<!-- /.Coluna da noticias -->	
+        </div>  <!-- /.Coluna da noticias --> 
 
         <!-- Coluna da direita -->
         <div class="col-md-3">
