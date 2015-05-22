@@ -12,12 +12,6 @@ exports.embreve = function(req, res) {
 		res.render('embreve');
 	}
 
-exports.steps = function(req, res) {
-		res.render('home/steps',{
-			id:17
-		});
-	}
-
 exports.countNoticia = function (req, res){
 	NoticiaModel.update({'_id': req.body.id}, {$inc: { clicks: 1 }}).exec(function(err, noticia) {
 		if (err)

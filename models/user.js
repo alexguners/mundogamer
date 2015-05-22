@@ -10,6 +10,7 @@ var userSchema = mongoose.Schema({
         password       : String,
         tipo           : String,
         origin         : String,
+        credits        : Number,
         descricao      : String,
         user_site      : String,
         user_facebook  : String,

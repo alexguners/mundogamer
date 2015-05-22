@@ -147,18 +147,21 @@ module.exports = function(passport) {
 
                         // if there is a user id already but no token (user was linked at one point and then removed)
                         if (!user.facebook.token) {
+
+                            var json = profile._json;
+
                             user.facebook.token = token;
                                 user.local.origin = 'Facebook';
                             user.local.tipo = 'Colaborador';
                             user.local.created_at = new Date();
                             user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
-                            user.facebook.email = profile.emails[0].value;
+                            user.facebook.email = json.email;
                             user.facebook.profileUrl = profile.profileUrl;
                             user.facebook.username = profile.username;
-                            user.facebook.gender = profile.gender; 
-                            user.facebook.location = profile.location;
-                            user.facebook.locale = profile.locale; 
-                            user.facebook.birthday = profile.birthday; 
+                            user.facebook.gender = json.gender; 
+                            user.facebook.location = json.location;
+                            user.facebook.locale = json.locale; 
+                            user.facebook.birthday = json.birthday; 
 
 
                             user.save(function(err) {
@@ -173,21 +176,24 @@ module.exports = function(passport) {
                         // if there is no user, create them
                         var newUser            = new User();
 
+                        var json = profile._json;
+
                         newUser.facebook.id    = profile.id;
                         newUser.facebook.token = token;
                         newUser.local.origin = 'Facebook';
                         newUser.local.tipo = 'Colaborador';
+                        newUser.local.credits = '10';
                         newUser.local.created_at = new Date();
                         newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
-                        newUser.facebook.email = profile.emails[0].value;
+                        newUser.facebook.email = json.email;
                         newUser.local.nome  = profile.name.givenName + ' ' + profile.name.familyName;
                         newUser.local.email = profile.emails[0].value;
                         newUser.facebook.username = profile.username;
                         newUser.facebook.profileUrl = profile.profileUrl;
-                        newUser.facebook.gender = profile.gender;
-                        newUser.facebook.location = profile.location;
-                        newUser.facebook.locale = profile.locale;
-                        newUser.facebook.birthday = profile.birthday;
+                        newUser.facebook.gender = json.gender;
+                        newUser.facebook.location = json.location.name;
+                        newUser.facebook.locale = json.locale;
+                        newUser.facebook.birthday = json.birthday;
                         newUser.facebook.photos = profile.photos;
 
                         newUser.save(function(err) {

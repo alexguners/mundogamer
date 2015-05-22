@@ -143,7 +143,7 @@
           <div class="palette palette-midnight-blue">  
 
             <div class="media">
-              <a class="pull-left" href="#"><img src='https://graph.facebook.com/<%= users[i].facebook.id %>/picture?type=small' alt="Perfil de <%=noticia._criador.local.nome%>"/></a>
+              <a class="pull-left" href="#"><img src='https://graph.facebook.com/<%= noticia._criador.facebook.id %>/picture?type=normal' alt="Perfil de <%=noticia._criador.local.nome%>"/></a>
 
                 <% if (typeof noticia._criador.local.descricao !== 'undefined'){ %>
                     <% if ((noticia._criador.local.descricao == 'undefined') || (noticia._criador.local.descricao == '') ){ %> 
