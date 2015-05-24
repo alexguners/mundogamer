@@ -4017,6 +4017,40 @@ font-size: 0.8em;
   }
 }
 
+.estilovideocuriosidade {
+  background-color: #ffffff;
+  border-radius: 6px;
+  position: relative;
+}
+.estilovideocuriosidade.estilovideocuriosidade-hot:before {
+  background: url(../images/tile/estilo_videocuriosidade.png) 0 0 no-repeat;
+  background-size: 82px 82px;
+  content: '';
+  height: 82px;
+  position: absolute;
+  right: -2px;
+  top: -4px;
+  width: 82px;
+}
+.estilovideocuriosidade-image {
+  height: 100px;
+  vertical-align: bottom;
+}
+.estilonoticia-videocuriosidade.big-illustration {
+  height: 111px;
+  margin-top: 20px;
+  width: 112px;
+}
+.estilovideocuriosidade-title {
+  font-size: 20px;
+  margin: 0;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 2) {
+  .estilonoticia.estilovideocuriosidade-hot:before {
+    background-image: url(../images/tile/estilo_videocuriosidade.png);
+  }
+}
+
 .estiloanalise {
   background-color: #ffffff;
   border-radius: 6px;
@@ -5172,6 +5206,8 @@ border: #191919 solid 2px;
 opacity: 0.9;
 filter: alpha(opacity=30); 
 overflow:auto;
+height: 100%;
+width:100%;
 }
 
 /* =Register or Sign in Page
