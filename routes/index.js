@@ -506,7 +506,8 @@ function removeSpecialCharSimple(strToReplace) {
             newStr += strToReplace.substr(i,1);
         }
     }
-    return newStr;
+    // return newStr;
+    return newStr.replace(/[^a-zA-Z 0-9]/g, '');
 }
 
  

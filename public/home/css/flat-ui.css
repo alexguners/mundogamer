@@ -5059,16 +5059,56 @@ background-position: center center;
 background-size: cover;
 }
 
+/* Página de erro 500 */
+
 .backgrounderro500 {
 
 background: url('../images/background/erro500.jpg') fixed;
 background-repeat: no-repeat;
--moz-background-size: 100% 100%;
--webkit-background-size: 100% 100%;
-background-size: 100% 100%;
+height: 100%;
+width:100%;
 background-position: center center;
 background-size: cover;
 }
+
+.texterror500 {
+text-transform: uppercase;
+font-size: 50px;
+color: #71C393;
+cursor: pointer;
+padding-left: 450px;
+font-style: italic;
+position: relative;
+letter-spacing: 5px;
+}
+
+.texterror500Continue {
+text-transform: uppercase;
+font-size: 30px;
+color: #71C393;
+cursor: pointer;
+padding-left: 300px;
+padding-top: 293px;
+font-style: italic;
+position: relative;
+letter-spacing: 5px;  
+}
+a:active {
+    color: yellow;
+}
+
+.texterror500Exit {
+text-transform: uppercase;
+font-size: 30px;
+color: #71C393;
+cursor: pointer;
+padding-left: 700px;
+padding-top: -40px;
+font-style: italic;
+position: relative;
+letter-spacing: 5px;  
+}
+/* Fim da Página de erro 500 */
 
 .backgrounddireita {
 background: url=('home/images/background/bgs2014.png')  no-repeat right fixed;
