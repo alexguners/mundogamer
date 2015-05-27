@@ -110,5 +110,30 @@ String.prototype.repeat = function(num) {
     window.prettyPrint && prettyPrint();
     
   });
+
+  
+
+  //Validações formulário contato
+
+  function validarEmail(){
+      alert('oiee');
+      if($('#nome').val() == ''){
+          alert('Nome Obrigatório');
+          $('#nome').focus();
+
+          return false;
+
+      }else if($('#email').val() == '' || $('#email').val() == 'email'){
+        alert('Email Obrigatório');
+        $('#email').focus();
+          return false;
+      }else if($('#mensagem').val() == '' || $('#mensagem').val == 'mensagem'){
+          alert('Mensagem Obrigatório');
+          $('#mensagem').focus();
+          return false;
+      }else
+        return true; 
+
+  }
   
 })(jQuery);
