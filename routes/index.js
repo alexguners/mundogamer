@@ -325,7 +325,14 @@ exports.contatoEmail = function(req, res) {
     	}});
 
     	
+		var validarEmail = function(){
+			var nome = document.getElementById('nome');
+			var email = document.getElementById('email');
+			var textarea = document.getElementById('mensagem');
+			alert(nome);
 
+
+		}
     	transport.sendMail({  //email options
 		   from: req.body.nome + " <" + req.body.email + ";>", // sender address.  Must be the same as authenticated user if using GMail.
 		   to: "<contato@mundogamer.com.br", // receiver
