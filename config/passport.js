@@ -196,6 +196,20 @@ module.exports = function(passport) {
                         newUser.facebook.birthday = json.birthday;
                         newUser.facebook.photos = profile.photos;
 
+                        // if(newUser.facebook.location == 'undefined'){
+                        //       newUser.facebook.location = 'Não preenchido';  
+
+                        // }
+
+                          // if (json.location) {
+                          //       if (typeof json.location == 'undefined') {
+                          //     
+                          //         newUser.facebook.location = 'Não preenchido';
+                          //       } else {
+                          //         newUser.facebook.location = json.location.name;
+                          //       }
+                          //     }
+
                         newUser.save(function(err) {
                             if (err)
                                 throw err;

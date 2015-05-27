@@ -4023,7 +4023,7 @@ font-size: 0.8em;
   position: relative;
 }
 .estilovideocuriosidade.estilovideocuriosidade-hot:before {
-  background: url(../images/tile/estilo_videocuriosidade.png) 0 0 no-repeat;
+  background: url(../images/tile/estilo_videocuriosidades.png) 0 0 no-repeat;
   background-size: 82px 82px;
   content: '';
   height: 82px;
@@ -4047,7 +4047,7 @@ font-size: 0.8em;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 2) {
   .estilonoticia.estilovideocuriosidade-hot:before {
-    background-image: url(../images/tile/estilo_videocuriosidade.png);
+    background-image: url(../images/tile/estilo_videocuriosidades.png);
   }
 }
 
@@ -5093,7 +5093,8 @@ font-style: italic;
 position: relative;
 letter-spacing: 5px;  
 }
-a:active {
+
+a:hover .texterror500Continue {
     color: yellow;
 }
 
