@@ -295,6 +295,12 @@ var MundoGamerApp = function() {
 
         self.app.get('/mg-admin/loadparceiros/:nome?', admin.isLoggedIn, admin.loadParceiros); 
 
+        self.app.get('/mg-admin/loadjogos/:nome?', admin.isLoggedIn, admin.loadJogos); 
+
+        self.app.get('/mg-admin/loadcategories/:nome?', admin.isLoggedIn, admin.loadCategories);
+
+        self.app.get('/mg-admin/loadplataformas/:nome?', admin.isLoggedIn, admin.loadPlataformas);
+
         self.app.post('/upload', admin.imageUpload);
 
         // send to facebook to do the authentication

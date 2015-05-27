@@ -73,27 +73,12 @@
                     </p>
                     <!-- Fim do  Endereço url da notícia -->
 
-                    <!-- Parceiro da publicação-->
-                    <p>
-                        <label>Selecione um parceiro para divulgação em sua publicação</label>
-                            <span class="field">
-                            <select name="parceiro" id="parceiro" class="uniformselect" required="required">
-                              <option value="">Selecione um parceiro</option>
-                              <option value="ClubedaNuna">Clube da Nuna</option>
-                              <option value="GlobalGames">Global Games</option>
-                              <option value="JogosIndie">Jogos Indie</option>
-                              <option value="MundoGamer">Mundo Gamer</option>
-                              <option value="Nintedolátras">Nintedolátras</option>
-                              <option value="Pechinchador">Pechinchador</option>
-                              <option value="Player2">Player 2</option>
-                              <option value="ResidentEvilDatabase">Resident Evil Database</option>
-                              <option value="X-Nerd">X-Nerd</option>
-                            </select>
-                            </span>
-                    </p>
+                     <!-- Parceiro da publicação-->
+                    <label>Selecione um parceiro para divulgação em sua publicação</label>
+                    <input type="text" data-provide="typeahead" id="typeahead" required="required" name="parceiro">
                     <!-- Fim do Parceiro da publicação --> 
 
-                    <!-- Editor de texto da notícia-->
+                      <!-- Editor de texto da notícia-->
                     <p>
                       <label><h4 class="widgettitle">Cadastre um conteúdo de descrição para sua publicação</h4></label>                    
                       <textarea  class="ckeditor" name="editor1" id="editor1"></textarea>
@@ -142,7 +127,7 @@
           source: function (query, process) {
             console.log("ola query " + query);
               return $.getJSON(
-                  'parceiros',
+                  'loadparceiros',
                   { nome: query },
                   function (data) {
                       var newData = [];

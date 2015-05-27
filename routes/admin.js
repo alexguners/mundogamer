@@ -2516,5 +2516,72 @@ exports.loadParceiros = function(req, res) {
 
   });
 
+  }
+
+exports.loadJogos = function(req, res) {
+    var JogoModel = require('../models/jogos');
+    //var nome = req.route.params.nome;
+     var nome = req.query.nome; 
+     var re = new RegExp(nome, 'i')
+     console.log("nome " + nome);
+
+    JogoModel.find( {nome_jogo: {$regex:re} }).exec(function (err, jogos) {
+    if (err)
+      return console.error(err);
+
+    res.json(jogos);
+
+  });
+
+  }
+
+exports.loadCategories = function(req, res) {
+    var CategoriaModel = require('../models/categorias');
+    //var nome = req.route.params.nome;
+     var nome = req.query.nome; 
+     var re = new RegExp(nome, 'i')
+     console.log("nome " + nome);
+
+    CategoriaModel.find( {nome_categoria: {$regex:re} }).exec(function (err, categorias) {
+    if (err)
+      return console.error(err);
+
+    res.json(categorias);
+
+  });
+
+  }
+
+exports.loadPlataformas = function(req, res) {
+    var PlataformaModel = require('../models/plataformas');
+    //var nome = req.route.params.nome;
+     var nome = req.query.nome; 
+     var re = new RegExp(nome, 'i')
+     console.log("nome " + nome);
+
+    PlataformaModel.find( {nome_plataforma: {$regex:re} }).exec(function (err, plataformas) {
+    if (err)
+      return console.error(err);
+
+    res.json(plataformas);
+
+  });
+
+  }
+
+  exports.loadPersonagens = function(req, res) {
+    var PersonagemModel = require('../models/personagens');
+    //var nome = req.route.params.nome;
+     var nome = req.query.nome; 
+     var re = new RegExp(nome, 'i')
+     console.log("nome " + nome);
+
+    PersonagemModel.find( {nome_plataforma: {$regex:re} }).exec(function (err, personagens) {
+    if (err)
+      return console.error(err);
+
+    res.json(personagens);
+
+  });
 
   }

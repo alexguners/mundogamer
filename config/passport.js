@@ -216,24 +216,6 @@ module.exports = function(passport) {
                             return done(null, newUser);
                         });
 
-                        FB.api(function(err) {
-                            "/me/news.publishes",
-                            "POST",
-                            {
-                                "article": "Mundo Gamer"
-                                "message": "Testando uma postagem"
-                                
-                            },
-                            function (response) {
-                              if (!response || response.error) {
-                                  alert('Error occured');
-                                  console.log(response.error);
-                               } else {
-                                  alert('Publish was successful! Action ID: ' + response.id);
-                               }
-                            }
-                        });
-
                     }
                 });
 

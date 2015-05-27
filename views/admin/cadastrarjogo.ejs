@@ -72,15 +72,15 @@
 
                     <!-- Site oficial do jogo -->
                     <p> 
-                        <label>Categorias</label>
-                        <input class="typeahead" data-placeholder="Categorias do jogo" type="text" name="categoria" id="categoria"/>
+                        <label>Categorias do jogo</label>
+                        <input type="text" data-provide="typeahead" id="typeahead" required="required" name="categoria">
 
                    </p>
      
                    <!-- Fim do Site oficial do jogo --> 
 
                     <label>Selecione as Plataformas em que o jogo foi lançado</label>
-                    <input type="text" class="input-block-level" name="plataformas" id="plataformas"/> 
+                    <input type="text" data-provide="typeahead2" id="typeahead2" required="required" name="plataformas" placeholder="Digite o nome das plataformas que o jogo foi lançado">
 
                     <p>
                       <div class="par">
@@ -145,41 +145,43 @@
   <script src="/admin/js/bootstrap.min.js" type="text/javascript"> </script>
   <script type="text/javascript">
 
-    $(document).ready(function () {
+     $('#typeahead').typeahead({
+          source: function (query, process) {
+              return $.getJSON(
+                  'loadcategories',
+                  { nome: query },
+                  function (data) {
+                      var newData = [];
+                      console.log("data " + data);
+                      $.each(data, function(){
+                        console.log("data2 " + this.nome_categoria);
+                          newData.push(this.nome_categoria);
+                      });
+                      return process(newData);
 
-          var config = {
-      '.chzn-select'           : {},
-      '.chzn-select-deselect'  : {allow_single_deselect:true},
-      '.chzn-select-no-single' : {disable_search_threshold:10},
-      '.chzn-select-no-results': {no_results_text:'Oops, nothing found!'},
-      '.chzn-select-width'     : {width:"95%"}
-    }
-    for (var selector in config) {
-      $(selector).chosen(config[selector]);
-    }
+                  }); 
+          }
 
-    // $(document).ready(function () {
+      });
 
-    // console.log("ola");
-    // $('#typeahead').typeahead({
-    //       source: function (query, process) {
-    //         console.log("ola query " + query);
-    //           return $.getJSON(
-    //               'parceiros',
-    //               { nome: query },
-    //               function (data) {
-    //                   var newData = [];
-    //                   console.log("data " + data);
-    //                   $.each(data, function(){
-    //                     console.log("data2 " + this.nome_parceiro);
-    //                       newData.push(this.nome_parceiro);
-    //                   });
-    //                   return process(newData);
+          $('#typeahead2').typeahead({
+          source: function (query, process) {
+              return $.getJSON(
+                  'loadplataformas',
+                  { nome: query },
+                  function (data) {
+                      var newData = [];
+                      console.log("data " + data);
+                      $.each(data, function(){
+                        console.log("data2 " + this.nome_plataforma);
+                          newData.push(this.nome_plataforma);
+                      });
+                      return process(newData);
 
-    //               }); 
-    //       }
+                  }); 
+          }
 
-    //   });
+      });
 
 
     var nome_jogo = $("#nome_jogo");
@@ -204,7 +206,6 @@
     });
 		
 		
-	});
     
 </script>
 
