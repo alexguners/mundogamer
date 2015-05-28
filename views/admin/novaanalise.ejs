@@ -13,7 +13,6 @@
 
                     <!-- Imagem de capa da notícia -->
                     <center>
-                    <p>
                       <div class="par">
                           <label>Capa da publicação (Tamanho recomendado 300x200 pixels até 100k)</label>
                           <div class="fileupload fileupload-new" data-provides="fileupload">
@@ -26,23 +25,19 @@
                                 <span class="btn btn-file"><span class="fileupload-new">Selecione uma imagem</span>
                                 <span class="fileupload-exists">Alterar</span>
                                 <input type="file" accept="image/*" class="form-control" id="capa" name="capa" required="required" /> 
-                                <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a>
+                                <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a></span>
                             </div>
                           </div>
                      </div>                                         
-                    </p>
                     </center> 
                     <!-- Fim da Imagem de capa da notícia -->
 
                     <!-- Título da Notícia -->
-                    <p>
                       <label for="titulo">Cadastre um título para sua análise</label>
                       <input type="text" class="input-block-level" id="titulo" name="titulo" placeholder="Digite o titulo da análise" required="required" />
-                    </p>
                     <!-- Fim Título da Notícia -->
 
                     <!-- Data de Publicação -->
-                    <p>
                       <div id="datainicio">
                         <label for="datafinal">Selecione a data inicial de exibição</label>
                         <input type="text" class="form-control" name="datainicio" id="datainicio" required="required"></input>
@@ -50,41 +45,22 @@
                             <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
                           </span>
                       </div>
-                    </p>
                     <!-- Fim da Data de Publicação -->
 
-                    <!-- Parceiro da publicação-->
-                    <p>
-                        <label>Selecione um parceiro para divulgação em sua publicação</label>
-                            <span class="field">
-                            <select name="parceiro" id="parceiro" class="uniformselect" required="required">
-                              <option value="">Selecione um parceiro</option>
-                              <option value="ClubedaNuna">Clube da Nuna</option>
-                              <option value="GlobalGames">Global Games</option>
-                              <option value="JogosIndie">Jogos Indie</option>
-                              <option value="MundoGamer">Mundo Gamer</option>
-                              <option value="Nintedolátras">Nintedolátras</option>
-                              <option value="Pechinchador">Pechinchador</option>
-                              <option value="Player2">Player 2</option>
-                              <option value="ResidentEvilDatabase">Resident Evil Database</option>
-                              <option value="X-Nerd">X-Nerd</option>
-                            </select>
-                            </span>
-                    </p>
+                     <!-- Parceiro da publicação-->
+                      <label>Selecione um parceiro para divulgação em sua publicação</label>
+                      <input type="text" data-provide="typeahead" id="typeahead" required="required" name="parceiro">
                     <!-- Fim do Parceiro da publicação --> 
 
                     <!-- Editor de texto da notícia-->
-                    <p>
                       <label><h4 class="widgettitle">Cadastre um conteúdo de descrição para sua análise</h4></label>                    
                       <textarea  class="ckeditor" name="editor1" id="editor1"></textarea>
-                    </p>
                     <!-- Fim do  Editor de texto da notícia-->
 
                     <!-- Botão de Publicar notícia-->
-                      <p>
-                        <center><button id="SubmitBtn" name="SubmitBtn" type="submit" class="btn btn-large btn-inverse">Cadastrar Análise</button></center>
-                      </p>   
+                      <center><button id="SubmitBtn" name="SubmitBtn" type="submit" class="btn btn-large btn-inverse">Cadastrar Análise</button></center>
                     <!-- Fim do Botão de Publicar notícia-->
+
                   </form>
                 </div>
               </div>                         
@@ -92,7 +68,7 @@
           </div>
                 <!-- Place inside the <head> of your HTML -->
 
-    <script src="/editor/ckeditor.js"></script>
+<script src="/editor/ckeditor.js"></script>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> 
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script>
     <script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
@@ -101,6 +77,25 @@
     <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
     </script>
   <script type="text/javascript">
+
+    $('#typeahead').typeahead({
+          source: function (query, process) {
+              return $.getJSON(
+                  'loadparceiros',
+                  { nome: query },
+                  function (data) {
+                      var newData = [];
+                      console.log("data " + data);
+                      $.each(data, function(){
+                        console.log("data2 " + this.nome_parceiro);
+                          newData.push(this.nome_parceiro);
+                      });
+                      return process(newData);
+
+                  }); 
+          }
+
+      });
 
       $('#datafinal').datetimepicker({
         format: 'dd/MM/yyyy hh:mm:ss',
@@ -144,6 +139,7 @@
       });
    
     });
+
 
 </script>
 

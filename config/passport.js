@@ -187,28 +187,21 @@ module.exports = function(passport) {
                         newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
                         newUser.facebook.email = json.email;
                         newUser.local.nome  = profile.name.givenName + ' ' + profile.name.familyName;
-                        newUser.local.email = profile.emails[0].value;
+                        newUser.local.email = json.email;
                         newUser.facebook.username = profile.username;
                         newUser.facebook.profileUrl = profile.profileUrl;
                         newUser.facebook.gender = json.gender;
-                        newUser.facebook.location = json.location.name;
                         newUser.facebook.locale = json.locale;
                         newUser.facebook.birthday = json.birthday;
                         newUser.facebook.photos = profile.photos;
 
-                        // if(newUser.facebook.location == 'undefined'){
-                        //       newUser.facebook.location = 'Não preenchido';  
-
-                        // }
-
-                          // if (json.location) {
-                          //       if (typeof json.location == 'undefined') {
-                          //     
-                          //         newUser.facebook.location = 'Não preenchido';
-                          //       } else {
-                          //         newUser.facebook.location = json.location.name;
-                          //       }
-                          //     }
+                        if (typeof json.location === 'undefined') {
+                      
+                          newUser.facebook.location = 'Não preenchido';
+                        } else {
+                          newUser.facebook.location = json.location.name;
+                        }
+                            
 
                         newUser.save(function(err) {
                             if (err)

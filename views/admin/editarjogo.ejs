@@ -28,6 +28,12 @@
                     </p>
                     <!-- Fim Data de Lançamento -->
 
+                    <!-- Categoria do jogo -->
+                    <label>Categorias do jogo</label>
+                    <input type="text" data-provide="typeahead" id="typeahead" required="required" name="categoria" value="<%= jogo.categoria %>"
+                    <!-- Categoria do jogo -->
+
+
                     <!-- Empresa Responsavel -->
                     <p>
                       <label>Desenvolvedor</label>
@@ -111,6 +117,45 @@
     <script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
     <script src="//connect.facebook.net/pt_BR/all.js"></script>
     <script type="text/javascript">
+
+         $('#typeahead').typeahead({
+          source: function (query, process) {
+              return $.getJSON(
+                  'loadcategories',
+                  { nome: query },
+                  function (data) {
+                      var newData = [];
+                      console.log("data " + data);
+                      $.each(data, function(){
+                        console.log("data2 " + this.nome_categoria);
+                          newData.push(this.nome_categoria);
+                      });
+                      return process(newData);
+
+                  }); 
+          }
+
+      });
+
+          $('#typeahead2').typeahead({
+          source: function (query, process) {
+              return $.getJSON(
+                  'loadplataformas',
+                  { nome: query },
+                  function (data) {
+                      var newData = [];
+                      console.log("data " + data);
+                      $.each(data, function(){
+                        console.log("data2 " + this.nome_plataforma);
+                          newData.push(this.nome_plataforma);
+                      });
+                      return process(newData);
+
+                  }); 
+          }
+
+      });
+
     	$(document).ready(function () {
     var nome_plataforma = $("#nome_plataforma");
     var tipo_plataforma = $("#tipo_plataforma");

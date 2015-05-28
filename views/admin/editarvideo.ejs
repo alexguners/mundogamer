@@ -45,24 +45,10 @@
                    </p>
                    <!-- Fim da Data Final de Publicação -->
 
-                    <!-- Parceiro da notícia-->
-                    <p>
-                        <label>Selecione um parceiro para divulgação em sua notícia</label>
-                            <span class="field">
-                              <select name="parceiro" id="parceiro" class="uniformselect">
-                                <option value="<%= noticia.parceiro %>"><%= noticia.parceiro %></option>
-                                <option value="ClubedaNuna">Clube da Nuna</option>
-                                <option value="GlobalGames">Global Games</option>
-                                <option value="JogosIndie">Jogos Indie</option>
-                                <option value="MundoGamer">Mundo Gamer</option>
-                                <option value="Nintedolátras">Nintedolátras</option>
-                                <option value="Player2">Player 2</option>
-                                <option value="ResidentEvilDatabase">Resident Evil Database</option>
-                                <option value="X-Nerd">X-Nerd</option>
-                              </select>
-                            </span>
-                    </p>
-                    <!-- Fim do Parceiro da notícia -->
+                     <!-- Parceiro da publicação-->
+                    <label>Selecione um parceiro para divulgação em sua publicação</label>
+                    <input type="text" data-provide="typeahead" id="typeahead" required="required" name="parceiro" value="<%= noticia.parceiro %>">
+                    <!-- Fim do Parceiro da publicação --> 
 
                     <!-- Escolha a categoria do vídeo-->
                     <p>
@@ -195,14 +181,24 @@
 
 <script type="text/javascript">
 
-	jQuery(document).ready(function(){
-		
-		jQuery('.taglist .close').click(function(){
-			jQuery(this).parent().remove();
-			return false;
-		});
-		
-	});
+    $('#typeahead').typeahead({
+          source: function (query, process) {
+              return $.getJSON(
+                  'loadparceiros',
+                  { nome: query },
+                  function (data) {
+                      var newData = [];
+                      console.log("data " + data);
+                      $.each(data, function(){
+                        console.log("data2 " + this.nome_parceiro);
+                          newData.push(this.nome_parceiro);
+                      });
+                      return process(newData);
+
+                  }); 
+          }
+
+      });
 </script>
 
 <% include admin-footer %>    

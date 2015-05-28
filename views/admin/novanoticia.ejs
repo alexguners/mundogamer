@@ -13,7 +13,6 @@
 
                     <!-- Imagem de capa da notícia -->
                     <center>
-                    <p>
                       <div class="par">
                           <label>Capa da publicação (Tamanho recomendado 300x200 pixels até 100k)</label>
                           <div class="fileupload fileupload-new" data-provides="fileupload">
@@ -26,80 +25,65 @@
                                 <span class="btn btn-file"><span class="fileupload-new">Selecione uma imagem</span>
                                 <span class="fileupload-exists">Alterar</span>
                                 <input type="file" accept="image/*" class="form-control" id="capa" name="capa" required="required" /> 
-                                <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a>
+                                <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a></span>
                             </div>
                           </div>
                      </div>                                         
-                    </p>
                     </center> 
                     <!-- Fim da Imagem de capa da notícia -->
 
                     <!-- Título da Notícia -->
-                    <p>
                       <label for="titulo">Cadastre um título para sua publicação</label>
                       <input type="text" class="input-block-level" id="titulo" name="titulo" placeholder="Digite o titulo da noticia" required="required" />
-                    </p>
                     <!-- Fim Título da Notícia -->
 
                     <!-- Data de Publicação -->
-    						    <p>
                       <div id="datainicio">
                         <label for="datafinal">Selecione a data inicial de exibição</label>
-                        <input type="text" class="form-control" name="datainicio" id="datainicio" required="required"></input>
+                        <input type="text" class="form-control" name="datainicio" id="datainicio" required="required"/>
                           <span class="add-on">
                             <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
                           </span>
                       </div>
-                    </p>
                     <!-- Fim da Data de Publicação -->
 
                     <!-- Data Final de Publicação -->
-                    <p>
                       <div id="datafinal">
                         <label for="datafinal">Selecione a data final de exibição</label>
-                        <input type="text" class="form-control" name="datafinal" id="datafinal" required="required"></input>
+                        <input type="text" class="form-control" name="datafinal" id="datafinal" required="required"/>
                         <span class="add-on">
                           <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
                         </span>
                       </div>
-                   </p>
                    <!-- Fim da Data Final de Publicação -->
 
                    <!-- Endereço url da notícia -->
-                    <p>
-                        <label>Endereço de acesso de sua publicação em outro site</label>
-                        <input type="text" class="input-block-level" id="src" name="src" placeholder="Endereço de acesso" />
-                        <span class="help-block"></span>   
-                    </p>
+                      <label>Endereço de acesso de sua publicação em outro site</label>
+                      <input type="text" class="input-block-level" id="src" name="src" placeholder="Endereço de acesso" />
+                      <span class="help-block"></span>   
                     <!-- Fim do  Endereço url da notícia -->
 
                      <!-- Parceiro da publicação-->
-                    <label>Selecione um parceiro para divulgação em sua publicação</label>
-                    <input type="text" data-provide="typeahead" id="typeahead" required="required" name="parceiro">
+                      <label>Selecione um parceiro para divulgação em sua publicação</label>
+                      <input type="text" data-provide="typeahead" id="typeahead" required="required" name="parceiro">
                     <!-- Fim do Parceiro da publicação --> 
 
-                      <!-- Editor de texto da notícia-->
-                    <p>
+                    <!-- Editor de texto da notícia-->
                       <label><h4 class="widgettitle">Cadastre um conteúdo de descrição para sua publicação</h4></label>                    
                       <textarea  class="ckeditor" name="editor1" id="editor1"></textarea>
-                    </p>
                     <!-- Fim do  Editor de texto da notícia-->
 
                     <!-- Fonte da notícia -->
-                    <p>
-                    <label><h4 class="widgettitle">Caso sua publicação seja conteúdo de terceiros preencha os campos a seguir</h4></label>  
-                        <label>Nome da fonte de origem do conteúdo</label>
-                        <input type="text" class="input-block" id="nome_fonte" name="nome_fonte" placeholder="Nome da Fonte" />
-                        <label>Insira o endereço de acesso original do conteúdo</label>
-                        <input type="text" class="input-block-level" id="url_fonte" name="url_fonte" placeholder="URL de destino do conteúdo" />
-                        <span class="help-block"></span>   
-                    </p>
+                      <label><h4 class="widgettitle">Caso sua publicação seja conteúdo de terceiros preencha os campos a seguir</h4></label>  
+                      <label>Nome da fonte de origem do conteúdo</label>
+                      <input type="text" class="input-block" id="nome_fonte" name="nome_fonte" placeholder="Nome da Fonte" />
+                      <label>Insira o endereço de acesso original do conteúdo</label>
+                      <input type="text" class="input-block-level" id="url_fonte" name="url_fonte" placeholder="URL de destino do conteúdo" />
+                      <span class="help-block"></span>   
                     <!-- Fim do  Fonte  da notícia -->
 
                     <!-- Botão de Publicar notícia-->
-                      <p>
-    						        <center><button id="SubmitBtn" name="SubmitBtn" type="submit" class="btn btn-large btn-inverse">Cadastrar Publicação</button></center>
-    						      </p>   
+    						      <center><button id="SubmitBtn" name="SubmitBtn" type="submit" class="btn btn-large btn-inverse">Cadastrar Publicação</button></center>
                     <!-- Fim do Botão de Publicar notícia-->
   						    </form>
 						    </div>
@@ -122,10 +106,8 @@
     </script>
   <script type="text/javascript">
 
-      console.log("ola");
     $('#typeahead').typeahead({
           source: function (query, process) {
-            console.log("ola query " + query);
               return $.getJSON(
                   'loadparceiros',
                   { nome: query },
