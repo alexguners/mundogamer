@@ -14,69 +14,46 @@
                     <input type="hidden" value="<%= jogo.id %>" name="id" />
 
                     <!-- Nome do jogo -->
-                    <p>
-                      <label>Nome do jogo</label>
-                      <input type="text" class="input-block-level" id="nome_jogo" name="nome_jogo" placeholder="Digite o nome do jogo" required="required" value="<%= jogo.nome_jogo %>" />
-                    </p>
+                    <label>Nome do jogo</label>
+                    <input type="text" class="input-block-level" id="nome_jogo" name="nome_jogo" placeholder="Digite o nome do jogo" required="required" value="<%= jogo.nome_jogo %>" />
                     <!-- Fim Nome do jogo -->
 
                     <!-- Data de Lançamento -->
-                    <p>
-                       <label>Data de lançamento</label>
-                       <input type="text" name="data_lancamento" id="data_lancamento" maxlength="10" placeholder="Exemplo 01/01/2014" onkeypress="return dateMask(this, event);" value="<% var d = new Date(jogo.data_lancamento); 
-                        %><%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/'  + d.getFullYear() %>"/>
-                    </p>
+                   <label>Data de lançamento</label>
+                   <input type="text" name="data_lancamento" id="data_lancamento" maxlength="10" placeholder="Exemplo 01/01/2014" onkeypress="return dateMask(this, event);" value="<% var d = new Date(jogo.data_lancamento); 
+                    %><%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/'  + d.getFullYear() %>"/>
                     <!-- Fim Data de Lançamento -->
-
-                    <!-- Categoria do jogo -->
-                    <label>Categorias do jogo</label>
-                    <input type="text" data-provide="typeahead" id="typeahead" required="required" name="categoria" value="<%= jogo.categoria %>"
-                    <!-- Categoria do jogo -->
 
 
                     <!-- Empresa Responsavel -->
-                    <p>
-                      <label>Desenvolvedor</label>
-                      <input type="text" class="form-control" id="desenvolvedor" name="desenvolvedor" placeholder="Empresa responsável" required="required" value="<%= jogo.desenvolvedor %>"/>
-                   </p>
-                   <!-- Fim da Empresa Responsavel -->
+                    <label>Desenvolvedor</label>
+                    <input type="text" class="form-control" id="desenvolvedor" name="desenvolvedor" placeholder="Empresa responsável" required="required" value="<%= jogo.desenvolvedor %>"/>
+                    <!-- Fim da Empresa Responsavel -->
 
                     <!-- Editora Responsavel -->
-                    <p>
-                      <label>Editora</label>
-                      <input type="text" class="form-control" id="editora" name="editora" placeholder="Empresa responsável" required="required" value="<%= jogo.editora %>"/>
-                   </p>
+                    <label>Editora</label>
+                    <input type="text" class="form-control" id="editora" name="editora" placeholder="Empresa responsável" required="required" value="<%= jogo.editora %>"/>
                    <!-- Fim da Editora Responsavel -->
 
                     <!-- Site oficial do jogo -->
-                    <p>
-                        <label>Site oficial</label>
-                        <input type="text" class="form-control" id="site" name="site" placeholder="Site oficial do jogo" value="<%= jogo.site %>"/>
-                        <span class="help-block"></span>  
-                   </p>
+                    <label>Site oficial</label>
+                    <input type="text" class="form-control" id="site" name="site" placeholder="Site oficial do jogo" value="<%= jogo.site %>"/>
                    <!-- Fim do Site oficial do jogo --> 
 
                     <!-- Site oficial do jogo -->
-                    <p>
-                        <label>Seleciona uma categoria</label>
-                        <input type="text" class="form-control" id="categoria" name="categoria" placeholder="Categorias do jogo" value="<%= jogo.categoria %>"/>
-                        <span class="help-block"></span>  
-                   </p>
-                   <!-- Fim do Site oficial do jogo --> 
+                    <label>Seleciona uma categoria</label>
+                    <input type="text" data-provide="typeahead" id="typeahead" required="required" name="categoria" value="<%= jogo.categoria %>">
+                    <!-- Fim do Site oficial do jogo --> 
 
                     <label>Selecione as Plataformas em que o jogo foi lançado</label>
-                    <input type="text" class="input-block-level" name="plataformas" id="plataformas" value="<%= jogo.plataformas %>"/> 
+                    <input type="text" data-provide="typeahead" id="typeahead2" name="plataformas"  value="<%= jogo.plataformas %>"/> 
                     
 
                     <!-- Editor de texto da descrição do jogo-->
-                    <p>
-                      <label><h4 class="widgettitle">Cadastre um conteúdo de descrição para o jogo</h4></label>                    
-                      <textarea  class="ckeditor" name="editor1" id="editor1"><%= jogo.descricao_jogo %></textarea>                    
-                    </p>
+                    <label><h4 class="widgettitle">Cadastre um conteúdo de descrição para o jogo</h4></label> <textarea  class="ckeditor" name="editor1" id="editor1"><%= jogo.descricao_jogo %></textarea>                    
                     <!-- Fim do  Editor de texto da descrição do jogo-->
 
                     <!-- Fonte das informações -->
-                    <p>
                      <label><h4 class="widgettitle">Caso sua descrição seja conteúdo de terceiros preencha os campos a seguir</h4></label>
                         <label>Nome da fonte de origem do conteúdo</label>
                         <% if (typeof jogo.nome_fonte !== 'undefined'){ %>
@@ -95,14 +72,12 @@
                         <%} else{ %>
                           <input type="text" class="input-block-level" id="url_fonte" name="url_fonte" placeholder="URL de destino do conteúdo" value="" />
                         <%}%>  
-                    </p>
-                        <!-- Fim das informações -->
+                    <!-- Fim das informações -->
 
                     <!-- Botão de Publicar jogo-->
-                      <p>
-                        <center><button id="SubmitBtn" name="SubmitBtn" type="submit" class="btn btn-large btn-inverse">Editar Jogo</button></center>
-                      </p>   
+                    <center><button id="SubmitBtn" name="SubmitBtn" type="submit" class="btn btn-large btn-inverse">Editar Jogo</button></center>  
                     <!-- Fim do Botão de Publicar jogo-->
+
                   </form>
 						    </div>
 						 </div>         
@@ -111,14 +86,14 @@
                 <!-- Place inside the <head> of your HTML -->
 
 
-    <script src="/editor/ckeditor.js"></script>
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> 
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
-    <script src="//connect.facebook.net/pt_BR/all.js"></script>
-    <script type="text/javascript">
+  <script src="/admin/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+  <script src="/editor/ckeditor.js" type="text/javascript"></script>
+  <script src="/admin/js/chosen.jquery.js" type="text/javascript"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js" type="text/javascript"></script>
+  <script src="/admin/js/bootstrap.min.js" type="text/javascript"> </script>
+  <script type="text/javascript">
 
-         $('#typeahead').typeahead({
+     $('#typeahead').typeahead({
           source: function (query, process) {
               return $.getJSON(
                   'loadcategories',
@@ -156,18 +131,17 @@
 
       });
 
-    	$(document).ready(function () {
-    var nome_plataforma = $("#nome_plataforma");
-    var tipo_plataforma = $("#tipo_plataforma");
+
+    var nome_jogo = $("#nome_jogo");
     var LoginForm = $('#LoginForm');
     var SubmitBtn = $('#SubmitBtn');
  
     LoginForm.validate();
  
-    nome_plataforma.rules("add", {
+    nome_jogo.rules("add", {
       required: true,
       messages: {
-        required: "Nome da plataforma é obrigatório."
+        required: "Nome do jogo é obrigatório."
       }
     });
  
@@ -178,20 +152,12 @@
       }
       return false;
     });
- 
-  });
-
-	jQuery(document).ready(function(){
-		
-		jQuery('.taglist .close').click(function(){
-			jQuery(this).parent().remove();
-			return false;
-		});
-		
-	});
+    
+    
+    
 </script>
 
 
-<% include admin-footer %>    
+<% include admin-footer %>      
 
 

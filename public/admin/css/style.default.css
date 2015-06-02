@@ -1823,36 +1823,36 @@ table td.center, table th.center { text-align: center; }
 }
 
 
-/* MODIFICAÇÕES FEITAS */
+			/* MODIFICAÇÕES FEITAS */
 
-#LoginForm input{
-	border-radius:5px;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
-	-o-border-radius:5px;
-}
+			#LoginForm input{
+				border-radius:5px;
+				-webkit-border-radius:5px;
+				-moz-border-radius:5px;
+				-o-border-radius:5px;
+			}
 
-#LoginForm input:focus{
-	 border-color: #d2d2d2;
-  	-webkit-box-shadow: 0 0 6px #d2d2d2;
-  	-moz-box-shadow: 0 0 6px #d2d2d2;
-  	box-shadow: 0 0 6px #d2d2d2;
+			#LoginForm input:focus{
+				 border-color: #d2d2d2;
+			  	-webkit-box-shadow: 0 0 6px #d2d2d2;
+			  	-moz-box-shadow: 0 0 6px #d2d2d2;
+			  	box-shadow: 0 0 6px #d2d2d2;
 
-}
+			}
 
-#SubmitBtn{
-	margin-top: 3%;
-}
+			#SubmitBtn{
+				margin-top: 3%;
+			}
 
-.error{
-	color: #D8000C;
-  background-color: #FFBABA;
-  font-size: 1em;
-  margin-top: 1%;
-  padding: 2px;
+			.error{
+				color: #D8000C;
+			  background-color: #FFBABA;
+			  font-size: 1em;
+			  margin-top: 1%;
+			  padding: 2px;
 
 
-}
+			}
 
 
 

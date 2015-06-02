@@ -13,7 +13,6 @@
 
                     <!-- Imagem de capa do jogo -->
                     <center>
-                    <p>
                       <div class="par">
                           <label>Capa do jogo (Tamanho recomendado 200x250 até 100k)</label>
                           <div class="fileupload fileupload-new" data-provides="fileupload">
@@ -30,59 +29,43 @@
                             </div>
                           </div>
                      </div>                                         
-                    </p>
                     </center> 
                     <!-- Fim da  Imagem de capa do jogo -->
 
                     <!-- Nome do jogo -->
-                    <p>
                       <label>Nome do jogo</label>
                       <input type="text" class="input-block-level" id="nome_jogo" name="nome_jogo" placeholder="Digite o nome do jogo" required="required" />
-                    </p>
                     <!-- Fim Nome do jogo -->
 
                     <!-- Data de Lançamento -->
-                    <p>
                        <label>Data de lançamento</label>
                        <input type="text" name="data_lancamento" id="data_lancamento" maxlength="10" placeholder="Exemplo 01/01/2014" onkeypress="return dateMask(this, event);"/>
-                    </p>
                     <!-- Fim Data de Lançamento -->
 
                     <!-- Empresa Responsavel -->
-                    <p>
                       <label>Desenvolvedor</label>
                       <input type="text" class="form-control" id="desenvolvedor" name="desenvolvedor" placeholder="Empresa responsável" required="required" />
-                   </p>
                    <!-- Fim da Empresa Responsavel -->
 
                     <!-- Editora Responsavel -->
-                    <p>
                       <label>Editora</label>
                       <input type="text" class="form-control" id="editora" name="editora" placeholder="Empresa responsável" required="required" />
-                   </p>
                    <!-- Fim da Editora Responsavel -->
 
                     <!-- Site oficial do jogo -->
-                    <p>
                         <label>Site oficial</label>
                         <input type="text" class="form-control" id="site" name="site" placeholder="Site oficial do jogo" />
                         <span class="help-block"></span>  
-                   </p>
                    <!-- Fim do Site oficial do jogo --> 
 
                     <!-- Site oficial do jogo -->
-                    <p> 
                         <label>Categorias do jogo</label>
                         <input type="text" data-provide="typeahead" id="typeahead" required="required" name="categoria">
-
-                   </p>
-     
                    <!-- Fim do Site oficial do jogo --> 
 
                     <label>Selecione as Plataformas em que o jogo foi lançado</label>
                     <input type="text" data-provide="typeahead2" id="typeahead2" required="required" name="plataformas" placeholder="Digite o nome das plataformas que o jogo foi lançado">
 
-                    <p>
                       <div class="par">
                           <label>Banner 01 (Tamanho recomendado 900x385 até 100k)</label>
                           <div class="fileupload fileupload-new" data-provides="fileupload">
@@ -104,34 +87,26 @@
                                 <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a>
                             </div>
                           </div>
-                     </div>                                        
-                    </p>
-                    
+                     </div>                                                  
 
                     <!-- Editor de texto da descrição do jogo-->
-                        <p>
-                          <label><h4 class="widgettitle">Cadastre um conteúdo de descrição para o jogo</h4></label>                    
-                         <textarea  class="ckeditor" name="editor1" id="editor1"></textarea>                           
-                        </p>
+                    <label><h4 class="widgettitle">Cadastre um conteúdo de descrição para o jogo</h4></label>
+                    <textarea  class="ckeditor" name="editor1" id="editor1"></textarea>      
                     <!-- Fim do  Editor de texto da descrição do jogo-->
 
                     <!-- Fonte das informações -->
-                    <p>
-                      <label><h4 class="widgettitle">Caso sua descrição seja conteúdo de terceiros preencha os campos a seguir</h4></label>  
-                       <label>Nome da fonte de origem do conteúdo</label>
-                       <input type="text" class="input-block" id="nome_fonte" name="nome_fonte" placeholder="Nome da Fonte" />
-                       <label>Insira o endereço de acesso original do conteúdo</label>
-                       <input type="text" class="input-block-level" id="url_fonte" name="url_fonte" placeholder="URL de destino do conteúdo" />
-                       <span class="help-block"></span>   
-                    </p>
+                    <label><h4 class="widgettitle">Caso sua descrição seja conteúdo de terceiros preencha os campos a seguir</h4></label>  
+                    <label>Nome da fonte de origem do conteúdo</label>
+                    <input type="text" class="input-block" id="nome_fonte" name="nome_fonte" placeholder="Nome da Fonte" />
+                    <label>Insira o endereço de acesso original do conteúdo</label>
+                    <input type="text" class="input-block-level" id="url_fonte" name="url_fonte" placeholder="URL de destino do conteúdo" />   
                     <!-- Fim das informações -->            
 
                     <!-- Botão de Publicar jogo-->
-                      <p>
-    						        <center><button id="SubmitBtn" name="SubmitBtn" type="submit" class="btn btn-large btn-inverse">Cadastrar Jogo</button></center>
-    						      </p>   
+    						    <center><button id="SubmitBtn" name="SubmitBtn" type="submit" class="btn btn-large btn-inverse">Cadastrar Jogo</button></center> 
                     <!-- Fim do Botão de Publicar jogo-->
-  						    </form>
+  						    
+                  </form>
 						    </div>
 						  </div>                         
             </div>

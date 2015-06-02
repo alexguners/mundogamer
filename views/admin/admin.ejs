@@ -41,7 +41,9 @@
                                     <a href="noticia/<%= noticias[i].url %> "target="_blank"><img src="/images/noticia/capa/<%= noticias[i].id %>"/></a>
                             </td>
 
-                            <td class="center"><% var d = new Date(noticias[i].data); 
+                            <td class="center">
+                             <%= noticias[i]._criador %><br>
+                            <% var d = new Date(noticias[i].data); 
                             %><%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/'
                                 + d.getFullYear() %> às <%= ('0' + (d.getHours())).slice(-2) + ':' + ('0' + (d.getMinutes())).slice(-2) %></td>
                             <td class="center"><%= noticias[i].tipo %></td>
