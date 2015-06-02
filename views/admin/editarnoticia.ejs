@@ -21,30 +21,6 @@
                      </p>
                      <!-- Fim Título da Notícia -->
 
-                    <!-- Data de Publicação -->
-                    <p>
-                      <div id="datainicio">
-                        <label for="datainicio">Selecione a data inicial de exibição ( Redefinir Data em caso de alteração)</label>
-                        <input type="text" class="form-control" name="datainicio" id="datainicio" required="required" value="<% var d = new Date(noticia.data);%><%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/' + d.getFullYear() %>&nbsp;<%= ('0' + (d.getHours())).slice(-2) + ':' + ('0' + (d.getMinutes())).slice(-2) + ':' + ('0' + (d.getSeconds())).slice(-2) %>"></input>
-                          <span class="add-on">
-                            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-                          </span>
-                      </div>
-                    </p>
-                    <!-- Fim da Data de Publicação -->
-
-                    <!-- Data Final de Publicação -->
-                    <p>
-                      <div id="datafinal">
-                        <label for="datafinal">Selecione a data final de exibição  ( Redefinir Data em caso de alteração)</label>
-                        <input type="text" class="form-control" name="datafinal" id="datafinal" required="required" value="<% var d = new Date(noticia.data);%><%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/' + d.getFullYear() %>&nbsp;<%= ('0' + (d.getHours())).slice(-2) + ':' + ('0' + (d.getMinutes())).slice(-2) + ':' + ('0' + (d.getSeconds())).slice(-2) %>"></input>
-                        <span class="add-on">
-                          <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-                        </span>
-                      </div>
-                   </p>
-                   <!-- Fim da Data Final de Publicação -->
-
                     <!-- Endereço url da notícia -->
                     <p>
                         <label>Endereço de acesso de sua publicação em outro site</label>

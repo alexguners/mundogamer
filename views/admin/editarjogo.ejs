@@ -7,9 +7,9 @@
           <div class="row-fluid">
             <div id="dashboard-left" class="span8">
              <div class="panel panel-primary"> 
-
                 <div class="panel-body">
-  					        <form id="LoginForm" role="form" class="form-horizontal" autocomplete="off"  method="post">
+  					       <form id="LoginForm" role="form" class="form-horizontal" autocomplete="off"  method="post">
+                   
                     <!-- Id da Plataforma -->
                     <input type="hidden" value="<%= jogo.id %>" name="id" />
 
@@ -42,11 +42,11 @@
 
                     <!-- Site oficial do jogo -->
                     <label>Seleciona uma categoria</label>
-                    <input type="text" data-provide="typeahead" id="typeahead" required="required" name="categoria" value="<%= jogo.categoria %>">
+                    <input type="text" data-provide="typeahead" id="typeahead" required="required" name="categoria" value="<%= jogo.categoria %>"/>
                     <!-- Fim do Site oficial do jogo --> 
 
                     <label>Selecione as Plataformas em que o jogo foi lançado</label>
-                    <input type="text" data-provide="typeahead" id="typeahead2" name="plataformas"  value="<%= jogo.plataformas %>"/> 
+                    <input type="text" data-provide="typeahead2" id="typeahead2" name="plataformas"  value="<%= jogo.plataformas %>"/> 
                     
 
                     <!-- Editor de texto da descrição do jogo-->

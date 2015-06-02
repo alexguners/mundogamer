@@ -1891,12 +1891,6 @@ exports.saveNoticia = function(req, res) {
              var datainicio = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
              datainicio.setHours(time[0],time[1],time[2],0);
 
-            dataSepareted = fieldsArray['datafinal'].split(" ");
-            date = dataSepareted[0].split("/");
-            time = dataSepareted[1].split(":");
-            var datafinal = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
-            datafinal.setHours(time[0],time[1],time[2],0);
-
             var title = titleToUrl(fieldsArray['titulo']);
 
             var noticia_data = {
@@ -1908,7 +1902,6 @@ exports.saveNoticia = function(req, res) {
               data        : datainicio,
               descricao   : fieldsArray['editor1'],
               src         : fieldsArray['src'],
-              data_final  : datafinal,
               url_fonte   :fieldsArray['url_fonte'],
               nome_fonte   :fieldsArray['nome_fonte'],
               _criador    : req.user.id
@@ -1976,17 +1969,6 @@ exports.saveEditarNoticia = function(req, res) {
   var NoticiaModel = require('../models/noticias');
   var ObjectId = require('mongoose').Types.ObjectId; 
   if(typeof req.params.id !== 'undefined') {
-      var dataSepareted = req.body.datainicio.split(" ");
-      var date = dataSepareted[0].split("/");
-      var time = dataSepareted[1].split(":");
-      var datainicio = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
-      datainicio.setHours(time[0],time[1],time[2],0);
-
-            dataSepareted = req.body.datafinal.split(" ");
-            date = dataSepareted[0].split("/");
-            time = dataSepareted[1].split(":");
-            var datafinal = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
-            datafinal.setHours(time[0],time[1],time[2],0);
 
             var title = titleToUrl(req.body.titulo);
 
@@ -1995,12 +1977,10 @@ exports.saveEditarNoticia = function(req, res) {
             url         : title, 
             tipo        : "Noticia",
             parceiro    : req.body.parceiro,
-            data        : datainicio,
             descricao   : req.body.editor1,
             src         : req.body.src,
             nome_fonte  :req.body.nome_fonte,
-            url_fonte  :req.body.url_fonte,
-            data_final  : datafinal
+            url_fonte  :req.body.url_fonte
       }}, function(err, noticia) {
         if (err){
           console.error(err);
@@ -2161,11 +2141,6 @@ exports.saveEditarAnalise = function(req, res) {
   var NoticiaModel = require('../models/noticias');
   var ObjectId = require('mongoose').Types.ObjectId; 
   if(typeof req.params.id !== 'undefined') {
-      var dataSepareted = req.body.datainicio.split(" ");
-             var date = dataSepareted[0].split("/");
-             var time = dataSepareted[1].split(":");
-             var datainicio = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
-             datainicio.setHours(time[0],time[1],time[2],0);
 
             var title = titleToUrl(req.body.titulo);
 
@@ -2173,7 +2148,6 @@ exports.saveEditarAnalise = function(req, res) {
             titulo      : req.body.titulo,
             url         : title, 
             parceiro    : req.body.parceiro,
-            data        : datainicio,
             descricao   : req.body.editor1,
 
       }}, function(err, noticia) {
@@ -2259,13 +2233,6 @@ exports.saveVideo = function(req, res) {
              var datainicio = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
              datainicio.setHours(time[0],time[1],time[2],0);
 
-            dataSepareted = fieldsArray['datafinal'].split(" ");
-            date = dataSepareted[0].split("/");
-            time = dataSepareted[1].split(":");
-            var datafinal = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
-            datafinal.setHours(time[0],time[1],time[2],0);
-            console.log("descricao " + fieldsArray['editor1']);
-
             var title = titleToUrl(fieldsArray['titulo']);
 
             var noticia_data = {
@@ -2277,7 +2244,6 @@ exports.saveVideo = function(req, res) {
               data        : datainicio,
               descricao   : fieldsArray['editor1'],
               src         : fieldsArray['src'],
-              data_final  : datafinal,
               url_fonte   :fieldsArray['url_fonte'],
               nome_fonte  :fieldsArray['nome_fonte'],
               _criador    : req.user.id
@@ -2345,17 +2311,6 @@ exports.saveEditarVideo = function(req, res) {
   var NoticiaModel = require('../models/noticias');
   var ObjectId = require('mongoose').Types.ObjectId; 
   if(typeof req.params.id !== 'undefined') {
-             var dataSepareted = req.body.datainicio.split(" ");
-             var date = dataSepareted[0].split("/");
-             var time = dataSepareted[1].split(":");
-             var datainicio = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
-             datainicio.setHours(time[0],time[1],time[2],0);
-
-            dataSepareted = req.body.datafinal.split(" ");
-            date = dataSepareted[0].split("/");
-            time = dataSepareted[1].split(":");
-            var datafinal = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
-            datafinal.setHours(time[0],time[1],time[2],0);
 
             var title = titleToUrl(req.body.titulo);
 
@@ -2364,8 +2319,6 @@ exports.saveEditarVideo = function(req, res) {
             url         : title, 
             parceiro    : req.body.parceiro,
             tipo        : req.body.tipo,
-            data        : datainicio,
-            data_final  : datafinal,
             descricao   : req.body.editor1,
             nome_fonte  : req.body.nome_fonte,
             url_fonte   : req.body.url_fonte,
