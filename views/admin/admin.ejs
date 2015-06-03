@@ -23,9 +23,8 @@
                             <th class="head0">Título</th>
                             <th class="head1">Jogo</th>
                             <th class="head0">Parceiro</th>
-                            <th class="head1">Cliques</th>
-                            <th class="head0"><i class="iconfa-eye-open"></i> Visualizações</th>
-                            <th class="head1">Ver/Editar</th>
+                            <th class="head1"><i class="iconfa-eye-open"></i>Visualizações</th>
+                            <th class="head0">Ver/Editar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,7 +41,11 @@
                             </td>
 
                             <td class="center">
-                             <%= noticias[i]._criador.local.nome %><br>
+                                <% if (typeof user.local.tipo !== 'undefined'){ %>
+                                    <% if (user.local.tipo == 'Administrador'){ %> 
+                                        <%= noticias[i]._criador.local.nome %><br>
+                                    <%}%>
+                                <%}%>   
                             <% var d = new Date(noticias[i].data); 
                             %><%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/'
                                 + d.getFullYear() %> às <%= ('0' + (d.getHours())).slice(-2) + ':' + ('0' + (d.getMinutes())).slice(-2) %></td>
@@ -50,8 +53,8 @@
                             <td class="center" ><%= noticias[i].titulo.substr(0,38) %>...</td>
                             <td class="center">Nome Jogo</td>
                             <td class="center"><%= noticias[i].parceiro %></td>
-                            <td class="center"><% if (typeof noticias[i].clicks == 'undefined') {%>Nenhum clique <% }else{  %> <%= noticias[i].clicks %> cliques<%}%></td>
-                            <td class="center"><% if (typeof noticias[i].views == 'undefined') {%>Nenhuma<% }else{  %> <%= noticias[i].views %> visualizações<%}%></td>
+                            <td class="center"><% if (typeof noticias[i].clicks == 'undefined') {%>Nenhum clique <% }else{  %> <%= noticias[i].clicks %> Cliques<%}%><br>
+                            <% if (typeof noticias[i].views == 'undefined') {%>Nenhuma<% }else{  %> <%= noticias[i].views %> Visualizações<%}%></td>
 
                             <td class="center">
                               <% if (typeof noticias[i].tipo !== 'undefined'){ %>
