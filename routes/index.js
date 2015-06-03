@@ -81,7 +81,7 @@ exports.plataforma = function(req, res) {
 
 	var str = req.route.params.id;
 
-	PlataformaModel.findOne({url:str}).exec(function (err, plataforma) {
+	PlataformaModel.findOne({url:str}).populate('_criador').exec(function (err, plataforma) {
     if (err)
           return console.error(err);
 		res.render('home/plataforma',
@@ -126,7 +126,7 @@ exports.jogo = function(req, res) {
 
 	var str = req.route.params.id;
 
-	JogoModel.findOne({url:str}).exec(function (err, jogo) {
+	JogoModel.findOne({url:str}).populate('_criador').exec(function (err, jogo) {
     if (err)
           return console.error(err);
 		res.render('home/jogo',
@@ -172,7 +172,7 @@ exports.parceiro = function(req, res) {
 
 	var str = req.route.params.id;
 
-	ParceiroModel.findOne({url:str}).exec(function (err, parceiro) {
+	ParceiroModel.findOne({url:str}).populate('_criador').exec(function (err, parceiro) {
     if (err)
           return console.error(err);
 		res.render('home/parceiro',
@@ -218,7 +218,7 @@ exports.personagem = function(req, res) {
 
 	var str = req.route.params.id;
 
-	PersonagemModel.findOne({url:str}).exec(function (err, personagem) {
+	PersonagemModel.findOne({url:str}).populate('_criador').exec(function (err, personagem) {
     if (err)
           return console.error(err);
 		res.render('home/personagem',

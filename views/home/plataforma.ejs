@@ -100,6 +100,22 @@
             </div>
           </div><!-- /.carousel -->
 
+          <!-- descrição do autor e botoes compartilha --> 
+          <div class="typography-row"> 
+              <dl class="palette palette-midnight-blue">
+                  <dt>Plataforma cadastrada por <%= plataforma._criador.local.nome %></dt>
+                              <!-- AddToAny BEGIN -->
+            <div class="a2a_kit a2a_kit_size_32 a2a_default_style botoescompartilhamento">
+              <a class="a2a_button_facebook"></a>
+              <a class="a2a_button_twitter"></a>
+              <a class="a2a_button_google_plus"></a>
+              <a class="a2a_button_whatsapp"></a>
+              <a class="a2a_button_linkedin"></a>
+            </div>
+            <!-- AddToAny END -->
+              </dl>
+          </div><!-- /. descrição do autor e botoes comparilha -->
+
 
             <!-- Marketing messaging and featurettes
             ================================================== -->
@@ -116,9 +132,11 @@
                 <%}%>
             </article>
           </div>
-
     
       <hr class="featurette-divider">
+
+          <!-- Comentários pelo Facebook -->
+          <center><div class="fb-comments" data-href="http://mundogamer.com.br/plataformas/<%- plataforma.url %>" data-width="100%" data-numposts="10" data-colorscheme="light"></div></center> 
 
             <div class="row">
         <div class="col-lg-4">
@@ -244,29 +262,6 @@
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script  type="text/javascript">
-
-              /*Posicione esta tag depois da última tag do compartilhar*/
-          window.___gcfg = {lang: 'pt-BR'};
-          (function() {
-          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-          po.src = 'https://apis.google.com/js/platform.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-          })();
-
-          /* Botão Twitter */  
-          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-          /* FIM Botão Twitter */  
-
-          /*Início Botão Compartilhar Facebook */
-          (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-             js = d.createElement(s); js.id = id;
-             js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1&appId=625583237494479";
-             fjs.parentNode.insertBefore(js, fjs);
-             }(document, 'script', 'facebook-jssdk'));
-          /*FIM Botão Compartilhar Facebook*/
-
           
       /* Adsense */
        (adsbygoogle = window.adsbygoogle || []).push({});
@@ -298,6 +293,16 @@
         //options here
         });
     });
+
+              /*ComentáriosFacebook */
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=625583237494479&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        /*ComentáriosFacebook */
     </script> 
 
   </body>

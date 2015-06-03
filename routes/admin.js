@@ -193,7 +193,7 @@ exports.index = function(req, res) {
   var ObjectId = require('mongoose').Types.ObjectId; 
     if (typeof req.user.local.tipo == 'undefined'){
 
-      NoticiaModel.find({'_criador': new ObjectId(req.user.id)}).sort({ data: 'desc'}).exec(function(err, noticias) {
+      NoticiaModel.find({'_criador': new ObjectId(req.user.id)}).sort({ data: 'desc'}).populate('_criador').exec(function(err, noticias) {
         if (err)
           return console.error(err);
 
@@ -207,7 +207,7 @@ exports.index = function(req, res) {
       });
     }else if (req.user.local.tipo == 'Colaborador'){
       var ObjectId = require('mongoose').Types.ObjectId; 
-      NoticiaModel.find({'_criador': new ObjectId(req.user.id)}).sort({ data: 'desc'}).exec(function(err, noticias) {
+      NoticiaModel.find({'_criador': new ObjectId(req.user.id)}).sort({ data: 'desc'}).populate('_criador').exec(function(err, noticias) {
         if (err)
           return console.error(err);
 
@@ -221,7 +221,7 @@ exports.index = function(req, res) {
       });
 
     }else if (req.user.local.tipo == 'Administrador'){
-      NoticiaModel.find().sort({ data: 'desc'}).exec(function(err, noticias) {
+      NoticiaModel.find().sort({ data: 'desc'}).populate('_criador').exec(function(err, noticias) {
         if (err)
           return console.error(err);
 
