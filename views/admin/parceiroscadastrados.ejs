@@ -25,7 +25,11 @@
                             <th class="head0">Cliques</th>
                             <th class="head1"><i class="iconfa-eye-open"></i>Visualizações</th>
                             <th class="head0">Site</th>
+                        <% if (typeof user.local.tipo !== 'undefined'){ %>
+                    <% if (user.local.tipo == 'Administrador'){ %> 
                             <th class="head1">Ver/Editar</th>
+                    <%}%>
+                 <%}%>   
                         </tr>
                     </thead>
                     <tbody>
@@ -49,11 +53,15 @@
                             <td class="center"></td>
                             <td class="center"><% if (typeof parceiros[i].views == 'undefined') {%>Nenhuma<% }else{  %> <%= parceiros[i].views %> visualizações<%}%></td>,
                             <td class="center"><a href="<%= parceiros[i].site %>" target="_blank"><span class="label label-success">Acessar site</span></a></td>
-                            <td class="center">
-                                <a href="/mg-admin/editarparceiro/<%= parceiros[i].id %>" data-toggle="modal" class="btn btn-inverse">
-                                    <i class="iconfa-pencil"></i>
-                                </a>
-                            </td>
+                            <% if (typeof user.local.tipo !== 'undefined'){ %>
+                                <% if (user.local.tipo == 'Administrador'){ %> 
+                                    <td class="center">
+                                        <a href="/mg-admin/editarparceiro/<%= parceiros[i].id %>" data-toggle="modal" class="btn btn-inverse">
+                                            <i class="iconfa-pencil"></i>
+                                        </a>
+                                    </td>
+                                <%}%>
+                            <%}%>  
 
                         </tr>
                         <% } %>

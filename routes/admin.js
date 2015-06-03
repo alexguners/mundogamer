@@ -323,7 +323,7 @@ exports.editSaveUser = function(req, res) {
           return console.error(err);
 
     doc.local.nome=req.body.nome;
-    doc.local.password=doc.generateHash(req.body.password);
+    // doc.local.password=doc.generateHash(req.body.password);
     doc.local.email=req.body.email;
     doc.local.tipo = req.body.tipo;
 
@@ -2311,6 +2311,11 @@ exports.saveEditarVideo = function(req, res) {
   var NoticiaModel = require('../models/noticias');
   var ObjectId = require('mongoose').Types.ObjectId; 
   if(typeof req.params.id !== 'undefined') {
+             var dataSepareted = req.body.datainicio.split(" ");
+             var date = dataSepareted[0].split("/");
+             var time = dataSepareted[1].split(":");
+             var datainicio = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
+             datainicio.setHours(time[0],time[1],time[2],0);
 
             var title = titleToUrl(req.body.titulo);
 
