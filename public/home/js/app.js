@@ -71,7 +71,7 @@ $(window).scroll(function () {
 
                                 if (noticias[i].src) {
 
-                                    html += '<a href="' + noticias[i].src + '" class="titulo" target="_blank" idnoticia="' + noticias[i].url + '"><img class="listanoticia thumbnail" src="/images/noticia/capa/' ;
+                                    html += '<a href="' + noticias[i].src + '" class="titulo" target="_blank" idnoticia="' + noticias[i].url + '"><img class="listanoticia thumbnail border-no" src="/images/noticia/capa/' ;
                                     
                                 } else {
                                     
@@ -80,7 +80,7 @@ $(window).scroll(function () {
 
                                     html += noticias[i]._id;
 
-                                    html += '" alt="<%= noticias[i].url %>"" class=" listanoticia thumbnail "></figure>';
+                                    html += '" alt="<%= noticias[i].url %>"" class=" listanoticia thumbnail border-no "></figure>';
 
                                     html += '<small><center>' + noticias[i].titulo.substr(0, 60) + '</small></center>';
 
