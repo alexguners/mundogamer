@@ -40,7 +40,7 @@
         <!-- Container --> 
         <div class="container">   
 
-          <div class="col-sm-12 col-md-12">
+          <div class="col-sm-6 col-md-6">
             <div class="signin">
                 <div class="social_sign">
                   <h3>Faça seu login com suas redes sociais</h3>
@@ -62,46 +62,42 @@
                           <form id="login" action="/mg-admin/login" method="post">
                               <input class="formcontrol-login" type="text" name="email" id="email" placeholder="Digite seu e-mail">
                               <input class="formcontrol-login"type="password" name="password" id="password" placeholder="Senha"><br>
-                              <input type="checkbox" name="signin"/><small> Permanecer conectado</small>
-                              <div class="forgot">
+<!--                          <input type="checkbox" name="signin"/><small> Permanecer conectado</small>
+ -->                          <div class="forgot">
                                 <a href="#" class="recoverypassword">Esqueceu sua senha?</a>
                               </div>
-                              <button name="submit" class="btn btn-primary btn-lg">Acessar</button>
+                              <button name="submit" class="btn btn-primary btn-lg">Acessar Administrativo</button>
                           </form>
                       </div>
-                      <div class="col-lg-2"></div>
                   </div>
             </div>
           </div>
 
-          <!-- <div class="col-sm-6 col-md-6">
-            <div class="signup">
+          <div class="col-sm-6 col-md-6">
+            <div class="signin">
               <form>
                 <fieldset>
                   <div class="social_sign">
                       <h3>Ainda não possui cadastro?</h3>
                       <a><i class="fa fa-user"></i></a>
                   </div>
-                                    <div class="or">
-                      <div class="or_l"></div>
-                      
-                      <div class="or_r"></div>
-                  </div> 
                   <p class="sign_title">Faça já o seu cadastro no Mundo Gamer!</p>
                   <div class="row">
                     <div class="col-lg-2"></div>
                       <div class="col-lg-8">
-                        <input id="Email address" name="Email address" placeholder="Email" class="form-control" required="" type="text">
-                        <input id="Password" name="Password" placeholder="Senha" class="form-control" required="" type="password">
-                        <input name="checkbox" type="checkbox"><small> Eu aceito os<a href="#"> termos e condições</a></small>
+                        <input id="usename" name="email" placeholder="Nome do usuário" class="formcontrol-login" required="" type="text">
+                        <input id="Email address" name="Email address" placeholder="Email" class="formcontrol-login" required="" type="text">
+                        <input id="Password" name="Password" placeholder="Senha" class="formcontrol-login" required="" type="password">
+                        <div class="forgot">
+                          <input name="checkbox" type="checkbox"><a href="#" class="terms"> Eu aceito os <u>termos e condições</u></a>
+                        </div>
                       </div>
-                      <div class="col-lg-2"></div>
+                        <button type="submit" class="btn btn-danger btn-lg">Criar conta</button>   
                   </div>
-                      <button type="submit" class="btn btn-success btn-lg">Criar conta</button>
                 </fieldset>
               </form>
             </div>
-          </div> -->
+          </div>
 
         </div>  <!-- /.Container -->  
 

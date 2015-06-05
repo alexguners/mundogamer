@@ -54,7 +54,7 @@
                             <td class="center">Nome Jogo</td>
                             <td class="center"><%= noticias[i].parceiro %></td>
                             <td class="center"><% if (typeof noticias[i].clicks == 'undefined') {%>Nenhum clique <% }else{  %> <%= noticias[i].clicks %> Cliques<%}%><br>
-                            <% if (typeof noticias[i].views == 'undefined') {%>Nenhuma<% }else{  %> <%= noticias[i].views %> Visualizações<%}%></td>
+                            <% if (typeof noticias[i].views == 'undefined') {%>0 Visualizações<% }else{  %> <%= noticias[i].views %> Visualizações<%}%></td>
 
                             <td class="center">
                               <% if (typeof noticias[i].tipo !== 'undefined'){ %>

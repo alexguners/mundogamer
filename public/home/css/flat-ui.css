@@ -5171,6 +5171,24 @@ text-decoration: none;
 font-size: 14px;
 }
 
+.reporterro {
+font-family: "Fjalla One",sans-serif;
+color: #999;
+margin-right: 10px;
+font-size: 14px;
+display: inline;
+font-weight: bold;
+text-decoration: none;
+font-size: 14px;
+}
+
+.reporterro a {
+  color: #34495e;
+  cursor: pointer;
+
+
+}
+
 .sidebar-left {
   width: inherit;
   min-width: 75px;
@@ -5326,10 +5344,17 @@ width:100%;
 }
 
 .recoverypassword {
-color: #ffffff;
+color: #999;
 font-weight: bold;
 cursor: pointer;
 text-decoration: underline;
+
+}
+
+.terms {
+color: #999;
+font-weight: bold;
+cursor: pointer;
 
 }
 .or {
