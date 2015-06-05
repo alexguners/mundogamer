@@ -190,7 +190,13 @@ module.exports = function(passport) {
                         newUser.local.email = json.email;
                         newUser.facebook.username = profile.username;
                         newUser.facebook.profileUrl = profile.profileUrl;
-                        newUser.facebook.gender = json.gender;
+                        if (typeof json.gender === 'male') {
+                      
+                          newUser.facebook.gender = 'Masculino';
+                        } else {
+                          newUser.facebook.gender = 'Feminino';
+                        }
+
                         newUser.facebook.locale = json.locale;
                         newUser.facebook.birthday = json.birthday;
                         newUser.facebook.photos = profile.photos;

@@ -2027,7 +2027,7 @@ exports.editarNoticia = function(req, res) {
             subtitle: "Edite os dados de sua publicação",
             message: req.flash('loginMessage')
           });
-      });
+      }).populate('_criador');
   }
 };
 
