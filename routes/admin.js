@@ -831,7 +831,7 @@ exports.editarPersonagem = function(req, res) {
             subtitle: "Edite os dados do personagem",
             message: req.flash('loginMessage')
           });
-      });
+      }).populate('_criador');
   }
 };
 
@@ -1161,7 +1161,7 @@ exports.editarJogo = function(req, res) {
             subtitle: "Edite os dados do jogo",
             message: req.flash('loginMessage')
           });
-      });
+      }).populate('_criador');
   }
 };
 
@@ -1490,7 +1490,7 @@ exports.editarPlataforma = function(req, res) {
             subtitle: "Edite os dados da plataforma",
             message: req.flash('loginMessage')
           });
-      });
+      }).populate('_criador');
   }
 };
 
@@ -1804,7 +1804,7 @@ exports.editarParceiro = function(req, res) {
             subtitle: "Edite os dados de seu parceiro",
             message: req.flash('loginMessage')
           });
-      });
+      }).populate('_criador');
   }
 };
 
@@ -1957,7 +1957,7 @@ exports.saveNoticia = function(req, res) {
                               });
 
                               FB.api(
-                                "/{417660025000594}/feed",
+                                "/{}/feed",
                                 "POST",
                                 {
                                     "message": "This is a test message"

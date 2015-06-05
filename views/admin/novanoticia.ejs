@@ -99,20 +99,17 @@
 
           </div>
 
- 
 
-                <!-- Place inside the <head> of your HTML -->
+          <!-- Place inside the <head> of your HTML -->
   
     <script src="/editor/ckeditor.js"></script>
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> 
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js"></script>
-    <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
-    </script>
+    <script type="text/javascript" src="/admin/js/jquery.min.js"></script> 
+    <script type="text/javascript" src="/admin/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="/admin/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/admin/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="/admin/js/bootstrap-datetimepicker.pt-BR.js"></script>
     <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
-
-  <script type="text/javascript">
+    <script type="text/javascript">
 
     $('#typeahead').typeahead({
           source: function (query, process) {
@@ -187,6 +184,24 @@
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
       ga('create', 'UA-45182358-1', 'mundogamer.com.br');
       ga('send', 'pageview');
+
+            //SDK do Facebook
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '625583237494479',
+          xfbml      : true,
+          version    : 'v2.3'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+
 
 </script>
 <% include admin-footer %> 
