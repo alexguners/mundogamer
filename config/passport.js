@@ -185,16 +185,28 @@ module.exports = function(passport) {
                         newUser.local.credits = '10';
                         newUser.local.created_at = new Date();
                         newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
-                        newUser.facebook.email = json.email;
+                        if (typeof json.email === 'undefined') {
+                      
+                          newUser.facebook.email = 'Não preenchido';
+                        } else {
+                          newUser.facebook.email = json.email;
+                        }
                         newUser.local.nome  = profile.name.givenName + ' ' + profile.name.familyName;
-                        newUser.local.email = json.email;
+                        if (typeof json.email === 'undefined') {
+                      
+                          newUser.local.email = 'Não preenchido';
+                        } else {
+                          newUser.local.email = json.email;
+                        }
                         newUser.facebook.username = profile.username;
                         newUser.facebook.profileUrl = profile.profileUrl;
-                        if (typeof json.gender === 'male') {
+                        if (typeof json.gender === 'undefined') {
                       
-                          newUser.facebook.gender = 'Masculino';
-                        } else {
+                          newUser.facebook.gender = 'Não preenchido'
+                        } else if (json.gender === 'female') {
                           newUser.facebook.gender = 'Feminino';
+                        } else if (json.gender === 'male') {
+                          newUser.facebook.gender = 'Masculino';
                         }
 
                         newUser.facebook.locale = json.locale;

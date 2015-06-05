@@ -81,15 +81,25 @@
                     <div class="alert alert-info" role="alert">
                       <small>Publicado por<strong> <%= noticia._criador.local.nome %></strong></small>
                     </div><!--alert-->
-                    <img src='https://graph.facebook.com/<%=noticia._criador.facebook.id%>/picture?type=normal' alt='Imagem de perfil'/>
-                    <ul>
-                      <li>E-mail: <%= noticia._criador.local.email %></li>
-                      <li>Mora em: <%= noticia._criador.facebook.location %></li>
-                      <li>Cadastrado <% var d = new Date(noticia._criador.local.created_at); 
-                        %>no dia <%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/'  + d.getFullYear() %> às <%= ('0' + (d.getHours())).slice(-2) + ':' + ('0' + (d.getMinutes())).slice(-2) %></li>
-                      <li>Número de publicações:</li>
-                      <a href="" class="btn btn-primary btn-rounded">Enviar Mensagem</a>
+                    <ul class="media-list">
+                      <li class="media">
+                        <div class="pull-left">
+                          <img src='https://graph.facebook.com/<%=noticia._criador.facebook.id%>/picture?type=normal' alt='Imagem de perfil'/>
+                        </div>
+                        <div class="media-body">
+                          <small>
+                            E-mail: <%= noticia._criador.local.email %><br>
+                            Mora em: <%= noticia._criador.facebook.location %><br>
+                            Cadastrado <% var d = new Date(noticia._criador.local.created_at); 
+                              %>no dia <%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/'  + d.getFullYear() %> às <%= ('0' + (d.getHours())).slice(-2) + ':' + ('0' + (d.getMinutes())).slice(-2) %><br>
+                            Créditos disponíveis: <%= noticia._criador.local.credits %><br>
+                            Total de publicações:<br>
+                          </small>
+                          <center><a href="" class="btn btn-primary btn-rounded">Enviar Mensagem</a></center>
+                        </div>
+                      </li>
                     </ul>
+                      <br>
                 <%}%>
              <%}%>   
               <ins class="adsbygoogle"

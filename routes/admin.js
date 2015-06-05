@@ -1955,6 +1955,19 @@ exports.saveNoticia = function(req, res) {
                                 subtitle: "Cadastre sua notícia no Mundo Gamer",
                                 message:"Notícia cadastrada com sucesso"
                               });
+
+                              FB.api(
+                                "/{417660025000594}/feed",
+                                "POST",
+                                {
+                                    "message": "This is a test message"
+                                },
+                                function (response) {
+                                  if (response && !response.error) {
+                                    /* handle the result */
+                                  }
+                                }
+                            );
                             }  
               });
 
@@ -2196,7 +2209,7 @@ exports.editarAnalise = function(req, res) {
             subtitle: "Edite os dados de sua análise",
             message: req.flash('loginMessage')
           });
-      });
+      }).populate('_criador');
   }
 };
 
@@ -2374,7 +2387,7 @@ exports.editarVideo = function(req, res) {
             subtitle: "Edite os dados do vídeo cadastrado",
             message: req.flash('loginMessage')
           });
-      });
+      }).populate('_criador');
   }
 };
 
