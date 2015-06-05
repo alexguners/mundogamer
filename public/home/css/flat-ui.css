@@ -5459,8 +5459,7 @@ box-shadow: 0 1px 0 rgba(255,255,255,0.1),1px 1px 0 #000 inset;
 .listanoticia{
 height:auto; 
 width: 100%;
-padding-top: 0px;
-padding-left: 0px;
+
 max-height: 200px;
 overflow:auto;
 }
@@ -5475,5 +5474,14 @@ padding-top: 0px;
 .botoescompartilhamento{
 float: right;
 }
+
+.media-list{
+  margin-top: 4%;
+
+}
+
+
+
+
 
 

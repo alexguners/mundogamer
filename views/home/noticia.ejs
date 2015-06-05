@@ -163,12 +163,12 @@
           for (var i = 0; i < noticiasAutor.length; i++){ %>
                 <li class="media">
                 <a class="pull-left" href="/noticia/<%=noticiasAutor[i].url%>">
-                  <img class="media-object" src="/images/noticia/capa/<%=noticiasAutor[i]._id%>" height="100px" width:"150px">
+                  <img class="media-object thumbnail" src="/images/noticia/capa/<%=noticiasAutor[i]._id%>" height="100px" width:"150px">
                 </a>
                 <div class="media-body">
                   <a href="/noticia/<%=noticiasAutor[i].url%>">
                     <quote><%=noticiasAutor[i].titulo%><quote><br>
-                    <quote><%=noticiasAutor[i].descricao.toString().replace(/<.*?>/g, '').substr(0,90) %>...(Ler Mais)<quote>
+                    <quote><%=noticiasAutor[i].descricao.toString().replace(/<.*?>/g, '').substr(0,90) %>... <br /><div style='margin-top:1%' class="btn btn-primary">Leia Mais</div><quote>
                     </a>
                 </div>
               </li>
