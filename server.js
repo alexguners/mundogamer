@@ -162,7 +162,7 @@ var MundoGamerApp = function() {
 
         self.app.get('/mg-admin', admin.isLoggedIn, admin.index);
 
-        self.app.get('/mg-admin/login', admin.login);
+        self.app.get('/mg-admin/login', admin.isLoggedIn, admin.login);
 
         self.app.get('/mg-admin/editarnoticia/:id?', admin.isLoggedIn, admin.editarNoticia);
 
@@ -311,6 +311,18 @@ var MundoGamerApp = function() {
                         successRedirect : '/mg-admin',
                         failureRedirect : '/login'
         }));
+
+        self.app.get('/auth/twitter',   passport.authenticate('twitter'));
+
+        self.app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/login' }),  function(req, res) {
+        // Successful authentication, redirect home.
+        res.redirect('/mg-admin'); });
+
+        self.app.get('/auth/google', passport.authenticate('google', { scope: 'https://www.googleapis.com/auth/plus.login' }));
+
+        self.app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
+        // Successful authentication, redirect home.
+        res.redirect('/mg-admin'); });
     };
 
 

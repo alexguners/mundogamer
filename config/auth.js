@@ -7,15 +7,15 @@ module.exports = {
 	},
 
 	'twitterAuth' : {
-		'consumerKey' 		: 'your-consumer-key-here',
-		'consumerSecret' 	: 'your-client-secret-here',
-		'callbackURL' 		: 'http://mundogamer.com.br/auth/twitter/callback'
+		'consumerKey' 		: '9QzLuMRoeuestsAQlqRzqBtmk',
+		'consumerSecret' 	: 'kJDYa2KsXF3S0Ma3mNB5u3SLNT76MqnIZKYxfScNpYR0Zfilp8',
+		'callbackURL' 		: 'http://localhost:8080/auth/twitter/callback'
 	},
 
 	'googleAuth' : {
-		'clientID' 		: 'your-secret-clientID-here',
-		'clientSecret' 	: 'your-client-secret-here',
-		'callbackURL' 	: 'http://mundogamer.com.br/auth/google/callback'
+		'clientID' 		: '457004440467-6ahiue857iom4p2ldvol3cjju84892m1.apps.googleusercontent.com',
+		'clientSecret' 	: 'a1Q3dQwQjE1XoG5xADaDE8xC',
+		'callbackURL' 	: 'http://localhost:8080/auth/google/callback'
 	}
 
 };

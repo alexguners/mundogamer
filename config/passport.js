@@ -4,6 +4,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy  = require('passport-twitter').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
 
+
 // load up the user model
 var User       = require('../models/user');
 
@@ -151,7 +152,7 @@ module.exports = function(passport) {
                             var json = profile._json;
 
                             user.facebook.token = token;
-                                user.local.origin = 'Facebook';
+                            user.local.origin = 'Facebook';
                             user.local.tipo = 'Colaborador';
                             user.local.created_at = new Date();
                             user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
@@ -289,6 +290,9 @@ module.exports = function(passport) {
                             user.twitter.token       = token;
                             user.twitter.username    = profile.username;
                             user.twitter.displayName = profile.displayName;
+                            user.local.nome = profile.displayName;
+                            user.local.origin = 'Twitter';
+                            user.local.tipo = 'Colaborador';
 
                             user.save(function(err) {
                                 if (err)
@@ -306,6 +310,11 @@ module.exports = function(passport) {
                         newUser.twitter.token       = token;
                         newUser.twitter.username    = profile.username;
                         newUser.twitter.displayName = profile.displayName;
+                        newUser.local.nome =  profile.displayName;
+                        newUser.local.origin = 'Twitter';
+                        newUser.local.tipo = 'Colaborador';
+                        newUser.local.created_at = new Date();
+                        newUser.local.credits = '10';
 
                         newUser.save(function(err) {
                             if (err)
@@ -380,7 +389,12 @@ module.exports = function(passport) {
                         newUser.google.id    = profile.id;
                         newUser.google.token = token;
                         newUser.google.name  = profile.displayName;
-                        newUser.google.email = profile.emails[0].value; // pull the first email
+                        newUser.google.email = profile.emails[0].value;
+                        newUser.local.email = profile.emails[0].value; // pull the first email
+                        newUser.local.nome =  profile.displayName;
+                        newUser.local.origin = 'Google';
+                        newUser.local.tipo = 'Colaborador';
+                        newUser.local.credits = '10';
 
                         newUser.save(function(err) {
                             if (err)
@@ -388,6 +402,8 @@ module.exports = function(passport) {
                             return done(null, newUser);
                         });
                     }
+
+
                 });
 
             } else {
