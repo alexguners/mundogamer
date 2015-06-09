@@ -11,6 +11,15 @@ exports.sitemap = function(req, res) {
         });
 };
 
+exports.ajuda = function(req, res) {  
+  res.render('admin/ajuda',{
+          user : req.user,
+          title: "Central de Suporte Mundo Gamer",
+          subtitle: "Está com dificuldades? Entre em contato com nossa equipe!",
+          message:""
+        });
+};
+
 exports.novoJogo = function(req, res) {  
   res.render('admin/cadastrarjogo',{
           user : req.user,
@@ -1956,18 +1965,18 @@ exports.saveNoticia = function(req, res) {
                                 message:"Notícia cadastrada com sucesso"
                               });
 
-                              FB.api(
-                                "/{}/feed",
-                                "POST",
-                                {
-                                    "message": "This is a test message"
-                                },
-                                function (response) {
-                                  if (response && !response.error) {
-                                    /* handle the result */
-                                  }
-                                }
-                            );
+                            //   FB.api(
+                            //     "/{}/feed",
+                            //     "POST",
+                            //     {
+                            //         "message": "This is a test message"
+                            //     },
+                            //     function (response) {
+                            //       if (response && !response.error) {
+                            //         /* handle the result */
+                            //       }
+                            //     }
+                            // );
                             }  
               });
 

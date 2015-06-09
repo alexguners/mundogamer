@@ -110,7 +110,7 @@
               <%}%>
             <%}%><br>
 
-            <center><div class="reporterro">Encontrou algum erro ou gostaria de dar uma sugestão de melhoria? Colabore com o autor <u><a>clicando aqui!</a></u> </div></center>
+            <center><div class="reporterro">Encontrou algum erro ou gostaria de dar uma sugestão de melhoria? Colabore com o autor <u><a data-toggle="modal" href="#form-content" >clicando aqui!</a></u> </div></center>
             
             <!-- Comentários pelo Facebook -->
             <center><div class="fb-comments" data-href="http://mundogamer.com.br/noticia/<%- noticia.id %>" data-width="100%" data-numposts="10" data-colorscheme="light"></div></center> 
@@ -143,6 +143,29 @@
                       <%} %>
              </div>
           </div>
+          <!-- Popup de contato -->
+          <div id="form-content" class="modal hide fade in" style="display: none;">
+              <div class="modal-header">
+                  <a class="close" data-dismiss="modal">×</a>
+                  <h3>Send me a message</h3>
+              </div>
+              <div class="modal-body">
+                  <form class="contact" name="contact">
+                      <label class="label" for="name">Your Name</label><br>
+                      <input type="text" name="name" class="input-xlarge"><br>
+                      <label class="label" for="email">Your E-mail</label><br>
+                      <input type="email" name="email" class="input-xlarge"><br>
+                      <label class="label" for="message">Enter a Message</label><br>
+                      <textarea name="message" class="input-xlarge"></textarea>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <input class="btn btn-success" type="submit" value="Send!" id="submit">
+                  <a href="#" class="btn" data-dismiss="modal">Nah.</a>
+              </div>
+          </div>
+          <!-- Popup de contato -->
+
           <div class="palette palette-midnight-blue">  
 
             <div class="media">
@@ -242,6 +265,8 @@
                             <figure><a href="http://www.xnerd.com.br" target="_blank"><img align="center"src="/images/wikigamer/parceiros/logos/55490a56f088dc000060ed8c" alt="Conheça o X-Nerd" ></a></figure>
                           <%} if ( (noticia.parceiro !== 'undefined') && (noticia.parceiro == 'GlobalGames') ) { %> 
                             <figure><a href="http://www.globalgames.com.br" target="_blank"><img align="center"src="/images/wikigamer/parceiros/logos/554cb78d6e8cfd0000f7074f" alt="Conheça a Global Games" ></a></figure>
+                          <%} if ( (noticia.parceiro !== 'undefined') && (noticia.parceiro == 'Action & Comics') ) { %>
+                            <figure><a href="http://www.actionsecomics.com.br" target="_blank"><img align="center"src="/images/wikigamer/parceiros/logos/5574e1695b107e0000c9072b" alt="Conheça o Action & Comics"  ></a></figure>
                             <%}%> 
                             <%} else{ %>
                              <figure><a href="http://www.mundogamer.com.br" target="_blank"><img align="center"src="/images/wikigamer/parceiros/logos/5449f06dbfb99d000082927f" alt="Conheça o Mundo Gamer" ></a></figure>
@@ -274,6 +299,24 @@
         <script src="/home/js/jquery.slimscroll.js"></script>
         <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
         <script type="text/javascript">
+
+                $(document).ready(function () {
+            $("input#submit").click(function(){
+                $.ajax({
+                    type: "POST",
+                    url: "process.php", //process to mail
+                    data: $('form.contact').serialize(),
+                    success: function(msg){
+                        $("#thanks").html(msg) //hide button and show thank you
+                        $("#form-content").modal('hide'); //hide popup  
+                    },
+                    error: function(){
+                        alert("failure");
+                    }
+                });
+            });
+        });
+
 
             /* Barra de rolagem das notícias do sidebar */
             $(function(){
@@ -356,7 +399,6 @@
                 success: function() {}
               });
          });
-
 
           /*ComentáriosFacebook */
           (function(d, s, id) {

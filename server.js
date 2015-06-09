@@ -178,6 +178,8 @@ var MundoGamerApp = function() {
 
         self.app.get('/mg-admin/sitemap',  admin.isLoggedIn, admin.sitemap);
 
+        self.app.get('/mg-admin/ajuda',  admin.isLoggedIn, admin.ajuda);
+
         self.app.get('/mg-admin/users/add',  admin.isLoggedIn, admin.signup);
 
         self.app.get('/mg-admin/users/edit/:id',  admin.isLoggedIn, admin.editUser);

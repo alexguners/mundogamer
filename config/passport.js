@@ -3,7 +3,7 @@ var LocalStrategy    = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy  = require('passport-twitter').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
-
+var mandrill = require('node-mandrill')('QJzH7Z2JFHX4FaRyR4dbFQ');
 
 // load up the user model
 var User       = require('../models/user');
@@ -220,13 +220,32 @@ module.exports = function(passport) {
                         } else {
                           newUser.facebook.location = json.location.name;
                         }
-                            
+                    
+                        //
+                        //send an e-mail to jim rubenstein
+                        mandrill('/messages/send', {
+                            message: {
+                                to: [{email: 'noreply@mundogamer.com.br', name: 'Mundo Gamer'}],
+                                from_email: 'newUser.local.email',
+                                subject: "newUser.local.nome Seja bem vindo ao Mundo Gamer",
+                                text: "Hello, I sent this message using mandrill."
+                            }
+                        }, function(error, response)
+                        {
+                            //uh oh, there was an error
+                            if (error) console.log( JSON.stringify(error) );
+
+                            //everything's good, lets see what mandrill said
+                            else console.log(response);
+                        });
+                        //
 
                         newUser.save(function(err) {
                             if (err)
                                 throw err;
                             return done(null, newUser);
                         });
+
 
                     }
                 });
@@ -315,6 +334,25 @@ module.exports = function(passport) {
                         newUser.local.tipo = 'Colaborador';
                         newUser.local.created_at = new Date();
                         newUser.local.credits = '10';
+
+
+                        //send an e-mail to jim rubenstein
+                        mandrill('/messages/send', {
+                            message: {
+                                to: [{email: 'guinew13@hotmail.com', name: 'Mundo Gamer'}],
+                                from_email: 'Mundo Gamer',
+                                subject:"Seja bem vindo ao Mundo Gamer",
+                                text: "Hello, I sent texthis message using mandrill."
+                            }
+                        }, function(error, response)
+                        {
+                            //uh oh, there was an error
+                            if (error) console.log( JSON.stringify(error) );
+
+                            //everything's good, lets see what mandrill said
+                            else console.log(response);
+                        });
+                        //
 
                         newUser.save(function(err) {
                             if (err)
