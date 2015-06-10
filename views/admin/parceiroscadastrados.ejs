@@ -18,7 +18,7 @@
                         <tr>
                             <th class="head0 nosort"><input type="checkbox" class="checkall" /></th>
                             <th class="head1">Logotipo</th>
-                             <th class="head0">Data de cadastro</th>
+                            <th class="head0">Data de cadastro</th>
                             <th class="head1">Parceiro</th>
                             <th class="head0">E-mail</th>
                             <th class="head1">Categoria</th>
@@ -51,7 +51,7 @@
                             <td class="center"><%= parceiros[i].email_contato %></td>
                             <td class="center"><%= parceiros[i].categoria %></td>
                             <td class="center"></td>
-                            <td class="center"><% if (typeof parceiros[i].views == 'undefined') {%>Nenhuma<% }else{  %> <%= parceiros[i].views %> visualizações<%}%></td>,
+                            <td class="center"><% if (typeof parceiros[i].views == 'undefined') {%>Nenhuma<% }else{  %> <%= parceiros[i].views %> visualizações<%}%></td>
                             <td class="center"><a href="<%= parceiros[i].site %>" target="_blank"><span class="label label-success">Acessar site</span></a></td>
                             <% if (typeof user.local.tipo !== 'undefined'){ %>
                                 <% if (user.local.tipo == 'Administrador'){ %> 
@@ -70,27 +70,27 @@
                 </table>
                     
                 <div class="divider30" ></div> 
-                                        <ul class="list-nostyle list-inline" align="right">
-                                            <li><a href="/mg-admin/cadastrarparceiro" class="btn btn-inverse btn-rounded" > <i class=" iconfa-plus"></i>  &nbsp; Cadastrar parceiro</a></li>
-                                        </ul>
+                    <ul class="list-nostyle list-inline" align="right">
+                        <li><a href="/mg-admin/cadastrarparceiro" class="btn btn-inverse btn-rounded" > <i class=" iconfa-plus"></i>  &nbsp; Cadastrar parceiro</a></li>
+                    </ul>
 
 
-                    </div><!--span4-->
-                </div><!--row-fluid--> 
-<% include admin-footer %> 
-<!-- Script para busca, paginações das notícias -->
-    <script type="text/javascript">
-        jQuery(document).ready(function(){
-            // dynamic table
-            jQuery('#dyntable').dataTable({
-                "sPaginationType": "full_numbers",
-                "aaSortingFixed": [[0,'asc']],
-                "fnDrawCallback": function(oSettings) {
-                    //jQuery.uniform.update();
-                }
+            </div><!--span4-->
+        </div><!--row-fluid--> 
+        <% include admin-footer %> 
+    <!-- Script para busca, paginações das notícias -->
+        <script type="text/javascript">
+            jQuery(document).ready(function(){
+                // dynamic table
+                jQuery('#dyntable').dataTable({
+                    "sPaginationType": "full_numbers",
+                    "aaSortingFixed": [[0,'asc']],
+                    "fnDrawCallback": function(oSettings) {
+                        //jQuery.uniform.update();
+                    }
+                });
+                
             });
-            
-        });
 
-    </script>
+        </script>
 

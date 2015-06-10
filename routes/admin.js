@@ -1007,7 +1007,7 @@ exports.saveJogo = function(req, res) {
                               message:"Atenção!Jogo inserido com erro ao fazer upload da logo."
                           });
                           }else{
-                              fs.remove(files['capa_jogo'].path, function(err){
+                              fs.remove(files['capa_jogo'].path,   function(err){
                                 if (err) return console.error(err);
                               });
 
@@ -2333,11 +2333,6 @@ exports.saveEditarVideo = function(req, res) {
   var NoticiaModel = require('../models/noticias');
   var ObjectId = require('mongoose').Types.ObjectId; 
   if(typeof req.params.id !== 'undefined') {
-             var dataSepareted = req.body.datainicio.split(" ");
-             var date = dataSepareted[0].split("/");
-             var time = dataSepareted[1].split(":");
-             var datainicio = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
-             datainicio.setHours(time[0],time[1],time[2],0);
 
             var title = titleToUrl(req.body.titulo);
 
@@ -2378,6 +2373,8 @@ exports.saveEditarVideo = function(req, res) {
         
   }
 };
+
+
 
 exports.editarVideo = function(req, res) {  
   console.log(req.params.id);

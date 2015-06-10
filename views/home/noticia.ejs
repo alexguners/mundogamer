@@ -89,10 +89,17 @@
           </div><!-- /. descrição do autor e botoes comparilha -->
 
           <!-- descrição da noticia -->
-          <div><p><%- noticia.descricao %></p></div> <!-- /.descrição da noticia -->
-          <!-- /.descrição da noticia -->
+          <div>
+            <p><%- noticia.descricao %></p>
+               <% if (typeof noticia.nome_fonte !== 'undefined'){ %>
+               <% if ( (noticia.nome_fonte !== 'undefined') && (noticia.nome_fonte !== '') ){ %>
+                  <div class="fontetitle">Fonte:</div>
+                  <a target="_blank" class="fontecitada" href="<%- noticia.url_fonte %>"><%- noticia.nome_fonte %> </a> 
+                  <br>
+              <%}%>
+            <%}%>
 
-            <!-- AddToAny BEGIN -->
+                        <!-- AddToAny BEGIN -->
             <div class="a2a_kit a2a_kit_size_32 a2a_default_style botoescompartilhamento">
               <a class="a2a_button_facebook"></a>
               <a class="a2a_button_twitter"></a>
@@ -102,18 +109,49 @@
             </div>
             <!-- AddToAny END -->
 
-            <% if (typeof noticia.nome_fonte !== 'undefined'){ %>
-               <% if ( (noticia.nome_fonte !== 'undefined') && (noticia.nome_fonte !== '') ){ %>
-                  <div class="fontetitle">Fonte:</div>
-                  <a target="_blank" class="fontecitada" href="<%- noticia.url_fonte %>"><%- noticia.nome_fonte %> </a> 
-                  <br>
-              <%}%>
-            <%}%><br>
+              <center>
+              <div class="reporterro">Encontrou algum erro ou gostaria de dar uma sugestão de melhoria?<br> Faça isso <u><a data-toggle="modal" href="#reporterro" >clicando aqui!</a></u> </div>
+              </center>
+            <br>
+          </div> <!-- /.descrição da noticia -->
+          <!-- /.descrição da noticia -->
 
-            <center><div class="reporterro">Encontrou algum erro ou gostaria de dar uma sugestão de melhoria? Colabore com o autor <u><a data-toggle="modal" href="#form-content" >clicando aqui!</a></u> </div></center>
-            
             <!-- Comentários pelo Facebook -->
             <center><div class="fb-comments" data-href="http://mundogamer.com.br/noticia/<%- noticia.id %>" data-width="100%" data-numposts="10" data-colorscheme="light"></div></center> 
+
+
+              <!-- Popup de contato -->
+              <div class="modal fade" id="reporterro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                       <small class="modal-title" id="exampleModalLabel">Envie sua mensagem</small>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          <label for="recipient-name" class="control-label">Nome:</label>
+                          <input type="text" class="form-control" id="recipient-name">
+
+                          <label for="recipient-name" class="control-label">E-mail:</label>
+                          <input type="text" class="form-control" id="recipient-name">
+
+                          <label for="message-text" class="control-label">Mensagem:</label>
+                          <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                      <button type="button" class="btn btn-primary">Enviar Mensagem</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <!-- Popup de contato -->
+            
+
 
 
           <!-- Sobre Autor -->
@@ -143,28 +181,7 @@
                       <%} %>
              </div>
           </div>
-          <!-- Popup de contato -->
-          <div id="form-content" class="modal hide fade in" style="display: none;">
-              <div class="modal-header">
-                  <a class="close" data-dismiss="modal">×</a>
-                  <h3>Send me a message</h3>
-              </div>
-              <div class="modal-body">
-                  <form class="contact" name="contact">
-                      <label class="label" for="name">Your Name</label><br>
-                      <input type="text" name="name" class="input-xlarge"><br>
-                      <label class="label" for="email">Your E-mail</label><br>
-                      <input type="email" name="email" class="input-xlarge"><br>
-                      <label class="label" for="message">Enter a Message</label><br>
-                      <textarea name="message" class="input-xlarge"></textarea>
-                  </form>
-              </div>
-              <div class="modal-footer">
-                  <input class="btn btn-success" type="submit" value="Send!" id="submit">
-                  <a href="#" class="btn" data-dismiss="modal">Nah.</a>
-              </div>
-          </div>
-          <!-- Popup de contato -->
+
 
           <div class="palette palette-midnight-blue">  
 
@@ -300,30 +317,18 @@
         <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
         <script type="text/javascript">
 
-                $(document).ready(function () {
-            $("input#submit").click(function(){
-                $.ajax({
-                    type: "POST",
-                    url: "process.php", //process to mail
-                    data: $('form.contact').serialize(),
-                    success: function(msg){
-                        $("#thanks").html(msg) //hide button and show thank you
-                        $("#form-content").modal('hide'); //hide popup  
-                    },
-                    error: function(){
-                        alert("failure");
-                    }
-                });
-            });
-        });
+          $('#reporterro').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget) // Button that triggered the modal
+          var modal = $(this)
+          modal.find('.modal-title').text('Envie sua mensagem para <%=noticia._criador.local.nome%>')
 
+         });
 
             /* Barra de rolagem das notícias do sidebar */
             $(function(){
             $('#barraderolagem').slimScroll({
                 height: 'auto'
             });
-
           });
 
 
@@ -399,6 +404,7 @@
                 success: function() {}
               });
          });
+
 
           /*ComentáriosFacebook */
           (function(d, s, id) {
