@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<% include admin-header %>   
+ <% if (message) { %>
+        <div class="alert alert-success"><%= message %></div>
+    <% } %>
+          <div class="row-fluid">
+            <div id="dashboard-left" class="span8">
+	 					 <div class="panel panel-primary">  
+
+						    <div class="panel-body">
+  						    <form id="LoginForm" role="form" class="form-horizontal" enctype="multipart/form-data" autocomplete="off"  method="post">
+
+                    <!-- Imagem de capa da notícia -->
+                    <center>
+                      <div class="par">
+                          <label>Logomarca do evento (Tamanho recomendado 300x200 pixels até 100k)</label>
+                          <div class="fileupload fileupload-new" data-provides="fileupload">
+                            <div class="fileupload-preview thumbnail" style="width: 300px; height: 200px;"></div>
+                            <div class="input-append">
+                                <div class="uneditable-input span3">
+                                  <i class="iconfa-file fileupload-exists"></i>
+                                  <span class="fileupload-preview"></span>
+                                </div>
+                                <span class="btn btn-file"><span class="fileupload-new">Selecione uma imagem</span>
+                                <span class="fileupload-exists">Alterar</span>
+                                <input type="file" accept="image/*" class="form-control" id="imagem" name="imagem" required="required" /> 
+                                <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a></span>
+                            </div>
+                          </div>
+                     </div>                                         
+                    </center> 
+                    <!-- Fim da Imagem de capa da notícia -->
+
+                    <!-- Título da Notícia -->
+                      <label for="nome_evento">Cadastre nome do evento</label>
+                      <input type="text" class="input-block-level" id="nome_evento" name="nome_evento" title=' Preencha o campo Nome do Evento' placeholder="Digite o nome do evento" required required="required" />
+                    <!-- Fim Título da Notícia -->
+
+
+                     <!-- Parceiro da publicação-->
+                      <label>Selecione as empresas que vão estar presentes no evento</label>
+                     <!--  <input type="text" data-provide="typeahead" title=' Preencha o campo parceiro' required id="typeahead" required="required" name=""> -->
+                    <!-- Fim do Parceiro da publicação --> 
+
+                    <!-- Editor de texto da notícia-->
+                      <label><h4 class="widgettitle">Cadastre a descrição de seu evento</h4></label>                    
+                      <textarea  class="ckeditor" name="editor1" id="editor1"></textarea>
+                    <!-- Fim do  Editor de texto da notícia-->
+
+
+                    <!-- Botão de Publicar notícia-->
+    						      <center><button id="SubmitBtn" name="SubmitBtn" type="submit" class="btn btn-large btn-inverse">Cadastrar Cobertura</button></center>
+                    <!-- Fim do Botão de Publicar notícia-->
+  						    </form>
+						    </div>
+						  </div>                         
+            </div>
+
+<!--             <div class="span4">
+              <center>
+                <div class="fb-page" data-href="https://www.facebook.com/brasilmundogamer" data-width="300" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/brasilmundogamer"><a href="https://www.facebook.com/brasilmundogamer">Mundo Gamer</a></blockquote></div></div>
+
+                  <script type="text/javascript">
+                    bb_bid = "1702693";
+                    bb_lang = "pt-BR";
+                    bb_name = "custom";
+                    bb_limit = "4";
+                    bb_format = "bbm";
+                  </script>
+                  <script type="text/javascript" src="http://static.boo-box.com/javascripts/embed.js"></script>
+              </center> 
+            </div> 
+ -->
+          </div>
+
+
+          <!-- Place inside the <head> of your HTML -->
+  
+    <script src="/editor/ckeditor.js"></script>
+    <script type="text/javascript" src="/admin/js/jquery.min.js"></script> 
+    <script type="text/javascript" src="/admin/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="/admin/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/admin/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="/admin/js/bootstrap-datetimepicker.pt-BR.js"></script>
+    <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+    <script type="text/javascript">
+
+
+      $(document).ready(function () {
+      var titulo = $("#nome_evento");
+      var LoginForm = $('#LoginForm');
+      var SubmitBtn = $('#SubmitBtn');
+   
+      LoginForm.validate();
+   
+      titulo.rules("add", {
+        required: true,
+        messages: {
+          required: "Titulo é obrigatório."
+        }
+      });
+   
+      $('#LoginForm').submit(function () {
+        if ($(this).valid()) {
+          $('#SubmitBtn').prop('disabled', true);
+          return true;
+        }
+        return false;
+      });
+   
+    });
+
+      //Código da aba de curtir fã page
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.3&appId=625583237494479";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+          /*Código de Análise do Google Analitics*/
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-45182358-1', 'mundogamer.com.br');
+      ga('send', 'pageview');
+
+</script>
+<% include admin-footer %> 

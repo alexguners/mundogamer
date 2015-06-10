@@ -148,6 +148,15 @@ var MundoGamerApp = function() {
         self.app.post('/personagens/views', routes.countViewsPersonagens);
 
 
+        self.app.get('/coberturas', routes.coberturas);
+
+        self.app.get('/wikigamer/coberturas', routes.coberturas);
+
+        self.app.get('/coberturas/:id?', routes.cobertura);
+
+        self.app.post('/coberturas/views', routes.countViewsCoberturas);
+
+
         self.app.get('/wikigamer', routes.wikigamer);
 
 
@@ -283,6 +292,8 @@ var MundoGamerApp = function() {
         self.app.post('/mg-admin/editaranalise/:id?', admin.isLoggedIn, admin.saveEditarAnalise);
 
 
+        //notícias
+
         self.app.get('/mg-admin/novanoticia', admin.isLoggedIn, admin.novaNoticia);
 
         self.app.post('/mg-admin/novanoticia', admin.isLoggedIn, admin.saveNoticia);
@@ -294,6 +305,20 @@ var MundoGamerApp = function() {
         self.app.get('/mg-admin/editarvideo/:id?', admin.isLoggedIn, admin.editarVideo);
 
         self.app.post('/mg-admin/editarvideo/:id?', admin.isLoggedIn, admin.saveEditarVideo);   
+
+         //Coberturas de eventos
+
+        self.app.get('/mg-admin/cadastrarcobertura', admin.isLoggedIn, admin.novaCobertura);
+
+        self.app.post('/mg-admin/cadastrarcobertura', admin.isLoggedIn, admin.saveCobertura);
+
+        self.app.get('/mg-admin/editarcobertura/:id?', admin.isLoggedIn, admin.editarCobertura);
+
+        self.app.post('/mg-admin/editarcobertura/:id?', admin.isLoggedIn, admin.saveEditarCobertura);
+
+        self.app.get('/mg-admin/coberturascadastradas', admin.isLoggedIn, admin.coberturasCadastradas);
+
+
 
         self.app.get('/mg-admin/loadparceiros/:nome?', admin.isLoggedIn, admin.loadParceiros); 
 
