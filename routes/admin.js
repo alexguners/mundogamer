@@ -949,7 +949,7 @@ exports.saveJogo = function(req, res) {
              var dataSepareted = fieldsArray['data_lancamento'].split(" ");
              var date = dataSepareted[0].split("/");
              // var time = dataSepareted[1].split(":");
-             var data_lancamento = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
+             var data_lancamento = new Date(date[2]+ "." + date[1]+ "." + date[0]);
             //  data_lancamento.setHours(time[0],time[1],time[2],0);
 
             // dataSepareted = fieldsArray['datafinal'].split(" ");
@@ -1084,46 +1084,6 @@ exports.saveJogo = function(req, res) {
                                                             message:"Atenção!Jogo inserido com sucesso."
                                                             });
 
-                                                  //  im.crop({
-                                                  //   srcPath: files['jogo_banner02'].path,
-                                                  //   dstPath: saveToBanner + "02",
-                                                  //   width:   200,
-                                                  //   height:  250,
-                                                  //   strip: true
-                                                  // }, function(err, stdout, stderr){
-                                                  //     if (err){
-                                                  //        console.error(err);
-                                                  //         fs.remove(files['jogo_banner02'].path, function(err){
-                                                  //           if (err) return console.error(err);
-                                                  //         });
-                                                  //         fs.remove(saveTo, function(err){
-                                                  //           if (err) return console.error(err);
-                                                  //         });
-                                                  //         fs.remove(saveToBanner + "01", function(err){
-                                                  //           if (err) return console.error(err);
-                                                  //         });
-                                                  //         fs.remove(saveToBanner + "02", function(err){
-                                                  //           if (err) return console.error(err);
-                                                  //         });
-                                                  //           res.render('admin/cadastrarjogo',{
-                                                  //           user : req.user,
-                                                  //           title: "Cadastre um novo jogo",
-                                                  //           subtitle: "Cadastre um novo jogo no Mundo Gamer",
-                                                  //           message:"Atenção!Jogo inserido com erro ao fazer upload da logo."
-                                                  //       });
-                                                  //       }else{
-                                                  //           fs.remove(files['jogo_banner02'].path, function(err){
-                                                  //             if (err) return console.error(err);
-                                                  //           });
-
-                                                  //           res.render('admin/cadastrarjogo',{
-                                                  //           user : req.user,
-                                                  //           title: "Cadastre um novo jogo",
-                                                  //           subtitle: "Cadastre um novo jogo no Mundo Gamer",
-                                                  //           message:"Atenção!Jogo inserido com sucesso."
-                                                  //           });
-                                                  //         }  
-                                                  // });
                                                 }  
                                         });
                                       }  
