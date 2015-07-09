@@ -1592,6 +1592,7 @@ exports.saveParceiro = function(req, res) {
             var parceiro_data = {
               _id                : obid,
               nome_parceiro      : fieldsArray['nome_parceiro'],
+              nome_responsavel     : fieldsArray['nome_responsavel'],
               email_contato      : fieldsArray['email_contato'],
               data_cadastro      : data_cadastro,
               url                : title,
@@ -1798,6 +1799,7 @@ exports.saveEditarParceiro = function(req, res) {
             ParceiroModel.findByIdAndUpdate({_id: new ObjectId(req.params.id)},{ $set: {
 
             nome_parceiro        : req.body.nome_parceiro,
+            nome_responsavel     : req.body.nome_responsavel,
             email_contato        : req.body.email_contato, 
             url                  : title,
             categoria            : req.body.categoria,

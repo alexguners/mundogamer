@@ -43,34 +43,34 @@
         <!-- Coluna da noticias -->
         <div class="col-md-9">
           <center>
-                 <!-- MundoGamer Blog -->
-                 <script type="text/javascript">  
-                     google_ad_client = "ca-pub-0061672681197040";  
-                     google_ad_slot = "";  
-                     if(window.innerWidth >= 800) {  
-                      //visible-desktop  
-                      //Medium Rectangle  
-                      google_ad_slot = "2984023486";  
-                      google_ad_width = 728;  
-                      google_ad_height = 90;  
-                     }  
-                     else if((window.innerWidth > 480)&&(window.innerWidth < 800)) {  
-                      //visible-tablet  
-                      //Square  
-                      google_ad_slot = "6709861485";  
-                      google_ad_width = 320;  
-                      google_ad_height = 100;  
-                     }  
-                     else if(window.innerWidth <= 480) {  
-                      //visible-phone  
-                      //Large Rectangle  
-                      google_ad_slot = "6709861485";  
-                      google_ad_width = 320;  
-                      google_ad_height = 100;  
-                     }  
-                     if(google_ad_slot != "")  
-                      document.write(' <scr'+'ipt type=\"text/javascript\" src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\"></scri'+'pt>');  
-                  </script>  
+               <!-- MundoGamer Blog -->
+               <script type="text/javascript">  
+                   google_ad_client = "ca-pub-0061672681197040";  
+                   google_ad_slot = "";  
+                   if(window.innerWidth >= 800) {  
+                    //visible-desktop  
+                    //Medium Rectangle  
+                    google_ad_slot = "2984023486";  
+                    google_ad_width = 728;  
+                    google_ad_height = 90;  
+                   }  
+                   else if((window.innerWidth > 480)&&(window.innerWidth < 800)) {  
+                    //visible-tablet  
+                    //Square  
+                    google_ad_slot = "6709861485";  
+                    google_ad_width = 320;  
+                    google_ad_height = 100;  
+                   }  
+                   else if(window.innerWidth <= 480) {  
+                    //visible-phone  
+                    //Large Rectangle  
+                    google_ad_slot = "6709861485";  
+                    google_ad_width = 320;  
+                    google_ad_height = 100;  
+                   }  
+                   if(google_ad_slot != "")  
+                    document.write(' <scr'+'ipt type=\"text/javascript\" src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\"></scri'+'pt>');  
+                </script>  
           </center>   
 
             <!-- Titulo da noticias -->
@@ -203,7 +203,7 @@
           for (var i = 0; i < noticiasAutor.length; i++){ %>
                 <li class="media">
                 <a class="pull-left" href="/noticia/<%=noticiasAutor[i].url%>">
-                  <img class="media-object thumbnail border-no" src="/images/noticia/capa/<%=noticiasAutor[i]._id%>" height="100px" width:"150px">
+                  <img class="media-object thumbnail border-no" src="/images/noticia/capa/<%=noticiasAutor[i]._id%>" height="200px" width:"300px">
                 </a>
                 <div class="media-body">
                   <a href="/noticia/<%=noticiasAutor[i].url%>">
@@ -264,23 +264,23 @@
                   </dl>
                   <div class="noticiaanimator listaparceiro">
                     <% if (typeof noticia.parceiro !== 'undefined'){ %>
-                          <% if (noticia.parceiro == 'ClubedaNuna'){ %> 
+                          <% if (noticia.parceiro == 'Clube da Nuna'){ %> 
                             <figure><a href="http://www.clubedanuna.com.br" target="_blank"><img align="center"src="/images/wikigamer/parceiros/logos/5405f9fa51b0210000c039cd" alt="Conheça o Clube da Nuna" ></a></figure>
                           <%} if ( (noticia.parceiro !== 'undefined') && (noticia.parceiro == 'Nintedolátras') ) { %>
                             <figure><a href="http://www.nintedolatras.com.br" target="_blank"><img align="center"src="/images/wikigamer/parceiros/logos/5405eb66a0a7c50000973086" alt="Conheça o Nintedolatras"  ></a></figure>
                             <%} if ( (noticia.parceiro !== 'undefined') && (noticia.parceiro == 'Pechinchador') ) { %> 
                             <figure><a href="http://www.pechinchador.com.br" target="_blank"><img align="center"src="/images/wikigamer/parceiros/logos/551449732ef2a2000086864f" alt="Conheça o Pechinchador" ></a></figure>
-                          <%} if ( (noticia.parceiro !== 'undefined') && (noticia.parceiro == 'Player2') ) { %> 
+                          <%} if ( (noticia.parceiro !== 'undefined') && (noticia.parceiro == 'Player 2') ) { %> 
                             <figure><a href="http://www.oplayer2.com.br" target="_blank"><img align="center"src="/images/wikigamer/parceiros/logos/54664d2fe513ba000082ffb3" alt="Conheça o Player 2" ></a></figure>
-                          <%} if ( (noticia.parceiro !== 'undefined') && (noticia.parceiro == 'ResidentEvilDatabase') ) { %> 
+                          <%} if ( (noticia.parceiro !== 'undefined') && (noticia.parceiro == 'Resident Evil Database') ) { %> 
                            <figure> <a href="http://www.residentevildatabase.com" target="_blank"><img align="center"src="/images/wikigamer/parceiros/logos/54a043c451b5d80000fc0d2a" alt="Conheça o Resident Evil Database"  ></a></figure>
-                          <%} if ( (noticia.parceiro !== 'undefined') && (noticia.parceiro == 'JogosIndie') ) { %> 
+                          <%} if ( (noticia.parceiro !== 'undefined') && (noticia.parceiro == 'Jogos Indie') ) { %> 
                             <figure><a href="http://www.jogosindie.com.br" target="_blank"><img align="center"src="/images/wikigamer/parceiros/logos/54ac312b097427000096f0de" alt="Conheça o Jogos Indie" ></a></figure>
-                          <%} if ( (noticia.parceiro !== 'undefined') && (noticia.parceiro == 'MundoGamer') ) { %> 
+                          <%} if ( (noticia.parceiro !== 'undefined') && (noticia.parceiro == 'Mundo Gamer') ) { %> 
                             <figure><a href="http://www.mundogamer.com.br" target="_blank"><img align="center"src="/images/wikigamer/parceiros/logos/5449f06dbfb99d000082927f" alt="Conheça o Mundo Gamer"></a></figure>
                           <%} if ( (noticia.parceiro !== 'undefined') && (noticia.parceiro == 'X-Nerd') ) { %> 
                             <figure><a href="http://www.xnerd.com.br" target="_blank"><img align="center"src="/images/wikigamer/parceiros/logos/55490a56f088dc000060ed8c" alt="Conheça o X-Nerd" ></a></figure>
-                          <%} if ( (noticia.parceiro !== 'undefined') && (noticia.parceiro == 'GlobalGames') ) { %> 
+                          <%} if ( (noticia.parceiro !== 'undefined') && (noticia.parceiro == 'Global Games') ) { %> 
                             <figure><a href="http://www.globalgames.com.br" target="_blank"><img align="center"src="/images/wikigamer/parceiros/logos/554cb78d6e8cfd0000f7074f" alt="Conheça a Global Games" ></a></figure>
                           <%} if ( (noticia.parceiro !== 'undefined') && (noticia.parceiro == 'Action & Comics') ) { %>
                             <figure><a href="http://www.actionsecomics.com.br" target="_blank"><img align="center"src="/images/wikigamer/parceiros/logos/5574e1695b107e0000c9072b" alt="Conheça o Action & Comics"  ></a></figure>

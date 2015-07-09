@@ -4,6 +4,7 @@ var Schema   = mongoose.Schema;
 var parceiroSchema = new Schema({
 	_id				: Schema.Types.ObjectId,
 	nome_parceiro		: String,
+	nome_responsável	: String,
 	email_contato		: String,
 	url					: String,
 	data_cadastro		: {type: Date},

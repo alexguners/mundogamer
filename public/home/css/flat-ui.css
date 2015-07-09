@@ -5578,11 +5578,11 @@ float: right;
 }
 
 .listaAlfabetica li:hover{
-  background-color: #ED720F;
+  background-color: #2f4154;
 
 }
 .activeAlfabetica{
-  background-color: #ED720F!important;
+  background-color: #2f4154!important;
 }
 
 .listaAlfabetica li a{

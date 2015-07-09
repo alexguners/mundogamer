@@ -383,6 +383,7 @@ var MundoGamerApp = function() {
           
           // Problema no Servidor - Erro 500
         self.app.use(function(error, req, res, next) {
+            console.log("Erro 500 encontrado" + error);
          res.render('erro500', {status: 500});
          });
 
