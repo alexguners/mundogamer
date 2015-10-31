@@ -148,13 +148,13 @@ var MundoGamerApp = function() {
         self.app.post('/personagens/views', routes.countViewsPersonagens);
 
 
-        self.app.get('/coberturas', routes.coberturas);
+        // self.app.get('/coberturas', routes.coberturas);
 
-        self.app.get('/wikigamer/coberturas', routes.coberturas);
+        // self.app.get('/wikigamer/coberturas', routes.coberturas);
 
-        self.app.get('/coberturas/:id?', routes.cobertura);
+        // self.app.get('/coberturas/:id?', routes.cobertura);
 
-        self.app.post('/coberturas/views', routes.countViewsCoberturas);
+        // self.app.post('/coberturas/views', routes.countViewsCoberturas);
 
 
         self.app.get('/wikigamer', routes.wikigamer);
@@ -171,7 +171,7 @@ var MundoGamerApp = function() {
 
         self.app.get('/mg-admin', admin.isLoggedIn, admin.index);
 
-        self.app.get('/mg-admin/login', admin.isLoggedIn, admin.login);
+        // self.app.get('/mg-admin/login', admin.isLoggedIn, admin.login);
 
         self.app.get('/mg-admin/editarnoticia/:id?', admin.isLoggedIn, admin.editarNoticia);
 
@@ -179,7 +179,7 @@ var MundoGamerApp = function() {
 
         self.app.post('/mg-admin/login', passport.authenticate('local-login', {
                 successRedirect : '/mg-admin', // redirect to the secure profile section
-                failureRedirect : '/mg-admin/login', // redirect back to the signup page if there is an error
+                failureRedirect : '/login', // redirect back to the signup page if there is an error
                 failureFlash : true // allow flash messages
         }));
 
@@ -210,8 +210,6 @@ var MundoGamerApp = function() {
         //         failureFlash : true // allow flash messages
         // }));
 
-        // process the signup form
-        self.app.get('/mg-admin/logout', admin.logout);
 
         //Configurações de conta
 
@@ -308,15 +306,27 @@ var MundoGamerApp = function() {
 
          //Coberturas de eventos
 
-        self.app.get('/mg-admin/cadastrarcobertura', admin.isLoggedIn, admin.novaCobertura);
+        // self.app.get('/mg-admin/cadastrarcobertura', admin.isLoggedIn, admin.novaCobertura);
 
-        self.app.post('/mg-admin/cadastrarcobertura', admin.isLoggedIn, admin.saveCobertura);
+        // self.app.post('/mg-admin/cadastrarcobertura', admin.isLoggedIn, admin.saveCobertura);
 
-        self.app.get('/mg-admin/editarcobertura/:id?', admin.isLoggedIn, admin.editarCobertura);
+        // self.app.get('/mg-admin/editarcobertura/:id?', admin.isLoggedIn, admin.editarCobertura);
 
-        self.app.post('/mg-admin/editarcobertura/:id?', admin.isLoggedIn, admin.saveEditarCobertura);
+        // self.app.post('/mg-admin/editarcobertura/:id?', admin.isLoggedIn, admin.saveEditarCobertura);
 
-        self.app.get('/mg-admin/coberturascadastradas', admin.isLoggedIn, admin.coberturasCadastradas);
+        // self.app.get('/mg-admin/coberturascadastradas', admin.isLoggedIn, admin.coberturasCadastradas);
+
+        //Shopping MG
+
+        self.app.get('/mg-admin/cadastraranuncio', admin.isLoggedIn, admin.novoAnuncio);
+
+        // self.app.post('/mg-admin/cadastraritem', admin.isLoggedIn, admin.saveItem);
+
+        // self.app.get('/mg-admin/editaritem/:id?', admin.isLoggedIn, admin.editarItem);
+
+        // self.app.post('/mg-admin/editaritem/:id?', admin.isLoggedIn, admin.saveEditarItem);
+
+        // self.app.get('/mg-admin/itensCadastrados', admin.isLoggedIn, admin.itensCadastrados);
 
 
 
@@ -329,6 +339,9 @@ var MundoGamerApp = function() {
         self.app.get('/mg-admin/loadplataformas/:nome?', admin.isLoggedIn, admin.loadPlataformas);
 
         self.app.post('/upload', admin.imageUpload);
+
+        // process the signup form
+        self.app.get('/mg-admin/logout', admin.logout);
 
         // send to facebook to do the authentication
         self.app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email,public_profile,user_friends,user_location,user_birthday,user_activities' }));

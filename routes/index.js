@@ -6,7 +6,7 @@ var PlataformaModel = require('../models/plataformas');
 var JogoModel = require('../models/jogos');
 var ParceiroModel = require('../models/parceiros');
 var PersonagemModel = require('../models/personagens');
-var CoberturaModel = require('../models/coberturas');
+// var CoberturaModel = require('../models/coberturas');
 var ObjectId = require('mongoose').Types.ObjectId; 
 
 exports.embreve = function(req, res) {
@@ -314,51 +314,51 @@ exports.login = function(req, res) {
 	}
 
 
-exports.cobertura = function(req, res) {
+// exports.cobertura = function(req, res) {
 
-	var str = req.route.params.id;
+// 	var str = req.route.params.id;
 
-	CoberturaModel.findOne({url:str}).populate('_criador').exec(function (err, cobertura) {
-    if (err)
-          return console.error(err);
-		res.render('home/cobertura',
-		{
-			cobertura:cobertura,
-			id:17
-		});
+// 	CoberturaModel.findOne({url:str}).populate('_criador').exec(function (err, cobertura) {
+//     if (err)
+//           return console.error(err);
+// 		res.render('home/cobertura',
+// 		{
+// 			cobertura:cobertura,
+// 			id:17
+// 		});
 
-	});
-}
+// 	});
+// }
 
-exports.countViewsCoberturas = function (req, res){
-	CoberturaModel.update({'_id': req.body.id}, {$inc: { views: 1 }}).exec(function(err, cobertura) {
-		if (err)
-			return console.error(err);	
+// exports.countViewsCoberturas = function (req, res){
+// 	CoberturaModel.update({'_id': req.body.id}, {$inc: { views: 1 }}).exec(function(err, cobertura) {
+// 		if (err)
+// 			return console.error(err);	
 
-		res.send(" ");
+// 		res.send(" ");
 
-		});
+// 		});
 
-};
+// };
 
-exports.coberturas = function(req, res) {
-  var CoberturaModel = require('../models/coberturas');
-  var ObjectId = require('mongoose').Types.ObjectId; 
-  var str = req.route.params.id;
+// exports.coberturas = function(req, res) {
+//   var CoberturaModel = require('../models/coberturas');
+//   var ObjectId = require('mongoose').Types.ObjectId; 
+//   var str = req.route.params.id;
 
 
-  CoberturaModel.find().sort({ nome: 'asc'}).exec(function(err, coberturas){
-    if (err)
-          return console.error(err);
+//   CoberturaModel.find().sort({ nome: 'asc'}).exec(function(err, coberturas){
+//     if (err)
+//           return console.error(err);
 
-		res.render('home/coberturas',
-		{
-			coberturas:coberturas,
-			id:18
-		});
+// 		res.render('home/coberturas',
+// 		{
+// 			coberturas:coberturas,
+// 			id:18
+// 		});
 
-	});
-}
+// 	});
+// }
 
 
 exports.contatoEmail = function(req, res) {
@@ -370,7 +370,7 @@ exports.contatoEmail = function(req, res) {
 		    port: 587, // port for secure SMTP
 		    auth: {
 		        user: "contato@mundogamer.com.br",
-		        pass: "dsl-gamerg13"
+		        pass: "asdf1234"
     	}});
 
     	

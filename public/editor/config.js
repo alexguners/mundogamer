@@ -42,10 +42,11 @@ CKEDITOR.editorConfig = function( config ) {
 
 	config.filebrowserUploadUrl = '/upload';
 
-	config.extraPlugins = 'lineutils,widget,youtube,justify,image2';
+	config.extraPlugins = 'lineutils,widget,youtube,justify,image2'; //videodetector esse plugin pode ser adicionado nesta linha após o image2
 
 	config.youtube_width = '640';
 
 	config.youtube_height = '480';
+
 
 };

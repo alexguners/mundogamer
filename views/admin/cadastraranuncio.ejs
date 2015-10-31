@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<% include admin-header %>   
+ <% if (message) { %>
+        <div class="alert alert-success"><%= message %></div>
+    <% } %>
+          <div class="row-fluid">
+            <div id="dashboard-left" class="span8">
+	 					 <div class="panel panel-primary">  
+
+						    <div class="panel-body">
+  						    <form id="LoginForm" role="form" class="form-horizontal" enctype="multipart/form-data" autocomplete="off"  method="post">
+
+                    <div id="wizard" class="wizard wizard-inverse">
+                      <br />
+                        <ul class="hormenu">
+                            <li>
+                              <a href="#wiz2step1">
+                                  <span class="h2">1º Passo</span>
+                                    <span class="label">Informações do Produto ou Serviço</span>
+                                </a>
+                            </li>
+                            <li>
+                              <a href="#wiz2step2">
+                                  <span class="h2">2º Passo</span>
+                                    <span class="label">Formas de Pagamento e Entrega</span>
+                                </a>
+                            </li>
+                            <li>
+                              <a href="#wiz2step3">
+                                  <span class="h2">3º Passo</span>
+                                    <span class="label">Terms of Agreement</span>
+                                </a>
+                            </li>
+                        </ul>
+                                                  
+                        <div id="wiz2step1" class="formwiz">
+                          <h4 class="widgettitle">Step 1: Basic Information</h4>
+                          
+                                <p>
+                                    <label>First Name</label>
+                                    <span class="field"><input type="text" name="firstname" id="firstname2" class="input-xxlarge" /></span>
+                                </p>
+                                
+                                <p>
+                                    <label>Last Name</label>
+                                    <span class="field"><input type="text" name="lastname" id="lastname2" class="input-xxlarge" /></span>
+                                </p>
+                                                                
+                                <p>
+                                    <label>Gender</label>
+                                    <span class="field">
+                                      <select name="selection" id="selection2" class="uniformselect">
+                                          <option value="">Choose One</option>
+                                          <option value="1">Female</option>
+                                          <option value="2">Male</option>
+                                      </select>
+                                    </span>
+                                </p>
+                                
+                          
+                            
+                        </div><!--#wiz1step1-->
+                        
+                        <div id="wiz2step2" class="formwiz">
+                          <h4 class="widgettitle">Step 2: Account Information</h4>
+                            
+                                <p>
+                                    <label>Account No</label>
+                                    <span class="field"><input type="text" name="lastname" class="input-xxlarge" /></span>
+                                </p>
+                                <p>
+                                    <label>Address</label>
+                                    <span class="field"><textarea cols="80" rows="5" name="location" class="span6"></textarea></span>
+                                </p>
+                                                                                               
+                        </div><!--#wiz1step2-->
+                        
+                        <div id="wiz2step3">
+                          <h4 class="widgettitle">Step 3: Terms of Agreement</h4>
+                            <div class="par terms" style="padding: 0 20px;">
+                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                                <p><input type="checkbox"  /> I agree with the terms and agreement...</p>
+                            </div>
+                        </div><!--#wiz1step3-->
+                        
+                    </div><!--#wizard-->
+                   
+
+
+
+  						    </form>
+						    </div>
+						  </div>                         
+            </div>
+          </div>
+
+                <!-- Place inside the <head> of your HTML -->
+
+
+    <script src="/editor/ckeditor.js"></script>
+    <script type="text/javascript" src="/admin/js/jquery.min.js"></script> 
+    <script type="text/javascript" src="/admin/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="/admin/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/admin/js/jquery.smartWizard.min.js"></script>
+
+    <script type="text/javascript">
+    jQuery(document).ready(function(){
+        
+        // Smart Wizard   
+        jQuery('#wizard').smartWizard({onFinish: onFinishCallback});
+        jQuery('#wizard2').smartWizard({onFinish: onFinishCallback});
+        jQuery('#wizard3').smartWizard({onFinish: onFinishCallback});
+        
+        function onFinishCallback(){
+            alert('Finish Clicked');
+        } 
+          
+        jQuery('select, input:checkbox').uniform();
+        
+    });
+    </script>
+
+
+
+<% include admin-footer %>    

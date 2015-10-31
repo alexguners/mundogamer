@@ -93,11 +93,20 @@ exports.novoVideo = function(req, res) {
         });
 };
 
-exports.novaCobertura = function(req, res) {  
-  res.render('admin/cadastrarcobertura',{
+// exports.novaCobertura = function(req, res) {  
+//   res.render('admin/cadastrarcobertura',{
+//           user : req.user,
+//           title: "Cadastre uma nova cobertura de evento",
+//           subtitle: "Cadastre um novo evento que o Mundo Gamer irá realizar a cobertura",
+//           message:""
+//         });
+// };
+
+exports.novoAnuncio = function(req, res) {  
+  res.render('admin/cadastraranuncio',{
           user : req.user,
-          title: "Cadastre uma nova cobertura de evento",
-          subtitle: "Cadastre um novo evento que o Mundo Gamer irá realizar a cobertura",
+          title: "Crie seu anúncio no Shopping Mundo Gamer",
+          subtitle: "Publique seus produtos ou serviços em nosso site",
           message:""
         });
 };
@@ -2368,190 +2377,190 @@ exports.editarVideo = function(req, res) {
   }
 };
 
-//Cadastro de Cobertura de eventos
-exports.saveCobertura = function(req, res) {
-        var CoberturaModel = require('../models/coberturas');
-        var ObjectId = require('mongoose').Types.ObjectId; 
-        var obid = new ObjectId();
-        var path = require('path');
-        var fs   = require('fs-extra')
-        var formidable = require('formidable');
-        var saveTo = path.join(__dirname.toString().replace('routes', '') + 'public/images/wikigamer/coberturas/capas', path.basename(obid));
+// //Cadastro de Cobertura de eventos
+// exports.saveCobertura = function(req, res) {
+//         var CoberturaModel = require('../models/coberturas');
+//         var ObjectId = require('mongoose').Types.ObjectId; 
+//         var obid = new ObjectId();
+//         var path = require('path');
+//         var fs   = require('fs-extra')
+//         var formidable = require('formidable');
+//         var saveTo = path.join(__dirname.toString().replace('routes', '') + 'public/images/wikigamer/coberturas/capas', path.basename(obid));
 
-        var form = new formidable.IncomingForm(),
-        files = [],
-        fieldsArray = [];
+//         var form = new formidable.IncomingForm(),
+//         files = [],
+//         fieldsArray = [];
         
-        form
-          .on('error', function(err) {
-            console.error(err);
-          })
-          .on('field', function(field, value) {
-            fieldsArray[field]= value;
+//         form
+//           .on('error', function(err) {
+//             console.error(err);
+//           })
+//           .on('field', function(field, value) {
+//             fieldsArray[field]= value;
            
-          })
-          .on('file', function(field, file) {
-            files[field] = file;
-          })
-          .on('end', function() {
+//           })
+//           .on('file', function(field, file) {
+//             files[field] = file;
+//           })
+//           .on('end', function() {
 
-            var title = titleToUrlWiki(fieldsArray['nome_evento']);
+//             var title = titleToUrlWiki(fieldsArray['nome_evento']);
 
-            var cobertura_data = {
-              _id         : obid,
+//             var cobertura_data = {
+//               _id         : obid,
 
-              url         : title,
-              nome_evento : fieldsArray['nome_evento'],
-              descricao   : fieldsArray['editor1'],
+//               url         : title,
+//               nome_evento : fieldsArray['nome_evento'],
+//               descricao   : fieldsArray['editor1'],
 
-              _criador    : req.user.id
-            }
+//               _criador    : req.user.id
+//             }
 
-            var cobertura = new CoberturaModel(cobertura_data);
-              cobertura.save(function(error, cobe){
+//             var cobertura = new CoberturaModel(cobertura_data);
+//               cobertura.save(function(error, cobe){
 
-                if (error){
-                  fs.remove(files['imagem'].path, function(err){
-                              if (err) return console.error(err);
+//                 if (error){
+//                   fs.remove(files['imagem'].path, function(err){
+//                               if (err) return console.error(err);
 
-                            });
-                  res.render('admin/cadastrarcobertura',{
-                  user : req.user,
-                  title: "Nova Cobertura de evento",
-                  subtitle: "Cadastre um novo evento para cobertura",
-                  message:"Atenção, não foi possivel inserir."
-                });
+//                             });
+//                   res.render('admin/cadastrarcobertura',{
+//                   user : req.user,
+//                   title: "Nova Cobertura de evento",
+//                   subtitle: "Cadastre um novo evento para cobertura",
+//                   message:"Atenção, não foi possivel inserir."
+//                 });
 
-                }else{
-                    var im = require('imagemagick');
-                    im.crop({
-                      srcPath: files['imagem'].path,
-                      dstPath: saveTo,
-                      width:   300,
-                      height:  200,
-                      strip: true
-                    }, function(err, stdout, stderr){
-                        if (err){
-                           console.error(err);
-                            fs.remove(files['imagem'].path, function(err){
-                              if (err) return console.error(err);
-
-
-                            });
-                            res.render('admin/cadastrarcobertura',{
-                              user : req.user,
-                              title: "Nova Cobertura de evento",
-                              subtitle: "Cadastre sua notícia no Mundo Gamer",
-                              message:"Atenção! Cobertura de evento com erro ao fazer upload da Capa."
-                          });
-                          }else{
-                              fs.remove(files['imagem'].path, function(err){
-                                if (err) return console.error(err);
-                              });
-
-                              res.render('admin/cadastrarcobertura',{
-                                user : req.user,
-                                title: "Nova Cobertura de evento",
-                                subtitle: "Cadastre um novo evento para cobertura",
-                                message:"Cobertura de evento cadastrada com sucesso"
-                              });
-
-                            }  
-              });
-
-            }
-          });
-        });
-        form.parse(req);
-}
-
-// //Ṕersonagens cadastradas
-exports.coberturasCadastradas = function(req, res) {
-  var CoberturaModel = require('../models/coberturas');
-  var ObjectId = require('mongoose').Types.ObjectId; 
+//                 }else{
+//                     var im = require('imagemagick');
+//                     im.crop({
+//                       srcPath: files['imagem'].path,
+//                       dstPath: saveTo,
+//                       width:   300,
+//                       height:  200,
+//                       strip: true
+//                     }, function(err, stdout, stderr){
+//                         if (err){
+//                            console.error(err);
+//                             fs.remove(files['imagem'].path, function(err){
+//                               if (err) return console.error(err);
 
 
-  CoberturaModel.find().sort({ nome_evento: 'asc'}).exec(function(err, coberturas){
-    if (err)
-          return console.error(err);
+//                             });
+//                             res.render('admin/cadastrarcobertura',{
+//                               user : req.user,
+//                               title: "Nova Cobertura de evento",
+//                               subtitle: "Cadastre sua notícia no Mundo Gamer",
+//                               message:"Atenção! Cobertura de evento com erro ao fazer upload da Capa."
+//                           });
+//                           }else{
+//                               fs.remove(files['imagem'].path, function(err){
+//                                 if (err) return console.error(err);
+//                               });
+
+//                               res.render('admin/cadastrarcobertura',{
+//                                 user : req.user,
+//                                 title: "Nova Cobertura de evento",
+//                                 subtitle: "Cadastre um novo evento para cobertura",
+//                                 message:"Cobertura de evento cadastrada com sucesso"
+//                               });
+
+//                             }  
+//               });
+
+//             }
+//           });
+//         });
+//         form.parse(req);
+// }
+
+// // //Ṕersonagens cadastradas
+// exports.coberturasCadastradas = function(req, res) {
+//   var CoberturaModel = require('../models/coberturas');
+//   var ObjectId = require('mongoose').Types.ObjectId; 
 
 
-    res.render('admin/coberturascadastradas',  
-          {
-            user : req.user,
-            coberturas : coberturas,
-            title: "Coberturas de eventos cadastradas",
-            subtitle: "Visualize todos os eventos para coberturas cadastrados no Mundo Gamer",
-          });
+//   CoberturaModel.find().sort({ nome_evento: 'asc'}).exec(function(err, coberturas){
+//     if (err)
+//           return console.error(err);
 
-  });
-};
 
-exports.editarCobertura = function(req, res) {  
-  console.log(req.params.id);
-  var CoberturaModel = require('../models/coberturas');
-  var ObjectId = require('mongoose').Types.ObjectId; 
-  if(typeof req.params.id !== 'undefined') {
-      CoberturaModel.findOne({_id: new ObjectId(req.params.id)}, function(err, cobertura) {
-        if (err)
-          return console.error(err);
+//     res.render('admin/coberturascadastradas',  
+//           {
+//             user : req.user,
+//             coberturas : coberturas,
+//             title: "Coberturas de eventos cadastradas",
+//             subtitle: "Visualize todos os eventos para coberturas cadastrados no Mundo Gamer",
+//           });
 
-        res.render('admin/editarcobertura', 
-          {
-            user : req.user,  
-            cobertura : cobertura,
-            title: "Editar informações de cobertuda do evento " + cobertura.nome_evento,
-            subtitle: "Edite os dados do evento",
-            message: req.flash('loginMessage')
-          });
-      }).populate('_criador');
-  }
-};
+//   });
+// };
 
-// //Verificar pq não Funciona 
-exports.saveEditarCobertura = function(req, res) {  
-  console.log(req.params.id);
-  var CoberturaModel = require('../models/coberturas');
-  var ObjectId = require('mongoose').Types.ObjectId; 
-  if(typeof req.params.id !== 'undefined') {
+// exports.editarCobertura = function(req, res) {  
+//   console.log(req.params.id);
+//   var CoberturaModel = require('../models/coberturas');
+//   var ObjectId = require('mongoose').Types.ObjectId; 
+//   if(typeof req.params.id !== 'undefined') {
+//       CoberturaModel.findOne({_id: new ObjectId(req.params.id)}, function(err, cobertura) {
+//         if (err)
+//           return console.error(err);
+
+//         res.render('admin/editarcobertura', 
+//           {
+//             user : req.user,  
+//             cobertura : cobertura,
+//             title: "Editar informações de cobertuda do evento " + cobertura.nome_evento,
+//             subtitle: "Edite os dados do evento",
+//             message: req.flash('loginMessage')
+//           });
+//       }).populate('_criador');
+//   }
+// };
+
+// // //Verificar pq não Funciona 
+// exports.saveEditarCobertura = function(req, res) {  
+//   console.log(req.params.id);
+//   var CoberturaModel = require('../models/coberturas');
+//   var ObjectId = require('mongoose').Types.ObjectId; 
+//   if(typeof req.params.id !== 'undefined') {
         
-           var title = titleToUrlWiki(req.body.nome_evento);
+//            var title = titleToUrlWiki(req.body.nome_evento);
 
-            CoberturaModel.findByIdAndUpdate({_id: new ObjectId(req.params.id)},{ $set: {
+//             CoberturaModel.findByIdAndUpdate({_id: new ObjectId(req.params.id)},{ $set: {
 
-            nome_evento  : req.body.nome_evento,
-            url          : title,
-            descricao    : req.body.editor1,
-            _criador     : req.user.id,
+//             nome_evento  : req.body.nome_evento,
+//             url          : title,
+//             descricao    : req.body.editor1,
+//             _criador     : req.user.id,
 
-      }}, function(err, cobertura) {
-        if (err){
-          console.error(err);
-          res.render('admin/editarcobertura', 
-            {
-              user : req.user,
-              cobertura : cobertura, // get the user out of session and pass to template
-              title: "Editar informações do evento " + cobertura.nome_evento,
-              subtitle: "Edite os dados do evento",
-              message: 'Erro ao salvar'
-            });
+//       }}, function(err, cobertura) {
+//         if (err){
+//           console.error(err);
+//           res.render('admin/editarcobertura', 
+//             {
+//               user : req.user,
+//               cobertura : cobertura, // get the user out of session and pass to template
+//               title: "Editar informações do evento " + cobertura.nome_evento,
+//               subtitle: "Edite os dados do evento",
+//               message: 'Erro ao salvar'
+//             });
 
-        }else{
-            res.render('admin/editarcobertura', 
-            {
-              user : req.user,
-              cobertura : cobertura,// get the user out of session and pass to template
-              title: "Editar informações do evento " + cobertura.nome_evento,
-              subtitle: "Edite os dados do evento",
-              message: 'As informações foram alteradas com sucesso'
-            });
-        }
+//         }else{
+//             res.render('admin/editarcobertura', 
+//             {
+//               user : req.user,
+//               cobertura : cobertura,// get the user out of session and pass to template
+//               title: "Editar informações do evento " + cobertura.nome_evento,
+//               subtitle: "Edite os dados do evento",
+//               message: 'As informações foram alteradas com sucesso'
+//             });
+//         }
 
-    });
+//     });
 
         
-  }
-};
+//   }
+// };
 
 //Fim do cadastro de cobertura de eventos
 
