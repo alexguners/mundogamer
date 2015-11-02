@@ -46,7 +46,7 @@
                     <!-- Fim do Site oficial do jogo --> 
 
                     <label>Selecione as Plataformas em que o jogo foi lançado</label>
-                    <input type="text" data-provide="typeahead2" id="typeahead2" name="plataformas"  value="<%= jogo.plataformas %>"/> 
+                    <input type="text" data-role="tagsinput" id="typeahead2" name="plataformas"  value="<%= jogo.plataformas %>"/> 
                     
 
                     <!-- Editor de texto da descrição do jogo-->
@@ -126,6 +126,7 @@
     <script type="text/javascript" src="/admin/js/jquery.validate.min.js"></script>
     <script type="text/javascript" src="/admin/js/bootstrap.min.js"></script>
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script src="/admin/js/bootstrap-tagsinput.min.js" type="text/javascript"> </script>
     <script type="text/javascript">
 
         // Adsense
@@ -150,23 +151,12 @@
 
       });
 
-          $('#typeahead2').typeahead({
-          source: function (query, process) {
-              return $.getJSON(
-                  'loadplataformas',
-                  { nome: query },
-                  function (data) {
-                      var newData = [];
-                      console.log("data " + data);
-                      $.each(data, function(){
-                        console.log("data2 " + this.nome_plataforma);
-                          newData.push(this.nome_plataforma);
-                      });
-                      return process(newData);
-
-                  }); 
+      $('#typeahead2').tagsinput({
+        typeahead: {                  
+          source: function(query) {
+            return $.get('/mg-admin/loadplataformas/', { nome: query});
           }
-
+        }
       });
 
 

@@ -2706,8 +2706,13 @@ exports.loadPlataformas = function(req, res) {
     PlataformaModel.find( {nome_plataforma: {$regex:re} }).exec(function (err, plataformas) {
     if (err)
       return console.error(err);
+    var newData = [];
+    for (var i = 0, len=plataformas.length; i<len;i++) {
+      newData.push(plataformas[i].nome_plataforma)
 
-    res.json(plataformas);
+    }
+    console.log(newData);
+    res.json(newData);
 
   });
 
