@@ -42,13 +42,13 @@
                     <!-- Fim Data de Lançamento -->
 
                     <!-- Empresa Responsavel -->
-                    <label>Desenvolvedor</label>
-                    <input type="text" class="form-control" id="desenvolvedor" name="desenvolvedor" placeholder="Empresa responsável" required="required" />
+                    <label>Desenvolvedores</label>
+                    <input type="text"  data-role="tagsinput" id="desenvolvedor" name="desenvolvedor" placeholder="Desenvolvido por" required="required" />
                     <!-- Fim da Empresa Responsavel -->
 
                     <!-- Editora Responsavel -->
                     <label>Editora</label>
-                    <input type="text" class="form-control" id="editora" name="editora" placeholder="Empresa responsável" required="required" />
+                    <input type="text"  id="editora"  data-role="tagsinput" name="editora" placeholder="Editora responsável" required="required" />
                    <!-- Fim da Editora Responsavel -->
 
                     <!-- Site oficial do jogo -->
@@ -57,13 +57,12 @@
                     <span class="help-block"></span>  
                    <!-- Fim do Site oficial do jogo --> 
 
-                    <!-- Site oficial do jogo -->
-                    <label>Categorias do jogo</label>
-                    <input type="text" data-provide="typeahead" id="typeahead" required="required" name="categoria">
-                   <!-- Fim do Site oficial do jogo --> 
+                    <!--  categorias do jogo -->
+                    <label>Selecione as categorias do jogo</label>
+                    <input type="text" data-role="tagsinput" id="typeahead" name="categoria"  placeholder="Selecione as categorias do jogo" required="required" name="categoria"/><!-- Fim do categorias do jogo --> 
 
                     <label>Selecione as Plataformas em que o jogo foi lançado</label>
-                    <input type="text" data-role="tagsinput" id="typeahead2" required="required" name="plataformas" placeholder="Digite o nome das plataformas que o jogo foi lançado">
+                    <input type="text" data-role="tagsinput" id="typeahead2" required="required" name="plataformas" placeholder="Selecione as plataformas em que o jogo está disponível">
 
                       <div class="par">
                           <label>Banner 01 (Tamanho recomendado 900x385 até 100k)</label>
@@ -121,23 +120,12 @@
 
   <script type="text/javascript">
 
-     $('#typeahead').typeahead({
-          source: function (query, process) { 
-              return $.getJSON(
-                  'loadcategories',
-                  { nome: query },
-                  function (data) {
-                      var newData = [];
-                      console.log("data " + data);
-                      $.each(data, function(){
-                        console.log("data2 " + this.nome_categoria);
-                          newData.push(this.nome_categoria);
-                      });
-                      return process(newData);
-
-                  }); 
+      $('#typeahead').tagsinput({
+        typeahead: {                  
+          source: function(query) {
+            return $.get('/mg-admin/loadcategories/', { nome: query});
           }
-
+        }
       });
 
 
@@ -147,9 +135,25 @@
           return $.get('/mg-admin/loadplataformas/', { nome: query});
         }
       }
-    });
+    });   
 
-         
+    $('#editora').tagsinput({
+      typeahead: {                  
+        source: function(query) {
+          return $.get('/mg-admin/loadempresas/', { nome: query});
+        }
+      }
+    }); 
+
+        $('#desenvolvedor').tagsinput({
+      typeahead: {                  
+        source: function(query) {
+          return $.get('/mg-admin/loadempresas/', { nome: query});
+        }
+      }
+    }); 
+
+
 
 
     var nome_jogo = $("#nome_jogo");

@@ -140,7 +140,21 @@
                                     <li><a href="/mg-admin/users">Listar Usuários</a></li>
                                     <!-- <li><a href="/mg-admin/users/add">Novo Usuário</a></li> -->  
                                </ul>
-                        </li>                  
+                        </li>  
+
+                        <li class="dropdown"><a href=""><span class="iconfa-th-list"></span> Wikigamer</a>
+                            <ul>
+                              <li><a href="/mg-admin/categoriascadastradas"><span class="iconsweets-flag2"></span>Categorias</a></li>
+                              <li><a href="/mg-admin/categoriasEmpresasCadastradas"><span class="iconfa-sitemap"></span>Tipos Empresas</a></li>
+<!--                               <li><a href="#"><span class="iconfa-sitemap"></span>Fontes</li> -->
+                              <li><a href="#"><span class="iconfa-sitemap"></span>Gerações</a></li> 
+                              <li><a href="#"><span class="iconfa-sitemap"></span>Idiomas</a></li>
+                              <li><a href="#"><span class="iconfa-sitemap"></span>Modos de jogo</a></li>
+                              <li><a href="#"><span class="iconfa-sitemap"></span>Plataformas</a></li>
+                              <li><a href="/mg-admin/midiascadastradas"><span class="iconfa-sitemap"></span>Tipos de mídia</a></li>
+
+                            </ul>
+                        </li>                 
  
                     </ul>
                 </li>
@@ -158,21 +172,21 @@
                     </ul>
                 </li> 
 
-                <li class="dropdown"><a href=""><span class="iconfa-shopping-cart"></span>Shopping MG</a>
-                    <ul>
-                       <li><a href="/mg-admin/cadastraranuncio"><span class=" iconsweets-info"></span>Criar anúncios</a></li>             
-                       <li><a href="/mg-admin/anuncioscadastrados"><span class="iconsweets-create"></span>Gerenciar anúncios</a></li>
-                    </ul>
-                </li> 
+                <% if (typeof user.local.tipo !== 'undefined'){ %>
+                    <% if (user.local.tipo == 'Administrador'){ %> 
+                    <li class="dropdown"><a href=""><span class="iconfa-shopping-cart"></span>Shopping MG</a>
+                        <ul>
+                           <li><a href="/mg-admin/cadastraranuncio"><span class=" iconsweets-info"></span>Criar anúncios</a></li>             
+                           <li><a href="/mg-admin/anuncioscadastrados"><span class="iconsweets-create"></span>Gerenciar anúncios</a></li>
+                        </ul>
+                    </li> 
+
+                    <%}%>
+                <%}%>   
 
                 <li class="dropdown"><a href=""><span class="iconfa-th-list"></span>WikiGamer</a>
                     <ul>
-                        <li class="dropdown"><a href=""><span class="iconsweets-flag2"></span>Categorias</a>
-                            <ul>
-                                <li><a href="/mg-admin/cadastrarcategoria">Cadastrar categoria</a></li>
-                                <li><a href="/mg-admin/categoriascadastradas">Categorias cadastradas</a></li>
-                            </ul>
-                        </li> 
+
                         <li class="dropdown"><a href=""><span class="iconsweets-apartment"></span>Eventos</a>
                             <ul>
                                <li><a href="/mg-admin/cadastrarcobertura">Cadastrar Evento</a></li>
@@ -203,21 +217,21 @@
                                 <li><a href="/mg-admin/plataformascadastradas">Plataformas cadastradas</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown"><a href=""><span class="iconsweets-monitor"></span>Produtoras</a>
+                        <li class="dropdown"><a href=""><span class="iconsweets-monitor"></span>Empresas</a>
                             <ul>
-                                <li><a href="mg-admin/ajuda">Cadastrar produtora</a></li>
-                                <li><a href="#">Produtoras cadastradas</a></li>
+                                <li><a href="mg-admin/cadastrarempresa">Cadastrar empresa</a></li>
+                                <li><a href="mg-admin/empresascadastradas">Empresas cadastradas</a></li>
                             </ul>
                         </li>   
                     </ul>
                 </li>
 
-                <li class="dropdown"><a href=""><span class="iconsweets-help"></span>Ajuda & Suporte</a>
+                <!-- <li class="dropdown"><a href=""><span class="iconsweets-help"></span>Ajuda & Suporte</a>
                     <ul>
                         <li><a href="#"><span class=" iconsweets-book"></span>Ajuda</a></li>
                         <li><a href="mg-admin/ajuda"><span class="iconsweets-mail"></span>Contato</a></li>
                     </ul>
-                </li> 
+                </li>  -->
             </ul>
         </div><!--leftmenu-->
         

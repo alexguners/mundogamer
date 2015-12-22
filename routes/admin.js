@@ -47,11 +47,38 @@ exports.novoPersonagem = function(req, res) {
         });
 };
 
+exports.novaEmpresa = function(req, res) {  
+  res.render('admin/cadastrarempresa',{
+          user : req.user,
+          title: "Cadastre uma nova empresa",
+          subtitle: "Cadastre uma nova empresa no Mundo Gamer",
+          message:""
+        });
+};
+
 exports.novaCategoria = function(req, res) {  
   res.render('admin/cadastrarcategoria',{
           user : req.user,
           title: "Cadastre uma nova categoria",
           subtitle: "Cadastre uma nova categoria de jogos no Mundo Gamer",
+          message:""
+        });
+};
+
+exports.novaMidia = function(req, res) {  
+  res.render('admin/cadastrarmidia',{
+          user : req.user,
+          title: "Cadastre um novo tipo de mídia",
+          subtitle: "Cadastre um novo tipo de mídia no Mundo Gamer",
+          message:""
+        });
+};
+
+exports.novaCategoriaEmpresa = function(req, res) {  
+  res.render('admin/cadastrarNovaCategoriaEmpresa',{
+          user : req.user,
+          title: "Cadastre um novo tipo de categoria",
+          subtitle: "Cadastre um novo tipo de categoria no Mundo Gamer",
           message:""
         });
 };
@@ -93,14 +120,14 @@ exports.novoVideo = function(req, res) {
         });
 };
 
-// exports.novaCobertura = function(req, res) {  
-//   res.render('admin/cadastrarcobertura',{
-//           user : req.user,
-//           title: "Cadastre uma nova cobertura de evento",
-//           subtitle: "Cadastre um novo evento que o Mundo Gamer irá realizar a cobertura",
-//           message:""
-//         });
-// };
+exports.novaCobertura = function(req, res) {  
+  res.render('admin/cadastrarcobertura',{
+          user : req.user,
+          title: "Cadastre uma nova cobertura de evento",
+          subtitle: "Cadastre um novo evento que o Mundo Gamer irá realizar a cobertura",
+          message:""
+        });
+};
 
 exports.novoAnuncio = function(req, res) {  
   res.render('admin/cadastraranuncio',{
@@ -486,10 +513,19 @@ exports.saveCategoria = function(req, res) {
             files[field] = file;
           })
           .on('end', function() {
+            var currentdate = new Date(); 
+            var datetime = currentdate.getDate() + "/"
+            + (currentdate.getMonth()+1)  + "/" 
+            + currentdate.getFullYear() + " @ "  
+            + currentdate.getHours() + ":"  
+            + currentdate.getMinutes() + ":" 
+            + currentdate.getSeconds();
+
 
             var categoria_data = {
               _id                  : obid,
               nome_categoria       : fieldsArray['nome_categoria'],
+              data_cadastro        :currentdate,
               descricao_categoria  : fieldsArray['editor1'],
               _criador             : req.user.id
             }
@@ -595,6 +631,295 @@ exports.saveEditarCategoria = function(req, res) {
   }
 };
 
+// Salvar tipo de mídia
+exports.saveMidia = function(req, res) {
+        var MidiaModel = require('../models/midias');
+        var ObjectId = require('mongoose').Types.ObjectId; 
+        var obid = new ObjectId();
+        var path = require('path');
+        var fs   = require('fs-extra')
+        var formidable = require('formidable');
+        
+        var form = new formidable.IncomingForm(),
+        files = [],
+        fieldsArray = [];
+
+        form
+          .on('error', function(err) {
+            console.error(err);
+          })
+          .on('field', function(field, value) {
+            fieldsArray[field]= value;
+           
+          })
+          .on('file', function(field, file) {
+            files[field] = file;
+          })
+          .on('end', function() {
+            var currentdate = new Date(); 
+            var datetime = currentdate.getDate() + "/"
+            + (currentdate.getMonth()+1)  + "/" 
+            + currentdate.getFullYear() + " @ "  
+            + currentdate.getHours() + ":"  
+            + currentdate.getMinutes() + ":" 
+            + currentdate.getSeconds();
+
+            var midia_data = {
+              _id                  : obid,
+              nome_midia       : fieldsArray['nome_midia'],
+              data_cadastro    : currentdate,
+              descricao_midia  : fieldsArray['editor1'],
+              _criador             : req.user.id
+            }
+
+            var midia = new MidiaModel(midia_data);
+            midia.save(function(error, cate){
+
+           res.render('admin/cadastrarmidia',{
+           user : req.user,
+           title: "Cadastre um novo tipo de mídia",
+           subtitle: "Cadastre um novo tipo de mídia no Mundo Gamer",
+           message:"Atenção!Mídia cadastrada com sucesso."
+           });              
+
+          });
+
+        });
+        form.parse(req);
+
+}
+
+//categorias cadastradas
+exports.midiasCadastradas = function(req, res) {
+  var MidiaModel = require('../models/midias');
+  var ObjectId = require('mongoose').Types.ObjectId; 
+
+
+  MidiaModel.find().sort({ nome_midia: 'asc'}).exec(function(err, midias){
+    if (err)
+          return console.error(err);
+
+
+    res.render('admin/midiascadastradas',  
+          {
+            user : req.user,
+            midias : midias,
+            title: "Tipos de mídias cadastradas",
+            subtitle: "Visualize todos os tipos de mídias cadastradas no Mundo Gamer",
+          });
+
+  });
+};
+
+//Verificar pq não Funciona 
+exports.editarMidia = function(req, res) {  
+  var MidiaModel = require('../models/midias');
+  var ObjectId = require('mongoose').Types.ObjectId; 
+  if(typeof req.params.id !== 'undefined') {
+      MidiaModel.findOne({_id: new ObjectId(req.params.id)}, function(err, midia) {
+        if (err)
+          return console.error(err);
+
+        res.render('admin/editarmidia', 
+          {
+            user : req.user,  
+            midia: midia,
+            title: "Editar dados da mídia " + midia.nome_midia,
+            subtitle: "Edite os dados da mídia cadastrada",
+            message: req.flash('loginMessage')
+          });
+      });
+  }
+};
+
+//Verificar pq não Funciona 
+exports.saveEditarMidia = function(req, res) {  
+  console.log("id " + req.params.id);
+  var MidiaModel = require('../models/midias');
+  var ObjectId = require('mongoose').Types.ObjectId; 
+  if(typeof req.params.id !== 'undefined') {
+           // var title = titleToUrl(req.body.nome_parceiro);
+
+            MidiaModel.findByIdAndUpdate({_id: new ObjectId(req.params.id)},{ $set: {
+            nome_midia         : req.body.nome_midia,
+            descricao_midia    : req.body.editor1,
+            _criador               : req.user.id
+      }}, function(err, midia) {
+        if (err){
+          console.error(err);
+          res.render('admin/editarmidia', 
+            {
+              user : req.user,
+              midia: midia, // get the user out of session and pass to template
+              title: "Editar dados da mídia " + midia.nome_midia,
+              subtitle: "Edite os dados da mídia",
+              message: 'Erro ao salvar'
+            });
+
+        }else{
+            res.render('admin/editarmidia', 
+            {
+              user : req.user,
+              midia: midia,// get the user out of session and pass to template
+              title: "Editar dados da midia " + midia.nome_midia,
+              subtitle: "Edite os dados da mídia",
+              message: 'As informações foram alteradas com sucesso'
+            });
+        }
+
+    });
+
+        
+  }
+};
+
+
+// Salvar tipo de Categoria Empresa
+exports.saveCategoriaEmpresa = function(req, res) {
+        var CategoriaEmpresaModel = require('../models/categoriaempresas');
+        var ObjectId = require('mongoose').Types.ObjectId; 
+        var obid = new ObjectId();
+        var path = require('path');
+        var fs   = require('fs-extra')
+        var formidable = require('formidable');
+        
+        var form = new formidable.IncomingForm(),
+        files = [],
+        fieldsArray = [];
+
+        form
+          .on('error', function(err) {
+            console.error(err);
+          })
+          .on('field', function(field, value) {
+            fieldsArray[field]= value;
+           
+          })
+          .on('file', function(field, file) {
+            files[field] = file;
+          })
+          .on('end', function() {
+
+            var currentdate = new Date(); 
+            var datetime = currentdate.getDate() + "/"
+            + (currentdate.getMonth()+1)  + "/" 
+            + currentdate.getFullYear() + " @ "  
+            + currentdate.getHours() + ":"  
+            + currentdate.getMinutes() + ":" 
+            + currentdate.getSeconds();
+
+
+            var CategoriaEmpresa_data = {
+              _id                  : obid,
+              nome_categoria       : fieldsArray['nome_categoria'],
+              data_cadastro        : currentdate,
+              descricao_categoria  : fieldsArray['editor1'],
+              _criador             : req.user.id
+            }
+
+            var CategoriaEmpresa = new CategoriaEmpresaModel(CategoriaEmpresa_data);
+            CategoriaEmpresa.save(function(error, cate){
+
+           res.render('admin/cadastrarNovaCategoriaEmpresa',{
+           user : req.user,
+           title: "Cadastre um novo tipo de categoria",
+           subtitle: "Cadastre um novo tipo de categoria no Mundo Gamer",
+           message:"Atenção!Categoria cadastrada com sucesso."
+           });              
+
+          });
+
+        });
+        form.parse(req);
+
+}
+
+//categorias cadastradas
+exports.categoriasEmpresasCadastradas = function(req, res) {
+  var CategoriaEmpresaModel = require('../models/categoriaempresas');
+  var ObjectId = require('mongoose').Types.ObjectId; 
+
+
+  CategoriaEmpresaModel.find().sort({ nome_categoria: 'asc'}).exec(function(err, categoriaempresas){
+    if (err)
+          return console.error(err);
+
+
+    res.render('admin/categoriasEmpresasCadastradas',  
+          {
+            user : req.user,
+            categoriaempresas : categoriaempresas,
+            title: "Tipos de empresas cadastradas",
+            subtitle: "Visualize todos os tipos de empresas cadastradas no Mundo Gamer",
+          });
+
+  });
+};
+
+//Verificar pq não Funciona 
+exports.editarCategoriaEmpresa = function(req, res) {  
+  var CategoriaEmpresaModel = require('../models/categoriaempresas');
+  var ObjectId = require('mongoose').Types.ObjectId; 
+  if(typeof req.params.id !== 'undefined') {
+      CategoriaEmpresaModel.findOne({_id: new ObjectId(req.params.id)}, function(err, categoriaempresa) {
+        if (err)
+          return console.error(err);
+
+        res.render('admin/editarCategoriaEmpresa', 
+          {
+            user : req.user,  
+            categoriaempresa: categoriaempresa,
+            title: "Editar dados da categoria " + categoriaempresa.nome_categoria,
+            subtitle: "Edite os dados da categoria cadastrada",
+            message: req.flash('loginMessage')
+          });
+      });
+  }
+};
+
+//Verificar pq não Funciona 
+exports.saveEditarCategoriaEmpresa = function(req, res) {  
+  console.log("id " + req.params.id);
+  var CategoriaEmpresaModel = require('../models/categoriaempresas');
+  var ObjectId = require('mongoose').Types.ObjectId; 
+  if(typeof req.params.id !== 'undefined') {
+           // var title = titleToUrl(req.body.nome_parceiro);
+
+            CategoriaEmpresaModel.findByIdAndUpdate({_id: new ObjectId(req.params.id)},{ $set: {
+            nome_categoria         : req.body.nome_categoria,
+            descricao_categoria    : req.body.editor1,
+            _criador               : req.user.id
+      }}, function(err, categoriaempresa) {
+        if (err){
+          console.error(err);
+          res.render('admin/editarCategoriaEmpresa', 
+            {
+              user : req.user,
+              categoriaempresa: categoriaempresa, // get the user out of session and pass to template
+              title: "Editar dados da categoria " + categoriaempresa.nome_categoria,
+              subtitle: "Edite os dados da categoria",
+              message: 'Erro ao salvar'
+            });
+
+        }else{
+            res.render('admin/editarCategoriaEmpresa', 
+            {
+              user : req.user,
+              categoriaempresa: categoriaempresa,// get the user out of session and pass to template
+              title: "Editar dados da categoria " + categoriaempresa.nome_categoria,
+              subtitle: "Edite os dados da categoria",
+              message: 'As informações foram alteradas com sucesso'
+            });
+        }
+
+    });
+
+        
+  }
+};
+
+
+
 //salva o personagem no banco de dados
 exports.savePersonagem = function(req, res) {
         var PersonagemModel = require('../models/personagens');
@@ -628,15 +953,14 @@ exports.savePersonagem = function(req, res) {
              var date = dataSepareted[0].split("/");
              // var time = dataSepareted[1].split(":");
              var data_nascimento = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
-            //  data_lancamento.setHours(time[0],time[1],time[2],0);
-
-            // dataSepareted = fieldsArray['datafinal'].split(" ");
-            // date = dataSepareted[0].split("/");
-            // time = dataSepareted[1].split(":");
-            // var datafinal = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
-            // datafinal.setHours(time[0],time[1],time[2],0);
-            // console.log("descricao " + fieldsArray['editor1']); */
-            //var title = titleToUrl(fieldsArray['nome_parceiro']);
+           
+            var currentdate = new Date(); 
+            var datetime = currentdate.getDate() + "/"
+            + (currentdate.getMonth()+1)  + "/" 
+            + currentdate.getFullYear() + " @ "  
+            + currentdate.getHours() + ":"  
+            + currentdate.getMinutes() + ":" 
+            + currentdate.getSeconds();
 
 
             var title = titleToUrlWiki(fieldsArray['nome_personagem']);
@@ -645,6 +969,7 @@ exports.savePersonagem = function(req, res) {
             var personagem_data = {
               _id                      : obid,
               nome_personagem          : fieldsArray['nome_personagem'],
+              data_cadastro            : currentdate,
               genero_personagem        : fieldsArray['genero_personagem'],
               primeirojogo_personagem  : fieldsArray['primeirojogo_personagem'],
               anoprimjogo_personagem   : fieldsArray['anoprimjogo_personagem'],
@@ -764,6 +1089,42 @@ exports.savePersonagem = function(req, res) {
                                                             subtitle: "Cadastre um novo personagem no Mundo Gamer",
                                                             message:"Atenção!Ṕersonagem inserido com sucesso."
                                                             });
+
+                                                  //
+                                                  var mailer = require("nodemailer");
+
+                                                      // Use Smtp Protocol to send Email
+                                                      var smtpTransport = mailer.createTransport("SMTP",{
+                                                          host: "mx.mundogamer.com.br", // hostname
+                                                          port: 587, // port for secure SMTP
+                                                          auth: {
+                                                              user: "contato@mundogamer.com.br",
+                                                              pass: "asdf1234"
+                                                          }
+                                                      });
+
+                                                      var mail = {
+                                                          from: "Sistema Mundo Gamer <contato@mundogamer.com.br>",
+                                                          to: "contato@mundogamer.com.br",
+                                                          subject: "O usuário " + req.user.local.nome + " cadastrou um novo personagem",
+                                                          //text: "Node.js New world for me",
+                                                          html: "O usuário <b>" + req.user.local.nome + "</b> cadastrou uma novo personagem no Mundo Gamer.<br><br> Confira os dados da publicação:<br><br>" +
+                                                          //"Imagem de destaque: " + "<center><img" + noticia.capa + "/></center>" + "<br>" +
+                                                          "<b>Nome do personagem:</b> " + personagem_data.nome_personagem + "<br>" +
+                                                          "<b>Data do cadastro:</b> " + personagem_data.data_cadastro + "<br>" +
+                                                          "<b>Descrição do personagem:</b> " + personagem_data.descricao_personagem + "<br>"
+                                                          
+                                                      }
+
+                                                      smtpTransport.sendMail(mail, function(error, response){
+                                                          if(error){
+                                                              console.log(error);
+                                                          }else{
+                                                              console.log("Message sent: " + response.message);
+                                                          }
+
+                                                          smtpTransport.close();
+                                                      });
 
                                                   //  im.crop({
                                                   //   srcPath: files['jogo_banner02'].path,
@@ -926,6 +1287,210 @@ exports.saveEditarPersonagem = function(req, res) {
   }
 };
 
+// //Cadastrar Empresa
+exports.saveEmpresa = function(req, res) {
+
+        var EmpresaModel = require('../models/empresas');
+        var ObjectId = require('mongoose').Types.ObjectId; 
+        var obid = new ObjectId();
+        var path = require('path');
+        var fs   = require('fs-extra')
+        var formidable = require('formidable');
+        var saveTo = path.join(__dirname.toString().replace('routes', '') + 'public/images/wikigamer/empresas/logos', path.basename(obid));
+        
+        var form = new formidable.IncomingForm(),
+        files = [],
+        fieldsArray = [];
+
+        form
+          .on('error', function(err) {
+            console.error(err);
+          })
+          .on('field', function(field, value) {
+            fieldsArray[field]= value;
+           
+          })
+          .on('file', function(field, file) {
+            files[field] = file;
+          })
+          .on('end', function() {
+
+            var title = titleToUrlWiki(fieldsArray['nome_empresa']);
+            var currentdate = new Date(); 
+            var datetime = currentdate.getDate() + "/"
+            + (currentdate.getMonth()+1)  + "/" 
+            + currentdate.getFullYear() + " @ "  
+            + currentdate.getHours() + ":"  
+            + currentdate.getMinutes() + ":" 
+            + currentdate.getSeconds();
+
+
+            var empresa_data = {
+              _id                      : obid,
+              nome_empresa             : fieldsArray['nome_empresa'],
+              email                    : fieldsArray['email'],
+              data_cadastro            : currentdate,
+              ano_fundacao             : fieldsArray['ano_fundacao'],
+              localizacao              : fieldsArray['localizacao'],
+              site                     : fieldsArray['site'],
+              tipo                     : fieldsArray['tipo'],
+              url                      : title,
+              descricao_empresa        : fieldsArray['editor1'],
+              _criador                 : req.user.id
+            }
+
+            var empresa = new EmpresaModel(empresa_data);
+              empresa.save(function(error, empresa){
+
+                if (error){
+                  fs.remove(files['capa_empresa'].path, function(err){
+                              if (err) return console.error(err);
+
+                            });
+                  res.render('admin/cadastrarempresa',{
+                  user : req.user,
+                  title: "Nova Empresa",
+                  subtitle: "Cadastre uma empresa no Mundo Gamer",
+                  message:"Atenção, não foi possivel inserir."
+                });
+
+                }else{
+                    var im = require('imagemagick');
+                    im.crop({
+                      srcPath: files['capa_empresa'].path,
+                      dstPath: saveTo,
+                      width:   300,
+                      height:  200,
+                      strip: true
+                    }, function(err, stdout, stderr){
+                        if (err){
+                           console.error(err);
+                            fs.remove(files['capa_empresa'].path, function(err){
+                              if (err) return console.error(err);
+
+
+                            });
+                            res.render('admin/cadastrarempresa',{
+                              user : req.user,
+                              title: "Nova Empresa",
+                              subtitle: "Cadastre uma empresa no Mundo Gamer",
+                              message:"Atenção! Empresa inserida com erro ao fazer upload da Capa."
+                          });
+                          }else{
+                              fs.remove(files['capa_empresa'].path, function(err){
+                                if (err) return console.error(err);
+                              });
+
+                              res.render('admin/cadastrarempresa',{
+                                user : req.user,
+                                title: "Nova Empresa",
+                                subtitle: "Cadastre uma empresa no Mundo Gamer",
+                                message:"Empresa cadastrada com sucesso"
+                              });
+
+                            }  
+              });
+
+            }
+          });
+        });
+        form.parse(req);
+}
+//Empresas cadastradas
+exports.empresasCadastradas = function(req, res) {
+  var EmpresaModel = require('../models/empresas');
+  var ObjectId = require('mongoose').Types.ObjectId; 
+
+
+  EmpresaModel.find().sort({ nome_empresa: 'asc'}).exec(function(err, empresas){
+    if (err)
+          return console.error(err);
+
+
+    res.render('admin/empresascadastradas',  
+          {
+            user : req.user,
+            empresas : empresas,
+            title: "Empresas cadastradas",
+            subtitle: "Visualize todos as empresas cadastradas no Mundo Gamer",
+          });
+
+  });
+};
+
+exports.editarEmpresa = function(req, res) {  
+  console.log(req.params.id);
+  var EmpresaModel = require('../models/empresas');
+  var ObjectId = require('mongoose').Types.ObjectId; 
+  if(typeof req.params.id !== 'undefined') {
+      EmpresaModel.findOne({_id: new ObjectId(req.params.id)}, function(err, empresa) {
+        if (err)
+          return console.error(err);
+
+        res.render('admin/editarempresa', 
+          {
+            user : req.user,  
+            empresa : empresa,
+            title: "Editar informações da empresa " + empresa.nome_empresa,
+            subtitle: "Edite os dados da empresa",
+            message: req.flash('loginMessage')
+          });
+      }).populate('_criador');
+  }
+};
+
+exports.saveEditarEmpresa = function(req, res) {  
+  console.log(req.params.id);
+  var EmpresaModel = require('../models/empresas');
+  var ObjectId = require('mongoose').Types.ObjectId; 
+  if(typeof req.params.id !== 'undefined') {
+         
+
+           var title = titleToUrlWiki(req.body.nome_empresa);
+
+            EmpresaModel.findByIdAndUpdate({_id: new ObjectId(req.params.id)},{ $set: {
+
+            nome_empresa         : req.body.nome_empresa,
+            email                : req.body.email, 
+            url                  : title,
+            ano_fundacao         : req.body.ano_fundacao,
+            localizacao          : req.body.localizacao,
+            site                 : req.body.site,
+            tipo                 : req.body.tipo,
+            descricao_empresa    : req.body.editor1,
+            _criador             : req.user.id,
+
+      }}, function(err, empresa) {
+        if (err){
+          console.error(err);
+          res.render('admin/editarempresa', 
+            {
+              user : req.user,
+              empresa : empresa, // get the user out of session and pass to template
+              title: "Editar informações da empresa " + empresa.nome_empresa,
+              subtitle: "Edite os dados da empresa",
+              message: 'Erro ao salvar'
+            });
+
+        }else{
+            res.render('admin/editarempresa', 
+            {
+              user : req.user,
+              empresa : empresa,// get the user out of session and pass to template
+              title: "Editar informações da empresa " + empresa.nome_empresa,
+              subtitle: "Edite os dados da empresa",
+              message: 'As informações foram alteradas com sucesso'
+            });
+        }
+
+    });
+
+        
+  }
+};
+
+
+
 //salva o  jogo no banco de dados
 exports.saveJogo = function(req, res) {
         var JogoModel = require('../models/jogos');
@@ -959,15 +1524,13 @@ exports.saveJogo = function(req, res) {
              var date = dataSepareted[0].split("/");
              // var time = dataSepareted[1].split(":");
              var data_lancamento = new Date(date[2]+ "." + date[1]+ "." + date[0]);
-            //  data_lancamento.setHours(time[0],time[1],time[2],0);
-
-            // dataSepareted = fieldsArray['datafinal'].split(" ");
-            // date = dataSepareted[0].split("/");
-            // time = dataSepareted[1].split(":");
-            // var datafinal = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
-            // datafinal.setHours(time[0],time[1],time[2],0);
-            // console.log("descricao " + fieldsArray['editor1']); */
-            //var title = titleToUrl(fieldsArray['nome_parceiro']);
+             var currentdate = new Date(); 
+            var datetime = currentdate.getDate() + "/"
+            + (currentdate.getMonth()+1)  + "/" 
+            + currentdate.getFullYear() + " @ "  
+            + currentdate.getHours() + ":"  
+            + currentdate.getMinutes() + ":" 
+            + currentdate.getSeconds();
 
 
             var title = titleToUrlWiki(fieldsArray['nome_jogo']);
@@ -979,6 +1542,7 @@ exports.saveJogo = function(req, res) {
               desenvolvedor      : fieldsArray['desenvolvedor'],
               editora            : fieldsArray['editora'],
               data_lancamento    : data_lancamento,
+              data_cadastro      : currentdate,
               url                : title,
               site               : fieldsArray['site'],
               categoria          : fieldsArray['categoria'],
@@ -1092,6 +1656,43 @@ exports.saveJogo = function(req, res) {
                                                             subtitle: "Cadastre um novo jogo no Mundo Gamer",
                                                             message:"Atenção!Jogo inserido com sucesso."
                                                             });
+
+                                                  var mailer = require("nodemailer");
+
+                                                      // Use Smtp Protocol to send Email
+                                                      var smtpTransport = mailer.createTransport("SMTP",{
+                                                          host: "mx.mundogamer.com.br", // hostname
+                                                          port: 587, // port for secure SMTP
+                                                          auth: {
+                                                              user: "contato@mundogamer.com.br",
+                                                              pass: "asdf1234"
+                                                          }
+                                                      });
+
+                                                      var mail = {
+                                                          from: "Sistema Mundo Gamer <contato@mundogamer.com.br>",
+                                                          to: "contato@mundogamer.com.br",
+                                                          subject: "O usuário " + req.user.local.nome + " cadastrou um novo jogo",
+                                                          //text: "Node.js New world for me",
+                                                          html: "O usuário <b>" + req.user.local.nome + "</b> cadastrou uma novo jogo no Mundo Gamer.<br><br> Confira os dados da publicação:<br><br>" +
+                                                          //"Imagem de destaque: " + "<center><img" + noticia.capa + "/></center>" + "<br>" +
+                                                          "<b>Nome do jogo:</b> " + jogo_data.nome_jogo + "<br>" +
+                                                          "<b>Data do cadastro:</b> " + jogo_data.data_cadastro + "<br>" +
+                                                          "<b>Categoria do jogo:</b> " + jogo_data.categoria + "<br>" +
+                                                          "<b>Descrição do jogo:</b> " + jogo_data.descricao_jogo + "<br>"
+                                                          
+                                                      }
+
+                                                      smtpTransport.sendMail(mail, function(error, response){
+                                                          if(error){
+                                                              console.log(error);
+                                                          }else{
+                                                              console.log("Message sent: " + response.message);
+                                                          }
+
+                                                          smtpTransport.close();
+                                                      });
+
 
                                                 }  
                                         });
@@ -1244,15 +1845,14 @@ exports.savePlataforma = function(req, res) {
              var date = dataSepareted[0].split("/");
              // var time = dataSepareted[1].split(":");
              var lancamento_plataforma = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
-             //var data_cadastro = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
-             //data_cadastro.setHours(time[0],time[1],time[2],0);
-
-            // dataSepareted = fieldsArray['datafinal'].split(" ");
-            // date = dataSepareted[0].split("/");
-            // time = dataSepareted[1].split(":");
-            // var datafinal = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
-            // datafinal.setHours(time[0],time[1],time[2],0);
-            // console.log("descricao " + fieldsArray['editor1']); */
+             
+            var currentdate = new Date(); 
+            var datetime = currentdate.getDate() + "/"
+            + (currentdate.getMonth()+1)  + "/" 
+            + currentdate.getFullYear() + " @ "  
+            + currentdate.getHours() + ":"  
+            + currentdate.getMinutes() + ":" 
+            + currentdate.getSeconds();
 
             var title = titleToUrlWiki(fieldsArray['nome_plataforma']);
             
@@ -1263,6 +1863,7 @@ exports.savePlataforma = function(req, res) {
               nome_plataforma      : fieldsArray['nome_plataforma'],
               empresa_responsavel  : fieldsArray['empresa_responsavel'],
               lancamento_plataforma :lancamento_plataforma,
+              data_cadastro        : currentdate,
               tipo_plataforma      : fieldsArray['tipo_plataforma'],
               geracao_plataforma   : fieldsArray['geracao_plataforma'],
               tipomidia_plataforma : fieldsArray['tipomidia_plataforma'],
@@ -1381,6 +1982,43 @@ exports.savePlataforma = function(req, res) {
                                                             subtitle: "Cadastre uma nova plataforma no Mundo Gamer",
                                                             message:"Atenção!Plataforma inserida com sucesso."
                                                             });
+
+                                                      var mailer = require("nodemailer");
+
+                                                      // Use Smtp Protocol to send Email
+                                                      var smtpTransport = mailer.createTransport("SMTP",{
+                                                          host: "mx.mundogamer.com.br", // hostname
+                                                          port: 587, // port for secure SMTP
+                                                          auth: {
+                                                              user: "contato@mundogamer.com.br",
+                                                              pass: "asdf1234"
+                                                          }
+                                                      });
+
+                                                      var mail = {
+                                                          from: "Sistema Mundo Gamer <contato@mundogamer.com.br>",
+                                                          to: "contato@mundogamer.com.br",
+                                                          subject: "O usuário " + req.user.local.nome + " cadastrou uma nova plataforma",
+                                                          //text: "Node.js New world for me",
+                                                          html: "O usuário <b>" + req.user.local.nome + "</b> cadastrou uma nova plataforma no Mundo Gamer.<br><br> Confira os dados da publicação:<br><br>" +
+                                                          //"Imagem de destaque: " + "<center><img" + noticia.capa + "/></center>" + "<br>" +
+                                                          "<b>Nome da Plataforma:</b> " + plataforma_data.nome_plataforma + "<br>" +
+                                                          "<b>Data de publicação:</b> " + plataforma_data.data_cadastro + "<br>" +
+                                                          "<b>Tipo de plataforma:</b> " + plataforma_data.tipo_plataforma + "<br>" +
+                                                          "<b>Descrição da plataforma:</b> " + plataforma_data.descricao_plataforma + "<br>"
+                                                          
+                                                      }
+
+                                                      smtpTransport.sendMail(mail, function(error, response){
+                                                          if(error){
+                                                              console.log(error);
+                                                          }else{
+                                                              console.log("Message sent: " + response.message);
+                                                          }
+
+                                                          smtpTransport.close();
+                                                      });
+
 
                                                   //Background
                                                   //  im.crop({
@@ -1591,10 +2229,19 @@ exports.saveParceiro = function(req, res) {
             files[field] = file;
           })
           .on('end', function() {
-             var dataSepareted = fieldsArray['data_cadastro'].split(" ");
-             var date = dataSepareted[0].split("/");
+             // var dataSepareted = fieldsArray['data_cadastro'].split(" ");
+             // var date = dataSepareted[0].split("/");
              // var time = dataSepareted[1].split(":");
-             var data_cadastro = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
+             //var data_cadastro = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
+
+            var currentdate = new Date(); 
+            var datetime = currentdate.getDate() + "/"
+            + (currentdate.getMonth()+1)  + "/" 
+            + currentdate.getFullYear() + " @ "  
+            + currentdate.getHours() + ":"  
+            + currentdate.getMinutes() + ":" 
+            + currentdate.getSeconds();
+
 
             var title = titleToUrlWiki(fieldsArray['nome_parceiro']);
 
@@ -1603,7 +2250,7 @@ exports.saveParceiro = function(req, res) {
               nome_parceiro      : fieldsArray['nome_parceiro'],
               nome_responsavel     : fieldsArray['nome_responsavel'],
               email_contato      : fieldsArray['email_contato'],
-              data_cadastro      : data_cadastro,
+              data_cadastro      : currentdate,
               url                : title,
               categoria          : fieldsArray['categoria'],
               descricao_parceiro : fieldsArray['editor1'],
@@ -1720,6 +2367,46 @@ exports.saveParceiro = function(req, res) {
                                                             subtitle: "Cadastre um novo parceiro Mundo Gamer",
                                                             message:"Atenção!Parceiro inserido com sucesso."
                                                             });
+
+                                                  //
+                                                     var mailer = require("nodemailer");
+
+                                                      // Use Smtp Protocol to send Email
+                                                      var smtpTransport = mailer.createTransport("SMTP",{
+                                                          host: "mx.mundogamer.com.br", // hostname
+                                                          port: 587, // port for secure SMTP
+                                                          auth: {
+                                                              user: "contato@mundogamer.com.br",
+                                                              pass: "asdf1234"
+                                                          }
+                                                      });
+
+                                                      var mail = {
+                                                          from: "Sistema Mundo Gamer <contato@mundogamer.com.br>",
+                                                          to: "contato@mundogamer.com.br",
+                                                          subject: "O usuário " + req.user.local.nome + " cadastrou um novo parceiro",
+                                                          //text: "Node.js New world for me",
+                                                          html: "O usuário <b>" + req.user.local.nome + "</b> cadastrou um novo parceiro no Mundo Gamer.<br><br> Confira os dados da publicação:<br><br>" +
+                                                          //"Imagem de destaque: " + "<center><img" + noticia.capa + "/></center>" + "<br>" +
+                                                          "<b>Nome do parceiro:</b> " + parceiro_data.nome_parceiro + "<br>" +
+                                                          "<b>Data do cadastro:</b> " + parceiro_data.data_cadastro + "<br>" +
+                                                          "<b>Nome do responsável:</b> " + parceiro_data.nome_responsavel + "<br>" +
+                                                          "<b>Categoria:</b> " + parceiro_data.categoria + "<br>" +
+                                                          "<b>Site oficial:</b> " + parceiro_data.site + "<br>" +
+                                                          "<b>Descrição do parceiro:</b> " + parceiro_data.descricao_parceiro + "<br>"
+                                                          
+                                                      }
+
+                                                      smtpTransport.sendMail(mail, function(error, response){
+                                                          if(error){
+                                                              console.log(error);
+                                                          }else{
+                                                              console.log("Message sent: " + response.message);
+                                                          }
+
+                                                          smtpTransport.close();
+                                                      });
+
 
                                                   //  im.crop({
                                                   //   srcPath: files['jogo_banner02'].path,
@@ -1874,13 +2561,22 @@ exports.saveNoticia = function(req, res) {
             files[field] = file;
           })
           .on('end', function() {
-             var dataSepareted = fieldsArray['datainicio'].split(" ");
-             var date = dataSepareted[0].split("/");
-             var time = dataSepareted[1].split(":");
-             var datainicio = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
-             datainicio.setHours(time[0],time[1],time[2],0);
+             // var dataSepareted = fieldsArray['datainicio'].split(" ");
+             // var date = dataSepareted[0].split("/");
+             // var time = dataSepareted[1].split(":");
+             // var datainicio = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
+             // datainicio.setHours(time[0],time[1],time[2],0);
 
             var title = titleToUrl(fieldsArray['titulo']);
+
+            var currentdate = new Date(); 
+            var datetime = currentdate.getDate() + "/"
+            + (currentdate.getMonth()+1)  + "/" 
+            + currentdate.getFullYear() + " @ "  
+            + currentdate.getHours() + ":"  
+            + currentdate.getMinutes() + ":" 
+            + currentdate.getSeconds();
+
 
             var noticia_data = {
               _id         : obid,
@@ -1888,7 +2584,7 @@ exports.saveNoticia = function(req, res) {
               url         : title,
               parceiro    : fieldsArray['parceiro'],
               titulo      : fieldsArray['titulo'],
-              data        : datainicio,
+              data        : currentdate,
               descricao   : fieldsArray['editor1'],
               src         : fieldsArray['src'],
               url_fonte   :fieldsArray['url_fonte'],
@@ -1945,6 +2641,43 @@ exports.saveNoticia = function(req, res) {
                                 message:"Notícia cadastrada com sucesso"
                               });
 
+                              var mailer = require("nodemailer");
+
+                                // Use Smtp Protocol to send Email
+                                var smtpTransport = mailer.createTransport("SMTP",{
+                                    host: "mx.mundogamer.com.br", // hostname
+                                    port: 587, // port for secure SMTP
+                                    auth: {
+                                        user: "contato@mundogamer.com.br",
+                                        pass: "asdf1234"
+                                    }
+                                });
+
+                                var mail = {
+                                    from: "Sistema Mundo Gamer <contato@mundogamer.com.br>",
+                                    to: "contato@mundogamer.com.br",
+                                    subject: "O usuário " + req.user.local.nome + " cadastrou uma nova publicação",
+                                    //text: "Node.js New world for me",
+                                    html: "O usuário <b>" + req.user.local.nome + "</b> cadastrou uma nova publicação no Mundo Gamer.<br><br> Confira os dados da publicação:<br><br>" +
+                                    "Imagem de destaque: " + "<center><img" + noticia.capa + "/></center>" + "<br>" +
+                                    "<b>Título da publicação:</b> " + noticia_data.titulo + "<br>" +
+                                    "<b>Data de publicação:</b> " + noticia_data.data + "<br>" +
+                                    "<b>Parceiro da publicação:</b> " + noticia_data.parceiro + "<br>" +
+                                    "<b>Descrição da publicação:</b> " + noticia_data.descricao + "<br>"
+                                    
+                                }
+
+                                smtpTransport.sendMail(mail, function(error, response){
+                                    if(error){
+                                        console.log(error);
+                                    }else{
+                                        console.log("Message sent: " + response.message);
+                                    }
+
+                                    smtpTransport.close();
+                                });
+
+
                             //   FB.api(
                             //     "/{}/feed",
                             //     "POST",
@@ -1957,6 +2690,7 @@ exports.saveNoticia = function(req, res) {
                             //       }
                             //     }
                             // );
+
                             }  
               });
 
@@ -2060,11 +2794,13 @@ exports.saveAnalise = function(req, res) {
             files[field] = file;
           })
           .on('end', function() {
-             var dataSepareted = fieldsArray['datainicio'].split(" ");
-             var date = dataSepareted[0].split("/");
-             var time = dataSepareted[1].split(":");
-             var datainicio = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
-             datainicio.setHours(time[0],time[1],time[2],0);
+            var currentdate = new Date(); 
+            var datetime = currentdate.getDate() + "/"
+            + (currentdate.getMonth()+1)  + "/" 
+            + currentdate.getFullYear() + " @ "  
+            + currentdate.getHours() + ":"  
+            + currentdate.getMinutes() + ":" 
+            + currentdate.getSeconds();
 
 
             var title = titleToUrl(fieldsArray['titulo']);
@@ -2075,7 +2811,7 @@ exports.saveAnalise = function(req, res) {
               url         : title,
               parceiro    : fieldsArray['parceiro'],
               titulo      : fieldsArray['titulo'],
-              data        : datainicio,
+              data        : currentdate,
               descricao   : fieldsArray['editor1'],
               
               _criador    : req.user.id
@@ -2229,11 +2965,13 @@ exports.saveVideo = function(req, res) {
             files[field] = file;
           })
           .on('end', function() {
-             var dataSepareted = fieldsArray['datainicio'].split(" ");
-             var date = dataSepareted[0].split("/");
-             var time = dataSepareted[1].split(":");
-             var datainicio = new Date(date[2]+ "." + date[1]+ "." + date[0]);;
-             datainicio.setHours(time[0],time[1],time[2],0);
+            var currentdate = new Date(); 
+            var datetime = currentdate.getDate() + "/"
+            + (currentdate.getMonth()+1)  + "/" 
+            + currentdate.getFullYear() + " @ "  
+            + currentdate.getHours() + ":"  
+            + currentdate.getMinutes() + ":" 
+            + currentdate.getSeconds();
 
             var title = titleToUrl(fieldsArray['titulo']);
 
@@ -2243,7 +2981,7 @@ exports.saveVideo = function(req, res) {
               tipo        : fieldsArray['tipo'],
               parceiro    : fieldsArray['parceiro'],
               titulo      : fieldsArray['titulo'],
-              data        : datainicio,
+              data        : currentdate,
               descricao   : fieldsArray['editor1'],
               src         : fieldsArray['src'],
               url_fonte   :fieldsArray['url_fonte'],
@@ -2299,6 +3037,44 @@ exports.saveVideo = function(req, res) {
                                 subtitle: "Cadastre seu vídeo Mundo Gamer",
                                 message:"O seu vídeo foi cadastrado com sucesso!"
                               });
+
+                                var mailer = require("nodemailer");
+
+                                // Use Smtp Protocol to send Email
+                                var smtpTransport = mailer.createTransport("SMTP",{
+                                    host: "mx.mundogamer.com.br", // hostname
+                                    port: 587, // port for secure SMTP
+                                    auth: {
+                                        user: "contato@mundogamer.com.br",
+                                        pass: "asdf1234"
+                                    }
+                                });
+
+                                var mail = {
+                                    from: "Sistema Mundo Gamer <contato@mundogamer.com.br>",
+                                    to: "contato@mundogamer.com.br",
+                                    subject: "O usuário " + req.user.local.nome + " cadastrou um novo vídeo",
+                                    //text: "Node.js New world for me",
+                                    html: "O usuário <b>" + req.user.local.nome + "</b> cadastrou um novo video no Mundo Gamer.<br><br> Confira os dados da publicação:<br><br>" +
+                                    //"Imagem de destaque: " + "<center><img" + noticia.capa + "/></center>" + "<br>" +
+                                    "<b>Título da publicação:</b> " + noticia_data.titulo + "<br>" +
+                                    "<b>Data de publicação:</b> " + noticia_data.data + "<br>" +
+                                    "<b>Tipo de vídeo:</b> " + noticia_data.tipo + "<br>" +
+                                    "<b>Parceiro da publicação:</b> " + noticia_data.parceiro + "<br>" +
+                                    "<b>Descrição da publicação:</b> " + noticia_data.descricao + "<br>"
+                                    
+                                }
+
+                                smtpTransport.sendMail(mail, function(error, response){
+                                    if(error){
+                                        console.log(error);
+                                    }else{
+                                        console.log("Message sent: " + response.message);
+                                    }
+
+                                    smtpTransport.close();
+                                });
+
                             }  
               });
 
@@ -2689,8 +3465,13 @@ exports.loadCategories = function(req, res) {
     CategoriaModel.find( {nome_categoria: {$regex:re} }).exec(function (err, categorias) {
     if (err)
       return console.error(err);
+    var newData = [];
+    for (var i = 0, len=categorias.length; i<len;i++) {
+      newData.push(categorias[i].nome_categoria)
 
-    res.json(categorias);
+    }
+    console.log(newData);
+    res.json(newData);
 
   });
 
@@ -2709,6 +3490,72 @@ exports.loadPlataformas = function(req, res) {
     var newData = [];
     for (var i = 0, len=plataformas.length; i<len;i++) {
       newData.push(plataformas[i].nome_plataforma)
+
+    }
+    console.log(newData);
+    res.json(newData);
+
+  });
+
+  }
+
+  exports.loadMidias = function(req, res) {
+    var MidiaModel = require('../models/midias');
+    //var nome = req.route.params.nome;
+     var nome = req.query.nome; 
+     var re = new RegExp(nome, 'i')
+     console.log("nome " + nome);
+
+    MidiaModel.find( {nome_midia: {$regex:re} }).exec(function (err, midias) {
+    if (err)
+      return console.error(err);
+    var newData = [];
+    for (var i = 0, len=midias.length; i<len;i++) {
+      newData.push(midias[i].nome_midia)
+
+    }
+    console.log(newData);
+    res.json(newData);
+
+  });
+
+  }
+
+    exports.loadCategoriaEmpresas = function(req, res) {
+    var CategoriaEmpresaModel = require('../models/categoriaempresas');
+    //var nome = req.route.params.nome;
+     var nome = req.query.nome; 
+     var re = new RegExp(nome, 'i')
+     console.log("nome " + nome);
+
+    CategoriaEmpresaModel.find( {nome_categoria: {$regex:re} }).exec(function (err, categoriaempresas) {
+    if (err)
+      return console.error(err);
+    var newData = [];
+    for (var i = 0, len=categoriaempresas.length; i<len;i++) {
+      newData.push(categoriaempresas[i].nome_categoria)
+
+    }
+    console.log(newData);
+    res.json(newData);
+
+  });
+
+  }
+
+    exports.loadEmpresas = function(req, res) {
+    var EmpresaModel = require('../models/empresas');
+    //var nome = req.route.params.nome;
+     var nome = req.query.nome; 
+     var re = new RegExp(nome, 'i')
+     console.log("nome " + nome);
+
+    EmpresaModel.find( {nome_empresa: {$regex:re} }).exec(function (err, empresas) {
+    if (err)
+      return console.error(err);
+    var newData = [];
+    for (var i = 0, len=empresas.length; i<len;i++) {
+      newData.push(empresas[i].nome_empresa)
 
     }
     console.log(newData);

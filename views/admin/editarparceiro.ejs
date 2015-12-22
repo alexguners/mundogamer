@@ -33,15 +33,7 @@
                           <input type="text" class="input-block-level" id="email_contato" name="email_contato" placeholder="Digite o e-mail de contato" required="required" value="<%= parceiro.email_contato %>" />
                         </p>
                         <!-- Fim do Campo Nome do Parceiro --> 
-
-                        <!-- Data de cadastro do parceiro -->
-                        <p>
-                           <label>Data de cadastro</label>
-                           <input type="text" name="data_cadastro" id="data_cadastro" maxlength="10" placeholder="Exemplo 01/01/2014" onkeypress="return dateMask(this, event);"  value="<% var d = new Date(parceiro.data_cadastro); 
-                        %><%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/'  + d.getFullYear() %>" disabled/>
-
-                        </p>
-                        <!-- Fim Data de cadastro do parceiro  -->                       
+                    
 
                         <!-- Parceiro da notícia-->
                         <p>

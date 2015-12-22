@@ -222,23 +222,6 @@ module.exports = function(passport) {
                         }
                     
                         //
-                        //send an e-mail to jim rubenstein
-                        mandrill('/messages/send', {
-                            message: {
-                                to: [{email: 'noreply@mundogamer.com.br', name: 'Mundo Gamer'}],
-                                from_email: 'newUser.local.email',
-                                subject: "newUser.local.nome Seja bem vindo ao Mundo Gamer",
-                                text: "Hello, I sent this message using mandrill."
-                            }
-                        }, function(error, response)
-                        {
-                            //uh oh, there was an error
-                            if (error) console.log( JSON.stringify(error) );
-
-                            //everything's good, lets see what mandrill said
-                            else console.log(response);
-                        });
-                        //
 
                         newUser.save(function(err) {
                             if (err)

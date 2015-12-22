@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<% include admin-header %>   
+ <% if (message.length>0) { %>
+        <div class="alert alert-success"><%= message %></div>
+    <% } %>
+          <div class="row-fluid">
+            <div id="dashboard-left" class="span8">
+             <div class="panel panel-primary"> 
+                <div class="panel-body">
+  					       <form id="LoginForm" role="form" class="form-horizontal" autocomplete="off"  method="post">
+                   
+                    <!-- Id da Plataforma -->
+                    <input type="hidden" value="<%= empresa.id %>" name="id" />
+
+                    <label>Nome da empresa</label>
+                    <input type="text" class="input-block-level" id="nome_empresa" name="nome_empresa" placeholder="Digite o nome do empresa" required="required" value="<%= empresa.nome_empresa %>"/>
+                    <!-- Fim Nome do empresa -->
+
+                    <!-- E-mail para contato -->
+                    <label>E-mail para contato</label>
+                    <input type="text" class="form-control" id="email" name="email" placeholder="E-mail para contato"  value="<%= empresa.email %>"/>
+                    <span class="help-block"></span>  
+                   <!-- E-mail para contato  --> 
+
+
+                    <!-- Ano de Fundação -->
+                   <label>Ano de fundação</label>
+                   <input type="text" name="ano_fundacao" id="ano_fundacao" maxlength="10" placeholder="2015" value="<%= empresa.ano_fundacao %>"/>
+                    <!-- Fim Data de Lançamento -->
+
+                    <!-- Localização -->
+                   <label>Localização</label>
+                   <input type="text" name="localizacao" id="localizacao" maxlength="10" placeholder="Nome da empresa" value="<%= empresa.localizacao %>"/>
+                    <!-- Localização -->
+
+                     <!-- Site oficial da empresa -->
+                    <label>Site oficial</label>
+                    <input type="text" class="form-control" id="site" name="site" placeholder="Site oficial da empresa" value="<%= empresa.site %>"/>
+                    <span class="help-block"></span>  
+                   <!-- Fim do Site oficial do empresa --> 
+
+
+                    <!--  tipo de empresa -->
+                    <label>Selecione o tipo de empresa</label>
+                    <input type="text" data-role="tagsinput" id="typeahead" name="tipo" required="required" placeholder="Tipo da empresa" value="<%= empresa.tipo %>"/>
+                    <!-- Tipo de empresa --> 
+                                            
+
+                    <!-- Editor de texto da descrição do empresa-->
+                    <label><h4 class="widgettitle">Cadastre um conteúdo de descrição para a empresa</h4></label>
+                    <textarea  class="ckeditor" name="editor1" id="editor1"><%= empresa.descricao_empresa %></textarea>      
+                    <!-- Fim do  Editor de texto da descrição do empresa-->         
+
+                    <!-- Botão de Cadastrar empresa-->
+                    <center><button id="SubmitBtn" name="SubmitBtn" type="submit" class="btn btn-large btn-inverse">Cadastrar Empresa</button></center> 
+                    <!-- Fim do Botão de Cadastrar empresa-->
+
+                  </form>
+						    </div>
+						 </div>         
+            </div>
+
+            <div class="span4">
+
+              <ins class="adsbygoogle"
+               style="display:inline-block;width:300px;height:250px"
+               data-ad-client="ca-pub-0061672681197040"
+               data-ad-slot="1898201088"></ins>
+              <!-- Mundo Gamer Administrativo -->
+            </div>
+        </div>
+                <!-- Place inside the <head> of your HTML -->
+  <script src="/admin/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+  <script src="/editor/ckeditor.js" type="text/javascript"></script>
+  <script src="/admin/js/chosen.jquery.js" type="text/javascript"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js" type="text/javascript"></script>
+  <script src="/admin/js/bootstrap.min.js" type="text/javascript"> </script>
+  <script src="/admin/js/bootstrap-tagsinput.min.js" type="text/javascript"> </script>
+
+  <script type="text/javascript">
+
+      $('#typeahead').tagsinput({
+        typeahead: {  
+                        
+          source: function(query) {
+            return $.get('/mg-admin/loadCategoriaEmpresas/', { nome: query});
+          }
+        },
+        maxTags: 1
+      });    
+
+
+    var nome_empresa = $("#nome_empresa");
+    var LoginForm = $('#LoginForm');
+    var SubmitBtn = $('#SubmitBtn');
+ 
+    LoginForm.validate();
+ 
+    nome_empresa.rules("add", {
+      required: true,
+      messages: {
+        required: "Nome da empresa é obrigatório."
+      }
+    });
+ 
+    $('#LoginForm').submit(function () {
+      if ($(this).valid()) {
+        $('#SubmitBtn').prop('disabled', true);
+        return true;
+      }
+      return false;
+    });
+ 
+    
+    
+</script>
+
+
+<% include admin-footer %>      
+
+

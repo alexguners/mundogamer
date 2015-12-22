@@ -37,15 +37,6 @@
                       <input type="text" require class="input-block-level" id="titulo" name="titulo" title=' Preencha o campo Título' required placeholder="Digite o titulo da análise" required="required" />
                     <!-- Fim Título da Notícia -->
 
-                    <!-- Data de Publicação -->
-                      <div id="datainicio">
-                        <label for="datafinal">Selecione a data inicial de exibição</label>
-                        <input type="text" class="form-control" name="datainicio" id="datainicio" required="required"></input>
-                          <span class="add-on">
-                            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-                          </span>
-                      </div>
-                    <!-- Fim da Data de Publicação -->
 
                      <!-- Parceiro da publicação-->
                       <label>Selecione um parceiro para divulgação em sua publicação</label>
@@ -112,27 +103,15 @@
 
           });
 
-           $('#datainicio').datetimepicker({
-            format: 'dd/MM/yyyy hh:mm:ss',
-            language: 'pt-BR'
-          });
+          
 
           $(document).ready(function () {
-          var datainicio = $("#datainicio");
           var titulo = $("#titulo");
           var LoginForm = $('#LoginForm');
           var SubmitBtn = $('#SubmitBtn');
        
           LoginForm.validate();
        
-          datainicio.rules("add", {
-            required: true,
-            length: 9,
-            messages: {
-              required: "Você deve preencher data de início",
-              rangelength: "Data inválida"
-            }
-          });
           titulo.rules("add", {
             required: true,
             messages: {

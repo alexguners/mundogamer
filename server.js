@@ -1,4 +1,4 @@
-#!/bin/env node
+
 
 var mongoose = require( 'mongoose');
 var engine = require('ejs-locals')
@@ -242,6 +242,31 @@ var MundoGamerApp = function() {
 
         self.app.get('/mg-admin/categoriascadastradas', admin.isLoggedIn, admin.categoriasCadastradas);
 
+        //Midias
+
+        self.app.get('/mg-admin/cadastrarmidia', admin.isLoggedIn, admin.novaMidia);
+
+        self.app.post('/mg-admin/cadastrarmidia', admin.isLoggedIn, admin.saveMidia);
+
+        self.app.get('/mg-admin/editarmidia/:id?', admin.isLoggedIn, admin.editarMidia);
+
+        self.app.post('/mg-admin/editarmidia/:id?', admin.isLoggedIn, admin.saveEditarMidia);
+
+        self.app.get('/mg-admin/midiascadastradas', admin.isLoggedIn, admin.midiasCadastradas);
+
+        // //Categorias Empresas
+
+         self.app.get('/mg-admin/cadastrarNovaCategoriaEmpresa', admin.isLoggedIn, admin.novaCategoriaEmpresa);
+
+         self.app.post('/mg-admin/cadastrarNovaCategoriaEmpresa', admin.isLoggedIn, admin.saveCategoriaEmpresa);
+
+         self.app.get('/mg-admin/editarCategoriaEmpresa/:id?', admin.isLoggedIn, admin.editarCategoriaEmpresa);
+
+         self.app.post('/mg-admin/editarCategoriaEmpresa/:id?', admin.isLoggedIn, admin.saveEditarCategoriaEmpresa);
+
+         self.app.get('/mg-admin/categoriasEmpresasCadastradas', admin.isLoggedIn, admin.categoriasEmpresasCadastradas);
+
+
         //Plataformas
 
         self.app.get('/mg-admin/cadastrarplataforma', admin.isLoggedIn, admin.novaPlataforma);
@@ -253,6 +278,18 @@ var MundoGamerApp = function() {
         self.app.post('/mg-admin/editarplataforma/:id?', admin.isLoggedIn, admin.saveEditarPlataforma);
 
         self.app.get('/mg-admin/plataformascadastradas', admin.isLoggedIn, admin.plataformasCadastradas);
+
+        //Empresas
+
+        self.app.get('/mg-admin/cadastrarempresa', admin.isLoggedIn, admin.novaEmpresa);
+
+        self.app.post('/mg-admin/cadastrarempresa', admin.isLoggedIn, admin.saveEmpresa);
+
+        self.app.get('/mg-admin/editarempresa/:id?', admin.isLoggedIn, admin.editarEmpresa);
+
+        self.app.post('/mg-admin/editarempresa/:id?', admin.isLoggedIn, admin.saveEditarEmpresa);
+
+        self.app.get('/mg-admin/empresascadastradas', admin.isLoggedIn, admin.empresasCadastradas);
 
 
         //Parceiros
@@ -290,8 +327,6 @@ var MundoGamerApp = function() {
         self.app.post('/mg-admin/editaranalise/:id?', admin.isLoggedIn, admin.saveEditarAnalise);
 
 
-        //notícias
-
         self.app.get('/mg-admin/novanoticia', admin.isLoggedIn, admin.novaNoticia);
 
         self.app.post('/mg-admin/novanoticia', admin.isLoggedIn, admin.saveNoticia);
@@ -304,31 +339,9 @@ var MundoGamerApp = function() {
 
         self.app.post('/mg-admin/editarvideo/:id?', admin.isLoggedIn, admin.saveEditarVideo);   
 
-         //Coberturas de eventos
+        self.app.get('/mg-admin/loadmidias/:nome?', admin.isLoggedIn, admin.loadMidias); 
 
-        // self.app.get('/mg-admin/cadastrarcobertura', admin.isLoggedIn, admin.novaCobertura);
-
-        // self.app.post('/mg-admin/cadastrarcobertura', admin.isLoggedIn, admin.saveCobertura);
-
-        // self.app.get('/mg-admin/editarcobertura/:id?', admin.isLoggedIn, admin.editarCobertura);
-
-        // self.app.post('/mg-admin/editarcobertura/:id?', admin.isLoggedIn, admin.saveEditarCobertura);
-
-        // self.app.get('/mg-admin/coberturascadastradas', admin.isLoggedIn, admin.coberturasCadastradas);
-
-        //Shopping MG
-
-        self.app.get('/mg-admin/cadastraranuncio', admin.isLoggedIn, admin.novoAnuncio);
-
-        // self.app.post('/mg-admin/cadastraritem', admin.isLoggedIn, admin.saveItem);
-
-        // self.app.get('/mg-admin/editaritem/:id?', admin.isLoggedIn, admin.editarItem);
-
-        // self.app.post('/mg-admin/editaritem/:id?', admin.isLoggedIn, admin.saveEditarItem);
-
-        // self.app.get('/mg-admin/itensCadastrados', admin.isLoggedIn, admin.itensCadastrados);
-
-
+        self.app.get('/mg-admin/loadcategoriaempresas/:nome?', admin.isLoggedIn, admin.loadCategoriaEmpresas); 
 
         self.app.get('/mg-admin/loadparceiros/:nome?', admin.isLoggedIn, admin.loadParceiros); 
 
@@ -338,10 +351,10 @@ var MundoGamerApp = function() {
 
         self.app.get('/mg-admin/loadplataformas/:nome?', admin.isLoggedIn, admin.loadPlataformas);
 
-        self.app.post('/upload', admin.imageUpload);
+        self.app.get('/mg-admin/loadempresas/:nome?', admin.isLoggedIn, admin.loadEmpresas);
 
-        // process the signup form
-        self.app.get('/mg-admin/logout', admin.logout);
+
+        self.app.post('/upload', admin.imageUpload);
 
         // send to facebook to do the authentication
         self.app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email,public_profile,user_friends,user_location,user_birthday,user_activities' }));
@@ -351,18 +364,6 @@ var MundoGamerApp = function() {
                         successRedirect : '/mg-admin',
                         failureRedirect : '/login'
         }));
-
-        self.app.get('/auth/twitter',   passport.authenticate('twitter'));
-
-        self.app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/login' }),  function(req, res) {
-        // Successful authentication, redirect home.
-        res.redirect('/mg-admin'); });
-
-        self.app.get('/auth/google', passport.authenticate('google', { scope: 'https://www.googleapis.com/auth/plus.login' }));
-
-        self.app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
-        // Successful authentication, redirect home.
-        res.redirect('/mg-admin'); });
     };
 
 
@@ -396,7 +397,6 @@ var MundoGamerApp = function() {
           
           // Problema no Servidor - Erro 500
         self.app.use(function(error, req, res, next) {
-            console.log("Erro 500 encontrado" + error);
          res.render('erro500', {status: 500});
          });
 

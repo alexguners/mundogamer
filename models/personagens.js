@@ -4,6 +4,7 @@ var Schema   = mongoose.Schema;
 var personagemSchema = new Schema({
 	_id				: Schema.Types.ObjectId,
 	nome_personagem			: String,
+	data_cadastro		: {type: Date},
 	genero_personagem		: String,
 	data_nascimento			: {type: Date},
 	primeirojogo_personagem	: String,

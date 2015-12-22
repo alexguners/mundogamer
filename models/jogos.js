@@ -7,6 +7,7 @@ var jogoSchema = new Schema({
 	desenvolvedor		: String,
 	editora				: String,
 	data_lancamento		: {type: Date},
+	data_cadastro		: {type: Date},
 	categoria			: String,
 	tipomidia_jogo		: String,
 	url					: String,

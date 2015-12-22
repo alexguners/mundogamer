@@ -12,47 +12,41 @@
                     <thead>
                         <tr>
                             <th class="head0 nosort"><input type="checkbox" class="checkall" /></th>
-                            <th class="head1">Data do Cadastro</th>
-                            <th class="head0">Nome da Categoria</th>
+                            <th class="head1">Data do cadastro</th>
+                            <th class="head0">Nome da mídia</th>
                             <th class="head1">Descrição</th>
-                            <th class="head0">Jogos cadastrados</th>
+                            <th class="head0">Jogos vinculados</th>
                             <th class="head1">Ver/Editar</th>
                         </tr>
                     </thead>
                     <tbody>
 
-                    <% for(var i=0; i<categorias.length; i++) {%>
+                    <% for(var i=0; i<midias.length; i++) {%>
                         <tr class="gradeX">
                             <td class="aligncenter">
                                 <span class="center">
                                     <input type="checkbox" />
                                 </span>
                             </td>
-                            <td class="center"><% var d = new Date(categorias[i].data_cadastro); 
+                            <td class="center"><% var d = new Date(midias[i].data_cadastro); 
                             %><%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/'
                                 + d.getFullYear() %> às <%= ('0' + (d.getHours())).slice(-2) + ':' + ('0' + (d.getMinutes())).slice(-2) %></td>
-
-                            <td class="center"><%= categorias[i].nome_categoria %></td>
+                            <td class="center"><%= midias[i].nome_midia %></td>
                             <td class="center">
-                            <% if (typeof categorias[i].descricao_categoria !== 'undefined'){ %>
-                                <% if((categorias[i].descricao_categoria == 'undefined') || (categorias[i].descricao_categoria == '') ){ %>
+                            <% if (typeof midias[i].descricao_midia !== 'undefined'){ %>
+                                <% if((midias[i].descricao_midia == 'undefined') || (midias[i].descricao_midia == '') ){ %>
                                     <span class="label label-danger">Sem descrição cadastrada</span>
                                     <%}else { %>
-                                      <%= categorias[i].descricao_categoria.toString().replace(/<.*?>/g, '').substr(0,60) %>...
+                                      <%= midias[i].descricao_midia.toString().replace(/<.*?>/g, '').substr(0,60) %>...
                                     <%}%>
                                 <%}%>
                             </td>
                             <td class="center"></td>
-
-                            <% if (typeof user.local.tipo !== 'undefined'){ %>
-                                <% if (user.local.tipo == 'Administrador'){ %> 
-                                    <td class="center">
-                                        <a href="/mg-admin/editarcategoria/<%= categorias[i].id %>" data-toggle="modal" class="btn btn-inverse">
-                                            <i class="iconfa-pencil"></i>
-                                        </a>
-                                    </td>
-                                <%}%>
-                            <%}%> 
+                            <td class="center">
+                                <a href="/mg-admin/editarmidia/<%= midias[i].id %>" data-toggle="modal" class="btn btn-inverse">
+                                    <i class="iconfa-pencil"></i>
+                                </a>
+                            </td>
 
                         </tr>
                         <% } %>
@@ -62,7 +56,7 @@
                     
                 <div class="divider30" ></div> 
                                         <ul class="list-nostyle list-inline" align="right">
-                                            <li><a href="/mg-admin/cadastrarcategoria" class="btn btn-inverse btn-rounded" > <i class=" iconfa-plus"></i> &nbsp; Cadastrar categoria</a></li>
+                                            <li><a href="/mg-admin/cadastrarmidia" class="btn btn-inverse btn-rounded" > <i class=" iconfa-plus"></i> &nbsp; Cadastrar midia</a></li>
                                         </ul>
 
 

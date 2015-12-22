@@ -26,13 +26,13 @@
 
 
                     <!-- Empresa Responsavel -->
-                    <label>Desenvolvedor</label>
-                    <input type="text" class="form-control" id="desenvolvedor" name="desenvolvedor" placeholder="Empresa responsável" required="required" value="<%= jogo.desenvolvedor %>"/>
+                    <label>Desenvolvedores</label>
+                    <input type="text" data-role="tagsinput" id="desenvolvedor" name="desenvolvedor" placeholder="Desenvolvido por" required="required" value="<%= jogo.desenvolvedor %>"/>
                     <!-- Fim da Empresa Responsavel -->
 
                     <!-- Editora Responsavel -->
                     <label>Editora</label>
-                    <input type="text" class="form-control" id="editora" name="editora" placeholder="Empresa responsável" required="required" value="<%= jogo.editora %>"/>
+                    <input type="text" data-role="tagsinput" id="editora" name="editora" placeholder="Editora responsável" required="required" value="<%= jogo.editora %>"/>
                    <!-- Fim da Editora Responsavel -->
 
                     <!-- Site oficial do jogo -->
@@ -41,12 +41,13 @@
                    <!-- Fim do Site oficial do jogo --> 
 
                     <!-- Site oficial do jogo -->
-                    <label>Seleciona uma categoria</label>
-                    <input type="text" data-provide="typeahead" id="typeahead" required="required" name="categoria" value="<%= jogo.categoria %>"/>
+                    <label>Selecione as categorias do jogo</label>
+                    <input type="text" data-role="tagsinput" id="typeahead" name="categoria" placeholder="Selecione as categorias do jogo" required="required"  value="<%= jogo.categoria %>"/> 
+
                     <!-- Fim do Site oficial do jogo --> 
 
                     <label>Selecione as Plataformas em que o jogo foi lançado</label>
-                    <input type="text" data-role="tagsinput" id="typeahead2" name="plataformas"  value="<%= jogo.plataformas %>"/> 
+                    <input type="text" data-role="tagsinput" id="typeahead2" name="plataformas" placeholder="Selecione as plataformas em que o jogo está disponível"   value="<%= jogo.plataformas %>"/> 
                     
 
                     <!-- Editor de texto da descrição do jogo-->
@@ -84,33 +85,7 @@
             </div>
 
             <div class="span4">
-             <% if (typeof user.local.tipo !== 'undefined'){ %>
-                <% if (user.local.tipo == 'Administrador'){ %> 
 
-                    <div class="alert alert-info" role="alert">
-                      <small>Cadastrado por<strong> <%= jogo._criador.local.nome %></strong></small>
-                    </div><!--alert-->
-                    <ul class="media-list">
-                      <li class="media">
-                        <div class="pull-left">
-                          <img src='https://graph.facebook.com/<%=jogo._criador.facebook.id%>/picture?type=normal' alt='Imagem de perfil'/>
-                        </div>
-                        <div class="media-body">
-                          <small>
-                            E-mail: <%= jogo._criador.local.email %><br>
-                            Mora em: <%= jogo._criador.facebook.location %><br>
-                            Cadastrado <% var d = new Date(jogo._criador.local.created_at); 
-                              %>no dia <%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/'  + d.getFullYear() %> às <%= ('0' + (d.getHours())).slice(-2) + ':' + ('0' + (d.getMinutes())).slice(-2) %><br>
-                            Créditos disponíveis: <%= jogo._criador.local.credits %><br>
-                            Total de publicações:<br>
-                          </small>
-                          <center><a href="" class="btn btn-primary btn-rounded">Enviar Mensagem</a></center>
-                        </div>
-                      </li>
-                    </ul>
-                      <br>
-                <%}%>
-             <%}%>   
               <ins class="adsbygoogle"
                style="display:inline-block;width:300px;height:250px"
                data-ad-client="ca-pub-0061672681197040"
@@ -132,24 +107,14 @@
         // Adsense
     (adsbygoogle = window.adsbygoogle || []).push({});
 
-     $('#typeahead').typeahead({
-          source: function (query, process) {
-              return $.getJSON(
-                  'loadcategories',
-                  { nome: query },
-                  function (data) {
-                      var newData = [];
-                      console.log("data " + data);
-                      $.each(data, function(){
-                        console.log("data2 " + this.nome_categoria);
-                          newData.push(this.nome_categoria);
-                      });
-                      return process(newData);
-
-                  }); 
+      $('#typeahead').tagsinput({
+        typeahead: {                  
+          source: function(query) {
+            return $.get('/mg-admin/loadcategories/', { nome: query});
           }
-
+        }
       });
+
 
       $('#typeahead2').tagsinput({
         typeahead: {                  
@@ -158,6 +123,23 @@
           }
         }
       });
+
+          $('#editora').tagsinput({
+      typeahead: {                  
+        source: function(query) {
+          return $.get('/mg-admin/loadempresas/', { nome: query});
+        }
+      }
+    }); 
+
+        $('#desenvolvedor').tagsinput({
+      typeahead: {                  
+        source: function(query) {
+          return $.get('/mg-admin/loadempresas/', { nome: query});
+        }
+      }
+    }); 
+
 
 
     var nome_jogo = $("#nome_jogo");

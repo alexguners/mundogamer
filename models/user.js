@@ -22,6 +22,7 @@ var userSchema = mongoose.Schema({
         user_nintendoid  : String,
         user_origin    : String,
         user_steam     : String,
+        data_cadastro       : {type: Date},
         created_at     : {type: Date}
 
     },

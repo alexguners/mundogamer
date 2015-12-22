@@ -5,6 +5,7 @@ var plataformaSchema = new Schema({
 	_id				: Schema.Types.ObjectId,
 	nome_plataforma		: String,
 	lancamento_plataforma : {type: Date},
+	data_cadastro		: {type: Date},
 	empresa_responsavel	: String,
 	tipo_plataforma		: String,
 	site_plataforma		: String,

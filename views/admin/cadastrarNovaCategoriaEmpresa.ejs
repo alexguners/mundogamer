@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<% include admin-header %>   
+ <% if (message) { %>
+        <div class="alert alert-success"><%= message %></div>
+    <% } %>
+          <div class="row-fluid">
+            <div id="dashboard-left" class="span8">
+	 					 <div class="panel panel-primary">  
+
+						    <div class="panel-body">
+  						    <form id="LoginForm" role="form" class="form-horizontal" enctype="multipart/form-data" autocomplete="off"  method="post">
+
+                    <!-- Título da Categoria -->
+                    <p>
+                      <label for="titulo">Nome da Categoria</label>
+                      <input type="text" class="input-block-level" id="nome_categoria" name="nome_categoria" placeholder="Digite o nome da midia" required="required" />
+                    </p>
+                    <!-- Fim Título da Categoria -->
+
+                    <!-- Editor de texto da descrição da categoria-->
+                    <p>
+                      <label><h4 class="widgettitle">Descrição da Categoria</h4></label>                    
+                      <textarea  class="ckeditor" name="editor1" id="editor1"></textarea>                           
+                    </p>
+                    <!-- Fim do  Editor de texto da descrição da categoria-->
+
+
+                    <!-- Botão de Cadastrar Categoria-->
+                      <p>
+    						        <center><button id="SubmitBtn" name="SubmitBtn" type="submit" class="btn btn-large btn-inverse">Cadastrar Categoria</button></center>
+    						      </p>   
+                    <!-- Fim do Botão de Cadastrar Categoria-->
+  						    </form>
+						    </div>
+						  </div>                         
+            </div>
+          </div>
+
+                <!-- Place inside the <head> of your HTML -->
+
+
+    <script src="/editor/ckeditor.js"></script>
+    <script type="text/javascript" src="/admin/js/jquery.min.js"></script> 
+    <script type="text/javascript" src="/admin/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="/admin/js/bootstrap.min.js"></script>
+    <script src="/admin/js/bootstrap-tagsinput.min.js" type="text/javascript"> </script>
+
+
+
+
+
+<% include admin-footer %>    

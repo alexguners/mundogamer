@@ -36,16 +36,6 @@
                       <input type="text" class="input-block-level" id="titulo" name="titulo" placeholder="Digite o titulo do vídeo" required="required" />
                     <!-- Fim Título do vídeo -->
 
-                    <!-- Data de Publicação -->
-                      <div id="datainicio">
-                        <label for="datafinal">Selecione a data inicial de exibição</label>
-                        <input type="text" class="form-control" name="datainicio" id="datainicio" required="required"></input>
-                          <span class="add-on">
-                            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-                          </span>
-                      </div>
-                    <!-- Fim da Data de Publicação -->
-
                    <!-- Endereço url do vídeo -->
                     <!--<p>
                         <label>Insira o endereço de acesso ao vídeo</label>
@@ -146,27 +136,13 @@
 
       });
 
-       $('#datainicio').datetimepicker({
-        format: 'dd/MM/yyyy hh:mm:ss',
-        language: 'pt-BR'
-      });
-
       $(document).ready(function () {
-      var datainicio = $("#datainicio");
       var titulo = $("#titulo");
       var LoginForm = $('#LoginForm');
       var SubmitBtn = $('#SubmitBtn');
    
       LoginForm.validate();
    
-      datainicio.rules("add", {
-        required: true,
-        length: 9,
-        messages: {
-          required: "Você deve preencher data de início",
-          rangelength: "Data inválida"
-        }
-      });
       titulo.rules("add", {
         required: true,
         messages: {
