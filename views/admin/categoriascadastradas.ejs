@@ -16,7 +16,8 @@
                             <th class="head0">Nome da Categoria</th>
                             <th class="head1">Descrição</th>
                             <th class="head0">Jogos cadastrados</th>
-                            <th class="head1">Ver/Editar</th>
+                            <th class="head1">Cadastrado por</th>
+                            <th class="head0">Ver/Editar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,6 +47,7 @@
 
                             <% if (typeof user.local.tipo !== 'undefined'){ %>
                                 <% if (user.local.tipo == 'Administrador'){ %> 
+                                    <td class="center"><%= categorias[i]._criador%></td>
                                     <td class="center">
                                         <a href="/mg-admin/editarcategoria/<%= categorias[i].id %>" data-toggle="modal" class="btn btn-inverse">
                                             <i class="iconfa-pencil"></i>

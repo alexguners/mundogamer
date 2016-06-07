@@ -3851,25 +3851,22 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
 
 
 .fixHeight{
-  min-height: 384px;
-  max-height: 384px;
-  height: 384px;
+  min-height: 320px;
+  max-height: 320px;
+  height: 320px;
 }
 .titulo{
   color: #2f4154;
   font-weight: bold;
-  text-align: center;
-
-}
-
-.titulo small{
-font-size: 0.8em;
+  font-size: 12px;
   text-transform: uppercase;
-
+  text-align: center;
 }
+
+
 .descricao{
-  color: #000000;
-  font-size: 15px;
+  color: #777;
+  font-size: 12px;
   text-align: justify;
 }
 .estilonoticia.estilonoticia-hot:before {
@@ -4648,11 +4645,11 @@ body.vjs-full-window {
 }
 .login {
   background: url(../images/login/imac2.jpg) no-repeat center center;
- 
-  color: #ffffff;
   margin-bottom: 77px;
-  padding: 200px 38px 267px;
+  padding: 120px 38px 267px;
   position: relative;
+  height: 100%;
+  width: 100%;
 }
 .login-screen {
   
@@ -4735,11 +4732,7 @@ body.vjs-full-window {
   margin-top: 15px;
   text-align: center;
 }
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 2) {
-  .login {
-    background-image: url(../images/login/imac-2x.png);
-  }
-}
+
 footer {
   background-color: #2f4154;
   color: #bac1c8;
@@ -5483,15 +5476,30 @@ box-shadow: 0 1px 0 rgba(255,255,255,0.1),1px 1px 0 #000 inset;
 .listanoticia{
 height:auto; 
 width: 100%;
+max-height: 25%;
+overflow:auto;
+font-size: 12px;
+}
+.listanoticiatitulo{
+  color: #2f4154;
+  font-weight: bold;
+  font-size: 12px;
+  text-align: left;
 
+}
+
+.listanoticiananoticia{
+height:auto; 
+width: 100px;
 max-height: 200px;
 overflow:auto;
+font-size: 12px;
 }
 
 .listaparceiro{
-height:auto; 
+height: auto;
 width: 100%;
-padding-top: 0px;
+overflow:auto;
 }
 
 /*Botões de compartilhamento do AddToAny  na página de notícia */

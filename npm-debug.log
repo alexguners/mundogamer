@@ -1,0 +1,67 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/bin/npm', 'install', 'ortoo-feedparse' ]
+2 info using npm@1.3.6
+3 info using node@v0.10.36
+4 verbose readDependencies using package.json deps
+5 verbose cache add [ 'ortoo-feedparse', null ]
+6 verbose cache add name=undefined spec="ortoo-feedparse" args=["ortoo-feedparse",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'ortoo-feedparse',
+7 verbose parsed url   path: 'ortoo-feedparse',
+7 verbose parsed url   href: 'ortoo-feedparse' }
+8 silly lockFile 8424ad24-ortoo-feedparse ortoo-feedparse
+9 verbose lock ortoo-feedparse /root/.npm/8424ad24-ortoo-feedparse.lock
+10 silly lockFile 8424ad24-ortoo-feedparse ortoo-feedparse
+11 silly lockFile 8424ad24-ortoo-feedparse ortoo-feedparse
+12 verbose addNamed [ 'ortoo-feedparse', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile 9b09c980-ortoo-feedparse ortoo-feedparse@
+15 verbose lock ortoo-feedparse@ /root/.npm/9b09c980-ortoo-feedparse.lock
+16 silly addNameRange { name: 'ortoo-feedparse', range: '*', hasData: false }
+17 verbose url raw ortoo-feedparse
+18 verbose url resolving [ 'https://registry.npmjs.org/', './ortoo-feedparse' ]
+19 verbose url resolved https://registry.npmjs.org/ortoo-feedparse
+20 info trying registry request attempt 1 at 12:44:53
+21 http GET https://registry.npmjs.org/ortoo-feedparse
+22 http 404 https://registry.npmjs.org/ortoo-feedparse
+23 silly registry.get cb [ 404,
+23 silly registry.get   { 'content-type': 'application/json',
+23 silly registry.get     'cache-control': 'max-age=0',
+23 silly registry.get     'content-length': '2',
+23 silly registry.get     'accept-ranges': 'bytes',
+23 silly registry.get     date: 'Fri, 22 Apr 2016 15:44:53 GMT',
+23 silly registry.get     via: '1.1 varnish',
+23 silly registry.get     age: '0',
+23 silly registry.get     connection: 'keep-alive',
+23 silly registry.get     'x-served-by': 'cache-fra1239-FRA',
+23 silly registry.get     'x-cache': 'MISS',
+23 silly registry.get     'x-cache-hits': '0',
+23 silly registry.get     'x-timer': 'S1461339893.211996,VS0,VE755',
+23 silly registry.get     vary: 'Accept-Encoding' } ]
+24 silly addNameRange number 2 { name: 'ortoo-feedparse', range: '*', hasData: true }
+25 silly addNameRange versions [ undefined, [] ]
+26 error TypeError: Cannot read property 'latest' of undefined
+26 error     at next (/usr/lib/node_modules/npm/lib/cache.js:687:35)
+26 error     at /usr/lib/node_modules/npm/lib/cache.js:675:5
+26 error     at saved (/usr/lib/node_modules/npm-registry-client/lib/get.js:148:7)
+26 error     at /usr/lib/node_modules/graceful-fs/polyfills.js:133:7
+26 error     at Object.oncomplete (fs.js:108:15)
+27 error If you need help, you may report this log at:
+27 error     <http://github.com/isaacs/npm/issues>
+27 error or email it to:
+27 error     <npm-@googlegroups.com>
+28 error System Linux 4.2.7-200.fc22.x86_64
+29 error command "node" "/usr/bin/npm" "install" "ortoo-feedparse"
+30 error cwd /var/www/html/Mundo_Gamer_2014/mg
+31 error node -v v0.10.36
+32 error npm -v 1.3.6
+33 error type non_object_property_load
+34 verbose exit [ 1, true ]

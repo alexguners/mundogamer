@@ -164,7 +164,7 @@
                         	<figure class="marginBottomFigure">
 								<img src="/images/noticia/capa/<%= noticias[i].id %>" alt="<%= noticias[i].url %>" title="<%= noticias[i].url %>" class=" listanoticia thumbnail border-no">	
 							</figure>	
-								<small><center><%= noticias[i].titulo.substr(0,60) %>...</center></small>
+								<p class="titulo"><%= noticias[i].titulo.substr(0,60) %>...</p>
 								<p class="descricao"><%= noticias[i].descricao.toString().replace(/<.*?>/g, '').substr(0,90) %>...(Ler Mais)</p>
 
 							

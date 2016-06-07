@@ -82,7 +82,7 @@ $(window).scroll(function () {
 
                                     html += '" alt="<%= noticias[i].url %>"" class=" listanoticia thumbnail border-no "></figure>';
 
-                                    html += '<small><center>' + noticias[i].titulo.substr(0, 60) + '</small></center>';
+                                    html += '<p class="titulo">' + noticias[i].titulo.substr(0, 60) + '</p>';
 
                                     var text = noticias[i].descricao.toString().replace(/<.*?>/g, '').substr(0, 90);
                                     html += '<p class="descricao">' + text + '... (Ler mais)' + '</p></a>';

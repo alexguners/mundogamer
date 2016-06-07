@@ -41,8 +41,7 @@
       <!-- Container -->
       <div class="container">
         <!-- Coluna da noticias -->
-        <div class="col-md-9">
-          <center>
+        <center>
                <!-- MundoGamer Blog -->
                <script type="text/javascript">  
                    google_ad_client = "ca-pub-0061672681197040";  
@@ -72,6 +71,8 @@
                     document.write(' <scr'+'ipt type=\"text/javascript\" src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\"></scri'+'pt>');  
                 </script>  
           </center>   
+        <div class="col-md-9">
+          
 
             <!-- Titulo da noticias -->
             <div><center><h4><%= noticia.titulo %></h4></center></div>
@@ -110,7 +111,7 @@
             <!-- AddToAny END -->
 
               <center>
-              <div class="reporterro">Encontrou algum erro ou gostaria de dar uma sugestão de melhoria?<br> Faça isso <u><a data-toggle="modal" href="#reporterro" >clicando aqui!</a></u> </div>
+              <div class="reporterro">Encontrou algum erro ou gostaria de dar uma sugestão de melhoria?<br> Faça isso <u><a data-toggle="modal" href="mailto:<%=noticia._criador.local.email%>" >clicando aqui!</a></u> </div>
               </center>
             <br>
           </div> <!-- /.descrição da noticia -->
@@ -118,39 +119,6 @@
 
             <!-- Comentários pelo Facebook -->
             <center><div class="fb-comments" data-href="http://mundogamer.com.br/noticia/<%- noticia.id %>" data-width="100%" data-numposts="10" data-colorscheme="light"></div></center> 
-
-
-              <!-- Popup de contato -->
-              <div class="modal fade" id="reporterro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                       <small class="modal-title" id="exampleModalLabel">Envie sua mensagem</small>
-                    </div>
-                    <div class="modal-body">
-                      <form>
-                        <div class="form-group">
-                          <label for="recipient-name" class="control-label">Nome:</label>
-                          <input type="text" class="form-control" id="recipient-name">
-
-                          <label for="recipient-name" class="control-label">E-mail:</label>
-                          <input type="text" class="form-control" id="recipient-name">
-
-                          <label for="message-text" class="control-label">Mensagem:</label>
-                          <textarea class="form-control" id="message-text"></textarea>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                      <button type="button" class="btn btn-primary">Enviar Mensagem</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          <!-- Popup de contato -->
-            
 
 
 
@@ -198,23 +166,6 @@
 
             </div>
          </div><!-- /.Sobre Autor -->
-       <ul class="media-list">
-       <% if((noticiasAutor !== 'undefined') && (noticiasAutor.length > 0)){ 
-          for (var i = 0; i < noticiasAutor.length; i++){ %>
-                <li class="media">
-                <a class="pull-left" href="/noticia/<%=noticiasAutor[i].url%>">
-                  <img class="media-object thumbnail border-no" src="/images/noticia/capa/<%=noticiasAutor[i]._id%>" height="200px" width:"300px">
-                </a>
-                <div class="media-body">
-                  <a href="/noticia/<%=noticiasAutor[i].url%>">
-                    <quote><%=noticiasAutor[i].titulo%><quote><br>
-                    <quote><%=noticiasAutor[i].descricao.toString().replace(/<.*?>/g, '').substr(0,90) %>... ( Leia Mais )<quote>
-                    </a>
-                </div>
-              </li>
-              <hr>
-          <%}}%>    
-      </ul>
 
         </div>  <!-- /.Coluna da noticias --> 
 
@@ -222,9 +173,13 @@
         <div class="col-md-3">
           <!-- Coluna da direita noticias recentes -->
 
+          <!-- LikeBox Facebook -->
+          <div class="fb-page" data-href="https://www.facebook.com/brasilmundogamer/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/brasilmundogamer/"><a href="https://www.facebook.com/brasilmundogamer/">Mundo Gamer</a></blockquote></div></div>
+          <!-- LikeBox Facebook -->
+
           <div class="tabbable"> <!-- Only required for left/right tabs -->
                  <dl class="palette palette-red" align="center">
-                    <dt>Veja mais notícias</dt>
+                    <dt>Leia também</dt>
                  </dl>
                   <ul id="tabs" class="nav nav-tabs nav-justified" role="tablist" data-tabs="tabs">
                       <li class="active"><a href="#tab1" data-toggle="tab">Recentes</a></li>
@@ -237,18 +192,18 @@
                             <ul class="media-list">
                               <% if((noticiasAutor !== 'undefined') && (noticiasAutor.length > 0)){ 
                                     for (var i = 0; i < noticiasAutor.length; i++){ %>
-                                        <li>
-                                          <figure>
-                                            <img class="listanoticia" src="/images/noticia/capa/<%=noticiasAutor[i]._id%>">
-                                                <a href="/noticia/<%=noticiasAutor[i].url%>">
-                                                <small><%=noticiasAutor[i].titulo%></small>
-                                                <small  style="color:#999">  | Publicada por <%=noticia._criador.local.nome%>
-                                                <% var d = new Date(noticiasAutor[i].data); 
-                                              %>no dia <%= ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/'  + d.getFullYear()%> às <%= ('0' + d.getHours()).slice(-2) + ':' + ('0' + (d.getMinutes())).slice(-2) %></small></a>
-                                          </figure>
-                                       </li>
-                                       <hr>
-                                    <%}}%> 
+                                                      <li class="media">
+                                      <a class="pull-left" href="/noticia/<%=noticiasAutor[i].url%>">
+                                        <img class="listanoticiananoticia" src="/images/noticia/capa/<%=noticiasAutor[i]._id%>">
+                                      </a>
+                                      <div class="listanoticiatitulo">
+                                        <a href="/noticia/<%=noticiasAutor[i].url%>">
+                                          <%=noticiasAutor[i].titulo%><br>
+                                          </a>
+                                      </div>
+                                    </li>
+                                        <hr>
+                                        <%}}%> 
                             </ul> 
                         </div>
                         <div class="tab-pane" id="tab2">
@@ -256,13 +211,12 @@
                         </div>
                     </div>
                   </div>
-                  <br>
 
                   <!--Coluna da direita Publicidade -->
                   <dl class="palette palette-midnight-blue" align="center">
                       <dt>Parceiro Mundo Gamer</dt>
                   </dl>
-                  <div class="noticiaanimator listaparceiro">
+                  <div class="listaparceiro">
                     <% if (typeof noticia.parceiro !== 'undefined'){ %>
                           <% if (noticia.parceiro == 'Clube da Nuna'){ %> 
                             <figure><a href="http://www.clubedanuna.com.br" target="_blank"><img align="center"src="/images/wikigamer/parceiros/logos/5405f9fa51b0210000c039cd" alt="Conheça o Clube da Nuna" ></a></figure>
@@ -331,21 +285,6 @@
             });
           });
 
-
-         /* Javascript do campo do Email */
-        $('#email').popover({
-        html : true,
-        trigger : 'manual',
-        content : function() {
-            return '<div class="box"><center><span class="label label-danger"><%=noticia._criador.local.email%></span></center></div>';
-        }
-            });
-        $(document).on('mouseover', '#email', function(){
-            $('#email').popover('show');
-        });
-        $(document).on('mouseleave', '#email', function(){
-            $('#email').popover('hide');
-        });
 
         /* Javascript do campo do ID PSN */
         $('#psnid').popover({
@@ -431,15 +370,16 @@
 
           //Plugin de curtir página no Facebook
 
-          (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.3&appId=625583237494479";
-            fjs.parentNode.insertBefore(js, fjs);
-          }(document, 'script', 'facebook-jssdk'));
-
         </script>
+
+        <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.6&appId=625583237494479";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
     <% include footer %>  
     </body>
 

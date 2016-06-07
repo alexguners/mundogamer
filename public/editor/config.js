@@ -1,11 +1,11 @@
 /**
- * @license Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.html or http://ckeditor.com/license
+ * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
 CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here.
-	// For the complete reference:
+	// For complete reference see:
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
 
 	// The toolbar groups arrangement, optimized for two toolbar rows.
@@ -18,7 +18,7 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'tools' },
 		{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
 		{ name: 'others' },
-		'/',
+
 		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
 		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
 		{ name: 'styles' },
@@ -26,27 +26,15 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'about' }
 	];
 
-	// Remove some buttons, provided by the standard plugins, which we don't
-
-	//Função do imageresponsive
-
-
-	// need to have in the Standard(s) toolbar.
+	// Remove some buttons provided by the standard plugins, which are
+	// not needed in the Standard(s) toolbar.
 	config.removeButtons = 'Underline,Subscript,Superscript';
 
-	// Se the most common block elements.
+	// Set the most common block elements.
 	config.format_tags = 'p;h1;h2;h3;pre';
 
-	// Make dialogs simpler.
+	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 
 	config.filebrowserUploadUrl = '/upload';
-
-	config.extraPlugins = 'lineutils,widget,youtube,justify,image2'; //videodetector esse plugin pode ser adicionado nesta linha após o image2
-
-	config.youtube_width = '640';
-
-	config.youtube_height = '480';
-
-
 };
